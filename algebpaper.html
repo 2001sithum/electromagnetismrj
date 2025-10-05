@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linear Algebra Notes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    .container {
+      width: 80%;
+      margin: auto;
+      overflow: hidden;
+      padding: 20px 0;
+    }
+    header {
+      background: #333;
+      color: #fff;
+      padding: 1rem 0;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+    }
+    section {
+      background: #fff;
+      margin: 20px 0;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #0056b3;
+      border-bottom: 2px solid #0056b3;
+      padding-bottom: 5px;
+    }
+    h3 {
+      color: #333;
+    }
+    .theorem, .proof, .definition, .example {
+      margin-bottom: 15px;
+      padding: 15px;
+      border-left: 4px solid #007bff;
+      background-color: #e7f3ff;
+      border-radius: 4px;
+    }
+    .proof {
+      border-left-color: #28a745;
+      background-color: #e9f7ec;
+    }
+    .example {
+      border-left-color: #ffc107;
+      background-color: #fff8e1;
+    }
+    .conclusion {
+      font-weight: bold;
+      color: #dc3545;
+    }
+    code {
+      background-color: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Linear Algebra Notes</h1>
+</header>
+
+<div class="container">
+
+  <section id="subspace-theorem">
+    <h2>The Subspace Theorem</h2>
+    <div class="theorem">
+      <strong>Theorem:</strong> A non-empty subset W of a vector space V is a subspace of V if and only if for all vectors <strong>u</strong>, <strong>v</strong> ∈ W and all scalars α, β ∈ F (the field), the linear combination α<strong>u</strong> + β<strong>v</strong> is also in W.
+    </div>
+
+    <div class="proof">
+      <h3>Proof</h3>
+      <p>This proof has two parts:</p>
+
+      <h4>Part 1: The "if" direction (⇒)</h4>
+      <p>Assume W is a subspace of V. We need to show that α<strong>u</strong> + β<strong>v</strong> ∈ W.</p>
+      <ul>
+        <li>1. Let <strong>u</strong>, <strong>v</strong> ∈ W and scalars α, β ∈ F.</li>
+        <li>2. Since W is a subspace, it is closed under scalar multiplication. Therefore, α<strong>u</strong> ∈ W and β<strong>v</strong> ∈ W.</li>
+        <li>3. Since W is a subspace, it is also closed under vector addition. Therefore, the sum of α<strong>u</strong> and β<strong>v</strong> must be in W.</li>
+        <li>4. Thus, α<strong>u</strong> + β<strong>v</strong> ∈ W.</li>
+      </ul>
+
+      <h4>Part 2: The "only if" direction (⇐)</h4>
+      <p>Assume α<strong>u</strong> + β<strong>v</strong> ∈ W for all <strong>u</strong>, <strong>v</strong> ∈ W and α, β ∈ F. We must show that W is a subspace by verifying it satisfies the necessary properties.</p>
+      <ul>
+        <li><strong>A1: Closure under Addition:</strong> Let <strong>u</strong>, <strong>v</strong> ∈ W. Choose α=1 and β=1. By our assumption, (1)<strong>u</strong> + (1)<strong>v</strong> = <strong>u</strong> + <strong>v</strong> ∈ W. The set is closed under addition.</li>
+        <li><strong>A3: Existence of Zero Vector:</strong> Since W is non-empty, let <strong>u</strong> be some vector in W. Choose α=0 and β=0. Then (0)<strong>u</strong> + (0)<strong>u</strong> = <strong>0</strong> + <strong>0</strong> = <strong>0</strong> ∈ W. The zero vector is in W.</li>
+        <li><strong>A4: Existence of Additive Inverse:</strong> Let <strong>u</strong> ∈ W. Choose α=-1 and β=0. Then (-1)<strong>u</strong> + (0)<strong>u</strong> = -<strong>u</strong> ∈ W. For every vector in W, its additive inverse is also in W.</li>
+        <li><strong>M1: Closure under Scalar Multiplication:</strong> Let <strong>u</strong> ∈ W and α be any scalar. Choose β=0. Then α<strong>u</strong> + (0)<strong>u</strong> = α<strong>u</strong> ∈ W. The set is closed under scalar multiplication.</li>
+      </ul>
+      <p>Since W is a subset of V, other properties like associativity and distributivity are inherited from V. With closure under addition and scalar multiplication, and the existence of the zero vector, W is a subspace of V.</p>
+    </div>
+  </section>
+
+  <section id="sum-of-subspaces">
+    <h2>Sum of Subspaces</h2>
+    <div class="definition">
+      <strong>Definition:</strong> Let W₁ and W₂ be subspaces of a vector space V. The sum of these subspaces, denoted W₁ + W₂, is the set of all possible sums of their elements:
+      <p><code>W₁ + W₂ = {w₁ + w₂ | w₁ ∈ W₁, w₂ ∈ W₂}</code></p>
+    </div>
+    <div class="theorem">
+      <strong>Theorem:</strong> The sum W₁ + W₂ is also a subspace of V.
+    </div>
+    <div class="proof">
+      <h3>Proof</h3>
+      <ul>
+        <li><strong>1. Non-empty:</strong> Since W₁ and W₂ are subspaces, they both contain the zero vector <strong>0</strong>. Thus, <strong>0</strong> = <strong>0</strong> + <strong>0</strong> ∈ W₁ + W₂, so the set is not empty.</li>
+        <li><strong>2. Closure under Addition:</strong> Let <strong>u</strong> = u₁ + u₂ and <strong>v</strong> = v₁ + v₂ be two vectors in W₁ + W₂, where u₁, v₁ ∈ W₁ and u₂, v₂ ∈ W₂.
+          <br><strong>u</strong> + <strong>v</strong> = (u₁ + u₂) + (v₁ + v₂) = (u₁ + v₁) + (u₂ + v₂).
+          <br>Since W₁ and W₂ are subspaces, (u₁ + v₁) ∈ W₁ and (u₂ + v₂) ∈ W₂. Therefore, <strong>u</strong> + <strong>v</strong> ∈ W₁ + W₂.
+        </li>
+        <li><strong>3. Closure under Scalar Multiplication:</strong> Let <strong>u</strong> = u₁ + u₂ ∈ W₁ + W₂ and α be a scalar.
+          <br>α<strong>u</strong> = α(u₁ + u₂) = αu₁ + αu₂.
+          <br>Since W₁ and W₂ are subspaces, αu₁ ∈ W₁ and αu₂ ∈ W₂. Therefore, α<strong>u</strong> ∈ W₁ + W₂.
+        </li>
+      </ul>
+      <p>Since W₁ + W₂ is non-empty and closed under both addition and scalar multiplication, it is a subspace of V.</p>
+    </div>
+  </section>
+
+  <section id="subspace-examples">
+    <h2>Examples: Identifying Subspaces</h2>
+
+    <div class="example">
+      <h3>Example 1: Is W = {(a,b,c) | a ≤ b ≤ c} a subspace of R³?</h3>
+      <p><strong>1. Zero Vector:</strong> The vector (0,0,0) is in W because 0 ≤ 0 ≤ 0. So W is non-empty.</p>
+      <p><strong>2. Closure under Addition:</strong> Let <strong>u</strong>=(a,b,c) and <strong>v</strong>=(d,e,f) be in W. Then a ≤ b ≤ c and d ≤ e ≤ f.
+        <br><strong>u</strong>+<strong>v</strong> = (a+d, b+e, c+f).
+        <br>Since a ≤ b and d ≤ e, then a+d ≤ b+e.
+        <br>Since b ≤ c and e ≤ f, then b+e ≤ c+f.
+        <br>So, a+d ≤ b+e ≤ c+f, and W is closed under addition.
+      </p>
+      <p><strong>3. Closure under Scalar Multiplication:</strong> Let <strong>u</strong>=(1,2,3) ∈ W. Let the scalar α = -1.
+        <br>α<strong>u</strong> = -1 * (1,2,3) = (-1,-2,-3).
+        <br>To be in W, we must have -1 ≤ -2 ≤ -3. This is false.
+      </p>
+      <p class="conclusion">Conclusion: W is not closed under scalar multiplication, so it is not a subspace of R³.</p>
+    </div>
+
+    <div class="example">
+      <h3>Example 2: Is W = {(a,b,c) | b + 4c = 0} a subspace of R³?</h3>
+      <p>The condition b + 4c = 0 means b = -4c. So any vector in W has the form (a, -4c, c) for any a, c ∈ R.</p>
+      <p><strong>1. Zero Vector:</strong> If a=0 and c=0, we get (0,0,0). So W is non-empty.</p>
+      <p><strong>2. Closure under Addition:</strong> Let <strong>u</strong>=(a₁, -4c₁, c₁) and <strong>v</strong>=(a₂, -4c₂, c₂) be in W.
+        <br><strong>u</strong>+<strong>v</strong> = (a₁+a₂, -4c₁-4c₂, c₁+c₂) = (a₁+a₂, -4(c₁+c₂), c₁+c₂).
+        <br>This vector is of the form (a', -4c', c') where a'=a₁+a₂ and c'=c₁+c₂. It satisfies the condition. W is closed under addition.
+      </p>
+      <p><strong>3. Closure under Scalar Multiplication:</strong> Let <strong>u</strong>=(a, -4c, c) ∈ W and α be a scalar.
+        <br>α<strong>u</strong> = α(a, -4c, c) = (αa, -4(αc), αc).
+        <br>This vector is of the form (a', -4c', c') where a'=αa and c'=αc. It satisfies the condition. W is closed under scalar multiplication.
+      </p>
+      <p class="conclusion">Conclusion: W is closed under both operations, so it is a subspace of R³.</p>
+    </div>
+  </section>
+
+  <section id="linear-combinations">
+    <h2>Linear Combinations and Span</h2>
+
+    <div class="definition">
+      <strong>Linear Combination:</strong> A vector <strong>v</strong> is a linear combination of vectors {v₁, v₂, ..., vₙ} if it can be written as <strong>v</strong> = α₁v₁ + α₂v₂ + ... + αₙvₙ for some scalars {α₁, α₂, ..., αₙ}.
+    </div>
+
+    <div class="example">
+      <h3>Example: Express v = (1, 7, -4) as a linear combination of v₁ = (1, -3, 2) and v₂ = (2, -1, 1).</h3>
+      <p>We want to find α₁ and α₂ such that <strong>v</strong> = α₁<strong>v₁</strong> + α₂<strong>v₂</strong>.</p>
+      <p>(1, 7, -4) = α₁(1, -3, 2) + α₂(2, -1, 1)</p>
+      <p>This gives a system of linear equations:</p>
+      <ul>
+        <li>(1) α₁ + 2α₂ = 1</li>
+        <li>(2) -3α₁ - α₂ = 7</li>
+        <li>(3) 2α₁ + α₂ = -4</li>
+      </ul>
+      <p>Solving this system gives α₁ = -3 and α₂ = 2.</p>
+      <p><strong>Result:</strong> <strong>v</strong> = -3<strong>v₁</strong> + 2<strong>v₂</strong></p>
+    </div>
+
+    <div class="definition">
+      <strong>Linear Span:</strong> The linear span of a set of vectors S, denoted L(S) or Span(S), is the set of all possible linear combinations of the vectors in S. This set forms a vector subspace.
+    </div>
+  </section>
+
+  <section id="basis">
+    <h2>Linear Independence and Basis</h2>
+
+    <div class="definition">
+      <strong>Linearly Independent:</strong> A set of vectors {v₁, ..., vₙ} is linearly independent if the only solution to the equation α₁v₁ + ... + αₙvₙ = <strong>0</strong> is the trivial solution, where all scalars αᵢ = 0.
+      <br><strong>Linearly Dependent:</strong> If there is at least one non-zero scalar in the solution, the set is linearly dependent.
+    </div>
+
+    <div class="definition">
+      <strong>Basis:</strong> A basis for a vector space V is a set of vectors that is both:
+      <ol>
+        <li>Linearly independent.</li>
+        <li>Spans the entire vector space V.</li>
+      </ol>
+    </div>
+
+    <div class="example">
+      <h3>Example: Is S = {(1,1,2), (1,2,5), (5,3,4)} a basis for R³?</h3>
+      <p>We check for linear independence first. Set a linear combination to zero:</p>
+      <p>α₁(1,1,2) + α₂(1,2,5) + α₃(5,3,4) = (0,0,0)</p>
+      <p>This gives the system of equations:</p>
+      <ul>
+        <li>(1) α₁ + α₂ + 5α₃ = 0</li>
+        <li>(2) α₁ + 2α₂ + 3α₃ = 0</li>
+        <li>(3) 2α₁ + 5α₂ + 4α₃ = 0</li>
+      </ul>
+      <p>Subtracting (1) from (2) gives: α₂ - 2α₃ = 0, so α₂ = 2α₃.</p>
+      <p>Substitute this into (1): α₁ + (2α₃) + 5α₃ = 0, so α₁ = -7α₃.</p>
+      <p>If we choose α₃ = 1, then we get a non-trivial solution α₁ = -7, α₂ = 2, α₃ = 1.</p>
+      <p class="conclusion">Conclusion: Since a non-trivial solution exists, the set is linearly dependent and therefore cannot be a basis for R³.</p>
+    </div>
+  </section>
+
+  <section id="axioms-verification">
+    <h2>Verification of Vector Space Axioms</h2>
+    <div class="example">
+      <h3>Example: Show that V = {(x₁, 0, x₂) | x₁, x₂ ∈ R} is a vector space.</h3>
+      <p>We must verify all the vector space axioms for addition and scalar multiplication.</p>
+
+      <h4>Additive Axioms</h4>
+      <ul>
+        <li><strong>A1 (Closure):</strong> (x₁, 0, x₂) + (y₁, 0, y₂) = (x₁ + y₁, 0, x₂ + y₂). The result is in V. ✓</li>
+        <li><strong>A2 (Associativity):</strong> [(x₁,0,x₂) + (y₁,0,y₂)] + (z₁,0,z₂) = (x₁+y₁+z₁, 0, x₂+y₂+z₂).
+          <br>(x₁,0,x₂) + [(y₁,0,y₂) + (z₁,0,z₂)] = (x₁+y₁+z₁, 0, x₂+y₂+z₂). Holds. ✓</li>
+        <li><strong>A3 (Additive Identity):</strong> The zero vector is e = (0,0,0), which is in V, since (x₁, 0, x₂) + (0,0,0) = (x₁, 0, x₂). ✓</li>
+        <li><strong>A4 (Additive Inverse):</strong> For u = (x₁, 0, x₂), the inverse is -u = (-x₁, 0, -x₂), which is in V. ✓</li>
+      </ul>
+
+      <h4>Multiplicative Axioms</h4>
+      <ul>
+        <li><strong>M1 (Closure):</strong> α(x₁, 0, x₂) = (αx₁, 0, αx₂). The result is in V. ✓</li>
+        <li><strong>M2 (Associativity):</strong> α(β(x₁,0,x₂)) = α(βx₁, 0, βx₂) = ((αβ)x₁, 0, (αβ)x₂).
+          <br>(αβ)(x₁,0,x₂) = ((αβ)x₁, 0, (αβ)x₂). Holds. ✓</li>
+        <li><strong>M3 (Distributivity):</strong> α((x₁,0,x₂)+(y₁,0,y₂)) = α(x₁+y₁, 0, x₂+y₂) = (αx₁+αy₁, 0, αx₂+αy₂).
+          <br>α(x₁,0,x₂) + α(y₁,0,y₂) = (αx₁,0,αx₂) + (αy₁,0,αy₂) = (αx₁+αy₁, 0, αx₂+αy₂). Holds. ✓</li>
+        <li><strong>M4 (Distributivity):</strong> (α+β)(x₁,0,x₂) = ((α+β)x₁, 0, (α+β)x₂) = (αx₁+βx₁, 0, αx₂+βx₂).
+          <br>α(x₁,0,x₂) + β(x₁,0,x₂) = (αx₁,0,αx₂) + (βx₁,0,βx₂) = (αx₁+βx₁, 0, αx₂+βx₂). Holds. ✓</li>
+        <li><strong>M5 (Multiplicative Identity):</strong> 1 * (x₁, 0, x₂) = (1*x₁, 0, 1*x₂) = (x₁, 0, x₂). Holds. ✓</li>
+      </ul>
+      <p class="conclusion">Conclusion: All axioms hold, so V is a vector space.</p>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>

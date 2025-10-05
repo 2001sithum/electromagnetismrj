@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAT 2204 - Differential Equations II Exam Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+  </script>
+  <style>
+    /* General Body and Typography */
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Lato', sans-serif;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #343a40;
+    }
+    .container {
+      width: 80%;
+      max-width: 1000px;
+      margin: auto;
+      overflow: hidden;
+      padding: 20px 0;
+    }
+    h1, h2, h3 {
+      font-weight: 700;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      background-color: #343a40;
+      color: #fff;
+      padding: 1rem 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-brand {
+      font-size: 1.5em;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .nav-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    .nav-links li {
+      margin-left: 20px;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    .nav-links a:hover {
+      background-color: #28a745;
+    }
+
+    /* Header */
+    .main-header {
+      background: #28a745;
+      color: #ffffff;
+      padding: 3rem 0;
+      text-align: center;
+    }
+    .main-header h1 {
+      margin: 0;
+      font-size: 2.8em;
+    }
+    .main-header p {
+      font-size: 1.3em;
+    }
+
+    /* Main Content Sections */
+    .content-section {
+      background: #ffffff;
+      margin: 30px 0;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      border-top: 5px solid #28a745;
+    }
+    .question-title {
+      font-size: 2.2em;
+      color: #1e7e34;
+      border-bottom: 3px solid #e9ecef;
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+    }
+
+    /* Question and Solution Blocks */
+    .question-block {
+      background-color: #e9f7ec;
+      border: 1px solid #c3e6cb;
+      padding: 20px;
+      margin-bottom: 25px;
+      border-radius: 5px;
+      font-style: italic;
+      font-size: 1.1em;
+    }
+    .theory-box {
+      background-color: #e7f3ff;
+      border-left: 5px solid #0056b3;
+      padding: 20px;
+      margin: 25px 0;
+      border-radius: 5px;
+    }
+    .solution-box {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #dee2e6;
+    }
+    .conclusion {
+      font-weight: bold;
+      color: #004085;
+      background-color: #cce5ff;
+      padding: 15px;
+      border-left: 5px solid #0056b3;
+      border-radius: 4px;
+      margin-top: 20px;
+    }
+
+    /* Homepage Question List */
+    .question-list .question-item {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+      transition: box-shadow 0.3s;
+    }
+    .question-list .question-item:hover {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .question-list .question-item a {
+      text-decoration: none;
+      color: #1e7e34;
+    }
+
+    /* Footer */
+    .main-footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      background-color: #343a40;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="container">
+    <a href="#home" class="nav-brand">MAT 2204 Solutions</a>
+    <ul class="nav-links">
+      <li><a href="#q1">Question 1</a></li>
+      <li><a href="#q2">Question 2</a></li>
+      <li><a href="#q3">Question 3</a></li>
+      <li><a href="#q4">Question 4</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="main-header" id="home">
+  <h1>MAT 2204 - Differential Equations II</h1>
+  <p>Complete Solutions and Theoretical Explanations</p>
+</header>
+
+<div class="container">
+  <!-- Homepage Section -->
+  <section class="content-section">
+    <h2>Exam Questions Overview</h2>
+    <p>Welcome to the detailed solutions for the MAT 2204 examination. This guide provides not only the answers but also the underlying theories required to solve each problem. Please use the navigation bar above or the links below to jump to the solution for each question.</p>
+
+    <div class="question-list">
+      <div class="question-item">
+        <h3><a href="#q1">Question 1: Power Series About an Ordinary Point</a></h3>
+        <p>Analysis of the equation $(x^2 + 1)y'' + xy' - xy = 0$. This question covers the classification of points and finding a power series solution around an ordinary point.</p>
+      </div>
+      <div class="question-item">
+        <h3><a href="#q2">Question 2: Method of Frobenius</a></h3>
+        <p>Analysis of the equation $9x(1-x)y'' - 12y' + 4y = 0$. This is a detailed application of the Method of Frobenius for solving differential equations around a regular singular point.</p>
+      </div>
+      <div class="question-item">
+        <h3><a href="#q3">Question 3: Picard's Iteration and Existence Theorem</a></h3>
+        <p>This question involves applying Picard's iteration method to an initial value problem and using the Existence and Uniqueness Theorem to determine the interval of a unique solution.</p>
+      </div>
+      <div class="question-item">
+        <h3><a href="#q4">Question 4: Systems of Linear Differential Equations</a></h3>
+        <p>Solving systems of first-order linear differential equations using the eigenvalue-eigenvector method, including cases with distinct and repeated eigenvalues.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Question 1 Section -->
+  <section class="content-section" id="q1">
+    <h1 class="question-title">Question 1: Power Series Solution</h1>
+    <div class="question-block">
+      Consider the differential equation: $(x^2 + 1)y''(x) + xy'(x) - xy(x) = 0$.
+      <br><strong>a)</strong> Show that $x=0$ is an ordinary point. Does it have singular points? Justify.
+      <br><strong>b)</strong> Find the power series solution about $x=0$.
+    </div>
+    <div class="theory-box">
+      <h3>Theoretical Background</h3>
+      <p>For a second-order linear differential equation in standard form, $y'' + P(x)y' + Q(x)y = 0$:
+      <ul>
+        <li>A point $x_0$ is an <strong>ordinary point</strong> if both $P(x)$ and $Q(x)$ are analytic at $x_0$. For rational functions, this means their denominators are non-zero at $x_0$.</li>
+        <li>A point that is not ordinary is a <strong>singular point</strong>.</li>
+        <li>If $x_0$ is an ordinary point, we can find two linearly independent solutions in the form of a power series, $y(x) = \sum_{n=0}^{\infty} c_n (x-x_0)^n$.</li>
+      </ul>
+      </p>
+    </div>
+    <div class="solution-box">
+      <h2>Solution to 1(a)</h2>
+      <p>First, we write the equation in standard form by dividing by $(x^2+1)$:
+        $$y'' + \frac{x}{x^2+1}y' - \frac{x}{x^2+1}y = 0$$
+        Here, $P(x) = \frac{x}{x^2+1}$ and $Q(x) = -\frac{x}{x^2+1}$.
+      </p>
+      <p>At $x=0$, the denominator is $0^2+1 = 1 \neq 0$. Since the denominators are non-zero, both $P(x)$ and $Q(x)$ are analytic at $x=0$.</p>
+      <div class="conclusion">Therefore, $x=0$ is an ordinary point.</div>
+      <p>Singular points occur where the denominator is zero: $x^2 + 1 = 0 \implies x = \pm i$.</p>
+      <div class="conclusion">The equation has two singular points in the complex plane: $x=i$ and $x=-i$.</div>
+    </div>
+    <div class="solution-box">
+      <h2>Solution to 1(b)</h2>
+      <p>Since $x=0$ is an ordinary point, we assume a solution $y = \sum_{n=0}^{\infty} c_n x^n$. The derivatives are $y' = \sum_{n=1}^{\infty} n c_n x^{n-1}$ and $y'' = \sum_{n=2}^{\infty} n(n-1) c_n x^{n-2}$. Substitute these into the original equation:</p>
+      $$(x^2+1)\sum_{n=2}^{\infty} n(n-1)c_n x^{n-2} + x\sum_{n=1}^{\infty} n c_n x^{n-1} - x\sum_{n=0}^{\infty} c_n x^n = 0$$
+      <p>Re-indexing all sums to a common power $x^k$ leads to a combined expression. By equating the coefficient of each power of $x$ to zero, we find:</p>
+      <ul>
+        <li>Constant term ($x^0$): $2c_2 = 0 \implies \boldsymbol{c_2 = 0}$</li>
+        <li>$x^1$ term: $6c_3 + c_1 - c_0 = 0 \implies \boldsymbol{c_3 = \frac{c_0 - c_1}{6}}$</li>
+        <li>$x^k$ term ($k \ge 2$): This yields the <strong>recurrence relation</strong>:
+          $$c_{k+2} = \frac{c_{k-1} - k^2 c_k}{(k+2)(k+1)}$$
+        </li>
+      </ul>
+      <p>We find the next few coefficients using arbitrary constants $c_0$ and $c_1$:
+      <ul>
+        <li>$k=2$: $c_4 = \frac{c_1 - 4 c_2}{12} = \frac{c_1}{12}$</li>
+        <li>$k=3$: $c_5 = \frac{c_2 - 9 c_3}{20} = \frac{-9(\frac{c_0-c_1}{6})}{20} = \frac{-3c_0 + 3c_1}{40}$</li>
+      </ul>
+      </p>
+      <div class="conclusion">The general solution is $y(x) = c_0 y_1(x) + c_1 y_2(x)$, where:
+        <br>$y_1(x) = 1 + \frac{1}{6}x^3 - \frac{3}{40}x^5 + \dots$
+        <br>$y_2(x) = x - \frac{1}{6}x^3 + \frac{1}{12}x^4 + \frac{3}{40}x^5 + \dots$
+      </div>
+    </div>
+  </section>
+
+  <!-- Question 2 Section -->
+  <section class="content-section" id="q2">
+    <h1 class="question-title">Question 2: Method of Frobenius</h1>
+    <div class="question-block">
+      The differential equation is given: $9x(1-x)y''(x) - 12y'(x) + 4y(x) = 0$.
+      <br><strong>a)</strong> Show that $x=0$ is a regular singular point.
+      <br><strong>b)</strong> Use the method of Frobenius to solve the differential equation about $x=0$.
+    </div>
+    <div class="theory-box">
+      <h3>Theoretical Background</h3>
+      <p>A point $x_0$ is a <strong>regular singular point</strong> (RSP) if it is singular, and both $(x-x_0)P(x)$ and $(x-x_0)^2Q(x)$ are analytic at $x_0$. The <strong>Method of Frobenius</strong> is used for RSPs, assuming a solution $y = \sum_{n=0}^{\infty} c_n (x-x_0)^{n+r}$. The roots $r_1, r_2$ of the <strong>indicial equation</strong> determine the solution forms.</p>
+    </div>
+    <div class="solution-box">
+      <h2>Solution to 2(a)</h2>
+      <p>Standard form: $y'' - \frac{12}{9x(1-x)}y' + \frac{4}{9x(1-x)}y = 0$.
+        Here $P(x) = -\frac{4}{3x(1-x)}$ and $Q(x) = \frac{4}{9x(1-x)}$. The point $x=0$ is singular. We test for regularity:</p>
+      <ul>
+        <li>$p_0 = \lim_{x \to 0} x P(x) = \lim_{x \to 0} -\frac{4}{3(1-x)} = -\frac{4}{3}$ (finite).</li>
+        <li>$q_0 = \lim_{x \to 0} x^2 Q(x) = \lim_{x \to 0} \frac{4x}{9(1-x)} = 0$ (finite).</li>
+      </ul>
+      <div class="conclusion">Since both limits are finite, $x=0$ is a regular singular point.</div>
+    </div>
+    <div class="solution-box">
+      <h2>Solution to 2(b)</h2>
+      <p>We assume a solution $y = \sum_{n=0}^{\infty} c_n x^{n+r}$. Substituting into the DE, the coefficient of the lowest power of $x$ (which is $x^{r-1}$) gives the <strong>indicial equation</strong>:
+        $$9r(r-1) - 12r = 0 \implies 9r^2 - 21r = 0 \implies 3r(3r-7) = 0$$
+        The indicial roots are $r_1 = 7/3$ and $r_2 = 0$. Since $r_1-r_2$ is not an integer, we expect two Frobenius-type solutions.</p>
+      <p>The recurrence relation derived from the DE is: $c_{k+1} = \frac{3(k+r)+1}{3(k+r+1)} c_k$.</p>
+      <h4>Case 1: $r_1 = 7/3$</h4>
+      <p>The relation is $c_{k+1} = \frac{3(k+7/3)+1}{3(k+7/3+1)}c_k = \frac{3k+8}{3k+10}c_k$.
+        <br>$c_1 = \frac{8}{10}c_0 = \frac{4}{5}c_0$; $c_2 = \frac{11}{13}c_1 = \frac{44}{65}c_0$.
+        <br>The first solution is: $y_1(x) = x^{7/3} \left(1 + \frac{4}{5}x + \frac{44}{65}x^2 + \dots\right)$</p>
+      <h4>Case 2: $r_2 = 0$</h4>
+      <p>The relation is $c_{k+1} = \frac{3k+1}{3(k+1)}c_k$.
+        <br>$c_1 = \frac{1}{3}c_0$; $c_2 = \frac{4}{6}c_1 = \frac{2}{9}c_0$; $c_3 = \frac{7}{9}c_2 = \frac{14}{81}c_0$.
+        <br>The second solution is: $y_2(x) = 1 + \frac{1}{3}x + \frac{2}{9}x^2 + \frac{14}{81}x^3 + \dots$</p>
+      <div class="conclusion">The general solution is $y(x) = C_1 y_1(x) + C_2 y_2(x)$.</div>
+    </div>
+  </section>
+
+  <!-- Question 3 Section -->
+  <section class="content-section" id="q3">
+    <h1 class="question-title">Question 3: Picard's Method</h1>
+    <div class="question-block">
+      <strong>a)</strong> Compute the first three Picard iterates for the IVP: $y' = y-x, y(0)=2$, and show that they converge to the solution $y(x) = 1+x+e^x$.
+      <br><strong>b)</strong> For the IVP: $y' = e^y, y(0)=0$, determine the largest interval in which Picard's theorem guarantees existence of a unique solution.
+    </div>
+    <div class="theory-box">
+      <h3>Theoretical Background</h3>
+      <p><strong>Picard's Iteration:</strong> For $y' = f(x,y)$, $y(x_0)=y_0$, the iterates are $y_{n+1}(x) = y_0 + \int_{x_0}^x f(t, y_n(t)) dt$.</p>
+      <p><strong>Picard's Existence/Uniqueness Theorem:</strong> On a rectangle $R: |x-x_0| \le a, |y-y_0| \le b$, if $f$ and $\frac{\partial f}{\partial y}$ are continuous and $|f(x,y)| \le M$, a unique solution exists on $|x-x_0| \le h$, where $h = \min(a, b/M)$.</p>
+    </div>
+    <div class="solution-box">
+      <h2>Solution to 3(a)</h2>
+      <p>With $y_0(x) = 2$, $x_0=0$, and $f(t,y) = y-t$, we iterate:</p>
+      <ul>
+        <li>$y_1(x) = 2 + \int_0^x (2 - t) dt = 2 + 2x - \frac{x^2}{2}$</li>
+        <li>$y_2(x) = 2 + \int_0^x (y_1(t) - t) dt = 2 + 2x + \frac{x^2}{2} - \frac{x^3}{6}$</li>
+        <li>$y_3(x) = 2 + \int_0^x (y_2(t) - t) dt = 2 + 2x + \frac{x^2}{2} + \frac{x^3}{6} - \frac{x^4}{24}$</li>
+      </ul>
+      <p>The Taylor series for the true solution $y(x) = 1+x+e^x$ about $x=0$ is $2 + 2x + \frac{x^2}{2} + \frac{x^3}{6} + \frac{x^4}{24} + \dots$. The iterates clearly converge to this series.</p>
+      <div class="conclusion">The iterates match the Taylor series of the true solution to increasing powers of $x$.</div>
+    </div>
+    <div class="solution-box">
+      <h2>Solution to 3(b)</h2>
+      <p>For $y'=e^y, y(0)=0$, we have $x_0=0, y_0=0$. On the rectangle $R: |x| \le a, |y| \le b$, the max value of $|f(x,y)| = |e^y|$ is $M=e^b$.
+        We want to maximize $h = \min(a, b/M) = \min(a, b/e^b)$.
+      </p>
+      <p>To maximize $h$, we maximize $g(b) = b/e^b$. The derivative $g'(b) = (1-b)/e^b$ is zero at $b=1$. This gives the maximum value $g(1)=1/e$.
+        We can achieve this by choosing $b=1$ and any $a \ge 1/e$.
+      </p>
+      <div class="conclusion">The largest interval is $|x| \le 1/e$, or $x \in [-1/e, 1/e]$.</div>
+    </div>
+  </section>
+
+  <!-- Question 4 Section -->
+  <section class="content-section" id="q4">
+    <h1 class="question-title">Question 4: Systems of DEs</h1>
+    <div class="question-block">
+      <strong>a)</strong> Find the general solution of the system:
+      $\frac{dx_1}{dt} = -4x_1 + x_2 + x_3$,
+      $\frac{dx_2}{dt} = x_1 + 5x_2 - x_3$,
+      $\frac{dx_3}{dt} = x_2 - 3x_3$.
+      <br><strong>b)</strong> Solve the IVP: $\frac{d\mathbf{X}}{dt} = \begin{pmatrix} 3 & -18 \\ 2 & -9 \end{pmatrix} \mathbf{X}$, with $\mathbf{X}(0) = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$.
+    </div>
+    <div class="theory-box">
+      <h3>Theoretical Background</h3>
+      <p>For $\mathbf{X}' = A\mathbf{X}$, we find eigenvalues ($\lambda$) and eigenvectors ($\mathbf{v}$) of $A$.</p>
+      <ul>
+        <li><strong>Distinct Real Eigenvalues:</strong> Solution is $\mathbf{X}(t) = \sum C_i e^{\lambda_i t}\mathbf{v}_i$.</li>
+        <li><strong>Repeated Real Eigenvalues:</strong> If $\lambda$ has only one eigenvector $\mathbf{v}_1$, we find a generalized eigenvector $\mathbf{v}_2$ from $(A-\lambda I)\mathbf{v}_2 = \mathbf{v}_1$. The solutions are $e^{\lambda t}\mathbf{v}_1$ and $e^{\lambda t}(t\mathbf{v}_1 + \mathbf{v}_2)$.</li>
+      </ul>
+    </div>
+    <div class="solution-box">
+      <h2>Solution to 4(a)</h2>
+      <p>The matrix is $A = \begin{pmatrix} -4 & 1 & 1 \\ 1 & 5 & -1 \\ 0 & 1 & -3 \end{pmatrix}$.
+        The eigenvalues are the roots of $\det(A-\lambda I) = 0$, which are $\lambda_1 = -3, \lambda_2 = -4, \lambda_3 = 5$.
+        The corresponding eigenvectors are found by solving $(A-\lambda I)\mathbf{v} = \mathbf{0}$:
+      <ul>
+        <li>$\lambda_1 = -3 \implies \mathbf{v}_1 = \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}$</li>
+        <li>$\lambda_2 = -4 \implies \mathbf{v}_2 = \begin{pmatrix} 10 \\ -1 \\ 1 \end{pmatrix}$</li>
+        <li>$\lambda_3 = 5 \implies \mathbf{v}_3 = \begin{pmatrix} 1 \\ 8 \\ 1 \end{pmatrix}$</li>
+      </ul>
+      </p>
+      <div class="conclusion">The general solution is:
+        $$\mathbf{X}(t) = C_1 e^{-3t} \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} + C_2 e^{-4t} \begin{pmatrix} 10 \\ -1 \\ 1 \end{pmatrix} + C_3 e^{5t} \begin{pmatrix} 1 \\ 8 \\ 1 \end{pmatrix}$$
+      </div>
+    </div>
+    <div class="solution-box">
+      <h2>Solution to 4(b)</h2>
+      <p>The matrix is $A = \begin{pmatrix} 3 & -18 \\ 2 & -9 \end{pmatrix}$.
+        The characteristic equation is $(\lambda+3)^2=0$, giving a repeated eigenvalue $\lambda = -3$.
+        The eigenvector for $\lambda=-3$ is $\mathbf{v}_1 = \begin{pmatrix} 3 \\ 1 \end{pmatrix}$.
+        Since there is only one eigenvector, we find a generalized eigenvector from $(A+3I)\mathbf{v}_2 = \mathbf{v}_1$, which gives $\mathbf{v}_2 = \begin{pmatrix} 1/2 \\ 0 \end{pmatrix}$.</p>
+      <p>The general solution is $\mathbf{X}(t) = C_1 e^{-3t}\mathbf{v}_1 + C_2 e^{-3t}(t\mathbf{v}_1 + \mathbf{v}_2)$.
+        Using the initial condition $\mathbf{X}(0) = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$, we solve for the constants:
+        $$\begin{pmatrix} 0 \\ 1 \end{pmatrix} = C_1 \begin{pmatrix} 3 \\ 1 \end{pmatrix} + C_2 \begin{pmatrix} 1/2 \\ 0 \end{pmatrix} \implies C_1=1, C_2=-6$$
+      </p>
+      <p>Substituting the constants back gives:
+        $\mathbf{X}(t) = 1 \cdot e^{-3t}\begin{pmatrix} 3 \\ 1 \end{pmatrix} - 6 e^{-3t} \left( t\begin{pmatrix} 3 \\ 1 \end{pmatrix} + \begin{pmatrix} 1/2 \\ 0 \end{pmatrix} \right) = e^{-3t}\left(\begin{pmatrix} 3 \\ 1 \end{pmatrix} - \begin{pmatrix} 18t \\ 6t \end{pmatrix} - \begin{pmatrix} 3 \\ 0 \end{pmatrix}\right)$</p>
+      <div class="conclusion">The solution to the initial value problem is:
+        $$\mathbf{X}(t) = e^{-3t} \begin{pmatrix} -18t \\ 1-6t \end{pmatrix}$$
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="main-footer">
+  <p>Solutions prepared for academic review.</p>
+</footer>
+</body>
+</html>

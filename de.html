@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAT 2204 - Differential Equations II Exam Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .container {
+            width: 85%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+        header {
+            background: #28a745;
+            color: #ffffff;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 5px solid #1e7e34;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        header p {
+            margin-top: 5px;
+            font-size: 1.2em;
+        }
+        .question-section {
+            background: #ffffff;
+            margin: 30px 0;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-left: 5px solid #28a745;
+        }
+        .question-title {
+            font-size: 1.8em;
+            color: #1e7e34;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .question-block {
+            background-color: #e9f7ec;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-style: italic;
+        }
+        .solution h3 {
+            color: #28a745;
+            font-size: 1.4em;
+            margin-top: 20px;
+        }
+        .explanation {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px dashed #ced4da;
+            margin: 15px 0;
+        }
+        .conclusion {
+            font-weight: bold;
+            color: #0056b3;
+            background-color: #e7f3ff;
+            padding: 10px;
+            border-left: 4px solid #0056b3;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+        code, .math-block {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #e9ecef;
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: block;
+            margin: 15px 0;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>MAT 2204 - Differential Equations II</h1>
+    <p>Comprehensive Exam Solutions</p>
+</header>
+
+<div class="container">
+
+    <!-- Question 1 -->
+    <section class="question-section">
+        <h2 class="question-title">Question 1</h2>
+        <div class="question-block">
+            Consider the differential equation: $(x^2 + 1)y''(x) + xy'(x) - xy(x) = 0$.
+            <br><strong>a)</strong> Show that $x=0$ is an ordinary point. Does it have singular points? Justify.
+            <br><strong>b)</strong> Find the power series solution about $x=0$.
+        </div>
+        <div class="solution">
+            <h3>Solution to 1(a)</h3>
+            <div class="explanation">To classify points, we first write the equation in standard form: $y'' + P(x)y' + Q(x)y = 0$. A point $x_0$ is an <strong>ordinary point</strong> if both $P(x)$ and $Q(x)$ are analytic (have a convergent Taylor series) at $x_0$. Otherwise, $x_0$ is a <strong>singular point</strong>. For rational functions, this means the denominators must be non-zero.</div>
+            <p>The standard form of the equation is:
+                $$y'' + \frac{x}{x^2+1}y' - \frac{x}{x^2+1}y = 0$$
+                Here, $P(x) = \frac{x}{x^2+1}$ and $Q(x) = -\frac{x}{x^2+1}$.
+            </p>
+            <p><strong>Analysis of $x=0$:</strong> Both $P(x)$ and $Q(x)$ are rational functions. They are analytic everywhere except where their denominators are zero. The denominator is $x^2+1$. At $x=0$, the denominator is $0^2+1=1 \neq 0$. Therefore, both $P(x)$ and $Q(x)$ are analytic at $x=0$. This shows that $x=0$ is an ordinary point.</p>
+            <p><strong>Singular Points:</strong> The singular points are the values of $x$ for which the denominator $x^2+1$ is zero.
+                $$x^2 + 1 = 0 \implies x^2 = -1 \implies x = \pm i$$
+            </p>
+            <div class="conclusion">
+                $x=0$ is an ordinary point because the coefficient functions $P(x)$ and $Q(x)$ are analytic there. The equation has two singular points in the complex plane at $x=i$ and $x=-i$.
+            </div>
+
+            <h3>Solution to 1(b)</h3>
+            <div class="explanation">Since $x=0$ is an ordinary point, we assume a power series solution of the form $y(x) = \sum_{n=0}^{\infty} c_n x^n$. We then find its derivatives and substitute them into the original equation to find a recurrence relation for the coefficients $c_n$.</div>
+            <p>Let $y = \sum_{n=0}^{\infty} c_n x^n$. Then:
+                $y' = \sum_{n=1}^{\infty} n c_n x^{n-1}$ and $y'' = \sum_{n=2}^{\infty} n(n-1) c_n x^{n-2}$.
+            </p>
+            Substituting into $(x^2+1)y'' + xy' - xy = 0$:
+            <p>$(x^2+1)\sum_{n=2}^{\infty} n(n-1)c_n x^{n-2} + x\sum_{n=1}^{\infty} n c_n x^{n-1} - x\sum_{n=0}^{\infty} c_n x^n = 0$</p>
+            Distribute and shift indices to align powers of $x$:
+            <p>$\sum_{n=2}^{\infty} n(n-1)c_n x^n + \sum_{n=2}^{\infty} n(n-1)c_n x^{n-2} + \sum_{n=1}^{\infty} n c_n x^n - \sum_{n=0}^{\infty} c_n x^{n+1} = 0$</p>
+            Re-indexing to get $x^k$:
+            <ul>
+                <li>$\sum_{k=2}^{\infty} k(k-1)c_k x^k$</li>
+                <li>$\sum_{k=0}^{\infty} (k+2)(k+1)c_{k+2} x^k$</li>
+                <li>$\sum_{k=1}^{\infty} k c_k x^k$</li>
+                <li>$\sum_{k=1}^{\infty} c_{k-1} x^k$</li>
+            </ul>
+            Combining the series:
+            <p>$(2c_2) + (6c_3x + c_1x - c_0x) + \sum_{k=2}^{\infty} [(k+2)(k+1)c_{k+2} + k(k-1)c_k + kc_k - c_{k-1}]x^k = 0$</p>
+            Equating coefficients to zero:
+            <ul>
+                <li>$k=0$ (constant term): $2c_2 = 0 \implies c_2=0$.</li>
+                <li>$k=1$ (coeff of $x$): $6c_3 + c_1 - c_0 = 0 \implies c_3 = \frac{c_0 - c_1}{6}$.</li>
+                <li>$k \ge 2$ (coeff of $x^k$): $(k+2)(k+1)c_{k+2} + (k(k-1)+k)c_k - c_{k-1} = 0$
+                    <br>$(k+2)(k+1)c_{k+2} + k^2c_k - c_{k-1} = 0$.</li>
+            </ul>
+            This gives the <strong>recurrence relation</strong> for $k \ge 2$:
+            $$c_{k+2} = \frac{c_{k-1} - k^2 c_k}{(k+2)(k+1)}$$
+            We calculate the next few coefficients using $c_0$ and $c_1$ as arbitrary constants:
+            <ul>
+                <li>$c_2 = 0$</li>
+                <li>$c_3 = \frac{c_0 - c_1}{6}$</li>
+                <li>For $k=2$: $c_4 = \frac{c_1 - 2^2 c_2}{4 \cdot 3} = \frac{c_1 - 4(0)}{12} = \frac{c_1}{12}$</li>
+                <li>For $k=3$: $c_5 = \frac{c_2 - 3^2 c_3}{5 \cdot 4} = \frac{0 - 9(\frac{c_0-c_1}{6})}{20} = \frac{-\frac{3}{2}(c_0-c_1)}{20} = \frac{-3c_0 + 3c_1}{40}$</li>
+            </ul>
+            The general solution is $y(x) = c_0 y_1(x) + c_1 y_2(x)$:
+            <p>$y(x) = c_0(1 + \frac{1}{6}x^3 - \frac{3}{40}x^5 + \dots) + c_1(x - \frac{1}{6}x^3 + \frac{1}{12}x^4 + \frac{3}{40}x^5 + \dots)$</p>
+            <div class="conclusion">The power series solution consists of two linearly independent series:
+                $y_1(x) = 1 + \frac{1}{6}x^3 - \frac{3}{40}x^5 + \dots$ <br>
+                $y_2(x) = x - \frac{1}{6}x^3 + \frac{1}{12}x^4 + \frac{3}{40}x^5 + \dots$
+            </div>
+        </div>
+    </section>
+
+    <!-- Question 2 -->
+    <section class="question-section">
+        <h2 class="question-title">Question 2</h2>
+        <div class="question-block">
+            The differential equation is given: $9x(1-x)y''(x) - 12y'(x) + 4y(x) = 0$.
+            <br><strong>a)</strong> Show that $x=0$ is a regular singular point.
+            <br><strong>b)</strong> Use the method of Frobenius to solve the differential equation about $x=0$.
+        </div>
+        <div class="solution">
+            <h3>Solution to 2(a)</h3>
+            <div class="explanation">A point $x_0$ is a <strong>regular singular point</strong> if it is a singular point, and the limits $\lim_{x \to x_0} (x-x_0)P(x)$ and $\lim_{x \to x_0} (x-x_0)^2 Q(x)$ are both finite (i.e., the functions $(x-x_0)P(x)$ and $(x-x_0)^2 Q(x)$ are analytic at $x_0$).</div>
+            <p>Standard form: $y'' - \frac{12}{9x(1-x)}y' + \frac{4}{9x(1-x)}y = 0$.
+                <br>$P(x) = -\frac{12}{9x(1-x)}$ and $Q(x) = \frac{4}{9x(1-x)}$.
+            </p>
+            <p>The denominator is zero at $x=0$ and $x=1$, so these are singular points. We test $x_0 = 0$ for regularity:</p>
+            <ul>
+                <li>Test $xP(x)$:
+                    $$xP(x) = x \left( -\frac{12}{9x(1-x)} \right) = -\frac{12}{9(1-x)} = -\frac{4}{3(1-x)}$$
+                    As $x \to 0$, this expression approaches $-\frac{4}{3}$. It is finite and analytic at $x=0$.
+                </li>
+                <li>Test $x^2Q(x)$:
+                    $$x^2Q(x) = x^2 \left( \frac{4}{9x(1-x)} \right) = \frac{4x}{9(1-x)}$$
+                    As $x \to 0$, this expression approaches $0$. It is finite and analytic at $x=0$.
+                </li>
+            </ul>
+            <div class="conclusion">Since both limits are finite, $x=0$ is a regular singular point.</div>
+
+            <h3>Solution to 2(b)</h3>
+            <div class="explanation">For a regular singular point at $x=0$, we use the Frobenius method, assuming a solution of the form $y(x) = \sum_{n=0}^{\infty} c_n x^{n+r}$. The value(s) of $r$ are found from the indicial equation.</div>
+            <p>Substitute $y = \sum c_n x^{n+r}$ into $(9x-9x^2)y'' - 12y' + 4y = 0$.
+                The lowest power of $x$ is $x^{r-1}$, coming from the $n=0$ terms of $9xy''$ and $-12y'$. The sum of their coefficients must be zero:
+            <p>$[9(r)(r-1) - 12r]c_0 = 0$</p>
+            Assuming $c_0 \neq 0$, we get the <strong>indicial equation</strong>:
+            <p>$9r^2 - 9r - 12r = 0 \implies 9r^2 - 21r = 0 \implies 3r(3r-7)=0$</p>
+            The indicial roots are $r_1 = 7/3$ and $r_2 = 0$. Since $r_1 - r_2 = 7/3$ is not an integer, we will find two linearly independent solutions of the Frobenius form.
+
+            <p>By collecting all terms with power $x^{k+r-1}$, we derive the recurrence relation:
+                $$c_{k} = \frac{9(k+r-1)(k+r-2) - 4}{(k+r)(9(k+r-1)-12)} c_{k-1}$$
+
+            <h4>Case 1: $r_1 = 7/3$</h4>
+            The recurrence relation simplifies to:
+            $$c_k = \frac{3(k-1)+8}{3(k-1)+10} c_{k-1} = \frac{3k+5}{3k+7} c_{k-1}$$
+            (Note: This calculation differs from some initial scratch work; careful re-derivation leads here. Let's use the one from the notes for consistency if it's there.)
+            Let's use the recurrence relation derived in the thought process for consistency: $c_{k+1} = \frac{3k+8}{3k+10} c_k$.
+            $c_1 = \frac{8}{10}c_0 = \frac{4}{5}c_0$. $c_2 = \frac{11}{13}c_1 = \frac{44}{65}c_0$.
+            $$y_1(x) = x^{7/3} \left(1 + \frac{4}{5}x + \frac{44}{65}x^2 + \dots\right)$$
+
+            <h4>Case 2: $r_2 = 0$</h4>
+            The recurrence relation simplifies to:
+            $$c_{k+1} = \frac{3k+1}{3(k+1)} c_k$$
+            $c_1 = \frac{1}{3}c_0$. $c_2 = \frac{4}{3(2)}c_1 = \frac{2}{3}c_1 = \frac{2}{9}c_0$. $c_3 = \frac{7}{3(3)}c_2 = \frac{7}{9}c_2 = \frac{14}{81}c_0$.
+            $$y_2(x) = x^0 \left(1 + \frac{1}{3}x + \frac{2}{9}x^2 + \frac{14}{81}x^3 + \dots\right)$$
+
+            <div class="conclusion">The general solution is $y(x) = C_1 y_1(x) + C_2 y_2(x)$, where:
+                <br>$y_1(x) = x^{7/3} \left(1 + \frac{4}{5}x + \frac{44}{65}x^2 + \dots\right)$
+                <br>$y_2(x) = 1 + \frac{1}{3}x + \frac{2}{9}x^2 + \frac{14}{81}x^3 + \dots$
+            </div>
+        </div>
+    </section>
+
+    <!-- Question 3 -->
+    <section class="question-section">
+        <h2 class="question-title">Question 3</h2>
+        <div class="question-block">
+            <strong>a)</strong> Compute the first three Picard iterates for the IVP: $y' = y-x, y(0)=2$, and show that they converge to the solution $y(x) = 1+x+e^x$.
+            <br><strong>b)</strong> For the IVP: $y' = e^y, y(0)=0$, determine the largest interval in which Picard's theorem guarantees existence of a unique solution.
+        </div>
+        <div class="solution">
+            <h3>Solution to 3(a)</h3>
+            <div class="explanation">Picard's iteration method generates a sequence of functions that converge to the true solution. The formula is $y_{n+1}(x) = y_0 + \int_{x_0}^x f(t, y_n(t)) dt$.</div>
+            <p>Here, $x_0=0, y_0=2$, and $f(t,y) = y-t$. We start with $y_0(x) = 2$.</p>
+            <ul>
+                <li><strong>First Iterate ($y_1$):</strong>
+                    $$y_1(x) = 2 + \int_0^x (y_0(t) - t) dt = 2 + \int_0^x (2 - t) dt = 2 + \left[2t - \frac{t^2}{2}\right]_0^x = 2 + 2x - \frac{x^2}{2}$$</li>
+                <li><strong>Second Iterate ($y_2$):</strong>
+                    $$y_2(x) = 2 + \int_0^x (y_1(t) - t) dt = 2 + \int_0^x \left(2 + 2t - \frac{t^2}{2} - t\right) dt = 2 + \int_0^x \left(2 + t - \frac{t^2}{2}\right) dt = 2 + \left[2t + \frac{t^2}{2} - \frac{t^3}{6}\right]_0^x = 2 + 2x + \frac{x^2}{2} - \frac{x^3}{6}$$</li>
+                <li><strong>Third Iterate ($y_3$):</strong>
+                    $$y_3(x) = 2 + \int_0^x (y_2(t) - t) dt = 2 + \int_0^x \left(2 + 2t + \frac{t^2}{2} - \frac{t^3}{6} - t\right) dt = 2 + \int_0^x \left(2 + t + \frac{t^2}{2} - \frac{t^3}{6}\right) dt = 2 + \left[2t + \frac{t^2}{2} + \frac{t^3}{6} - \frac{t^4}{24}\right]_0^x = 2 + 2x + \frac{x^2}{2} + \frac{x^3}{6} - \frac{x^4}{24}$$</li>
+            </ul>
+            <p><strong>Convergence:</strong> The Taylor series expansion of the actual solution $y(x) = 1+x+e^x$ about $x=0$ is:
+                $y(x) = 1+x + (1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \dots) = 2 + 2x + \frac{x^2}{2} + \frac{x^3}{6} + \frac{x^4}{24} + \dots$
+                Comparing the iterates to this series, we see that $y_n(x)$ matches the Taylor series up to the term $x^n$. As $n \to \infty$, the sequence of functions $y_n(x)$ converges to the Taylor series of the true solution.
+            </p>
+            <div class="conclusion">The first three iterates are:<br>
+                $y_1(x) = 2 + 2x - \frac{x^2}{2}$<br>
+                $y_2(x) = 2 + 2x + \frac{x^2}{2} - \frac{x^3}{6}$<br>
+                $y_3(x) = 2 + 2x + \frac{x^2}{2} + \frac{x^3}{6} - \frac{x^4}{24}$<br>
+                These iterates converge to the true solution $y(x) = 1+x+e^x$.
+            </div>
+
+            <h3>Solution to 3(b)</h3>
+            <div class="explanation">Picard's Existence and Uniqueness Theorem guarantees a unique solution on an interval $|x-x_0| \le h$, where $h = \min(a, b/M)$. Here, $f(x,y)=e^y$ is defined on a rectangle $R: |x-x_0| \le a, |y-y_0| \le b$, and $M$ is the maximum value of $|f(x,y)|$ on $R$. We want to choose $a$ and $b$ to maximize $h$.</div>
+            <p>For the IVP $y'=e^y, y(0)=0$, we have $x_0=0, y_0=0$. The rectangle is $R: |x| \le a, |y| \le b$.
+                <br>The function is $f(x,y) = e^y$ and its partial derivative $\frac{\partial f}{\partial y} = e^y$ are continuous everywhere.
+            </p>
+            <p>On the rectangle $R$, the maximum value of $|f(x,y)| = |e^y|$ occurs at the largest value of $y$, which is $y=b$. So, $M = e^b$.
+                We need to find the largest possible value for $h = \min(a, b/M) = \min(a, b/e^b)$.
+            </p>
+            <p>To maximize $h$, we can first maximize the term $g(b) = b/e^b$ for $b>0$.
+                <br>Find the critical point by taking the derivative: $g'(b) = \frac{1 \cdot e^b - b \cdot e^b}{(e^b)^2} = \frac{e^b(1-b)}{e^{2b}} = \frac{1-b}{e^b}$.
+                <br>$g'(b) = 0$ when $b=1$. This corresponds to a maximum value.
+            </p>
+            <p>The maximum value of $b/e^b$ is $g(1) = 1/e^1 = 1/e$.
+                <br>So the maximum possible value for $h$ is $1/e$. We can achieve this by choosing $b=1$ and any $a \ge 1/e$.
+            </p>
+            <div class="conclusion">The largest interval on which Picard's theorem guarantees a unique solution is $|x| \le 1/e$, or $x \in [-1/e, 1/e]$.</div>
+        </div>
+    </section>
+
+    <!-- Question 4 -->
+    <section class="question-section">
+        <h2 class="question-title">Question 4</h2>
+        <div class="question-block">
+            <strong>a)</strong> Find the general solution of the system:
+            $\frac{dx_1}{dt} = -4x_1 + x_2 + x_3$<br>
+            $\frac{dx_2}{dt} = x_1 + 5x_2 - x_3$<br>
+            $\frac{dx_3}{dt} = x_2 - 3x_3$
+            <br><strong>b)</strong> Solve the IVP: $\frac{d\mathbf{X}}{dt} = \begin{pmatrix} 3 & -18 \\ 2 & -9 \end{pmatrix} \mathbf{X}$, with $\mathbf{X}(0) = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$.
+        </div>
+        <div class="solution">
+            <h3>Solution to 4(a)</h3>
+            <div class="explanation">We write the system as $\mathbf{x}' = A\mathbf{x}$ and solve by finding the eigenvalues and eigenvectors of the matrix $A$. The general solution is a linear combination of terms of the form $e^{\lambda t}\mathbf{v}$.</div>
+            <p>The matrix is $A = \begin{pmatrix} -4 & 1 & 1 \\ 1 & 5 & -1 \\ 0 & 1 & -3 \end{pmatrix}$.
+                The characteristic equation is $\det(A-\lambda I) = 0$:
+            <p>$\det \begin{pmatrix} -4-\lambda & 1 & 1 \\ 1 & 5-\lambda & -1 \\ 0 & 1 & -3-\lambda \end{pmatrix} = -(\lambda^3 + 2\lambda^2 - 23\lambda - 60) = 0$.
+                <br>By testing integer factors of 60, we find the roots are $\lambda_1 = -3, \lambda_2 = -4, \lambda_3 = 5$.
+            </p>
+            <p><strong>Eigenvectors:</strong> We solve $(A-\lambda I)\mathbf{v} = \mathbf{0}$ for each eigenvalue.</p>
+            <ul>
+                <li>For $\lambda_1 = -3$: $(A+3I)\mathbf{v}=\mathbf{0} \implies \begin{pmatrix} -1 & 1 & 1 \\ 1 & 8 & -1 \\ 0 & 1 & 0 \end{pmatrix} \mathbf{v} = \mathbf{0}$. This yields the eigenvector $\mathbf{v}_1 = \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}$.</li>
+                <li>For $\lambda_2 = -4$: $(A+4I)\mathbf{v}=\mathbf{0} \implies \begin{pmatrix} 0 & 1 & 1 \\ 1 & 9 & -1 \\ 0 & 1 & 1 \end{pmatrix} \mathbf{v} = \mathbf{0}$. This yields the eigenvector $\mathbf{v}_2 = \begin{pmatrix} 10 \\ -1 \\ 1 \end{pmatrix}$.</li>
+                <li>For $\lambda_3 = 5$: $(A-5I)\mathbf{v}=\mathbf{0} \implies \begin{pmatrix} -9 & 1 & 1 \\ 1 & 0 & -1 \\ 0 & 1 & -8 \end{pmatrix} \mathbf{v} = \mathbf{0}$. This yields the eigenvector $\mathbf{v}_3 = \begin{pmatrix} 1 \\ 8 \\ 1 \end{pmatrix}$.</li>
+            </ul>
+            <div class="conclusion">The general solution is:
+                $$\mathbf{x}(t) = C_1 e^{-3t} \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} + C_2 e^{-4t} \begin{pmatrix} 10 \\ -1 \\ 1 \end{pmatrix} + C_3 e^{5t} \begin{pmatrix} 1 \\ 8 \\ 1 \end{pmatrix}$$
+            </div>
+
+            <h3>Solution to 4(b)</h3>
+            <div class="explanation">This system involves a repeated eigenvalue. The solution will involve a term of the form $e^{\lambda t}(t\mathbf{v}_1 + \mathbf{v}_2)$, where $\mathbf{v}_1$ is an eigenvector and $\mathbf{v}_2$ is a generalized eigenvector.</div>
+            <p>The matrix is $A = \begin{pmatrix} 3 & -18 \\ 2 & -9 \end{pmatrix}$.
+                The characteristic equation is $\det(A-\lambda I) = (\lambda+3)^2=0$.
+                We have one repeated eigenvalue $\lambda = -3$.
+            </p>
+            <p><strong>Eigenvector:</strong> Solve $(A+3I)\mathbf{v} = \mathbf{0}$:
+                <br>$\begin{pmatrix} 6 & -18 \\ 2 & -6 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \implies x-3y=0$. An eigenvector is $\mathbf{v}_1 = \begin{pmatrix} 3 \\ 1 \end{pmatrix}$.</p>
+            <p><strong>Generalized Eigenvector:</strong> Solve $(A+3I)\mathbf{v}_2 = \mathbf{v}_1$:
+                <br>$\begin{pmatrix} 6 & -18 \\ 2 & -6 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 3 \\ 1 \end{pmatrix} \implies 2x-6y=1$. We can choose $y=0$, which gives $x=1/2$. A generalized eigenvector is $\mathbf{v}_2 = \begin{pmatrix} 1/2 \\ 0 \end{pmatrix}$.</p>
+            <p>The general solution is: $\mathbf{X}(t) = C_1 e^{-3t}\mathbf{v}_1 + C_2 e^{-3t}(t\mathbf{v}_1 + \mathbf{v}_2)$.</p>
+            <p>Apply the initial condition $\mathbf{X}(0) = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$:
+                $$\begin{pmatrix} 0 \\ 1 \end{pmatrix} = C_1 \begin{pmatrix} 3 \\ 1 \end{pmatrix} + C_2 \left( 0\begin{pmatrix} 3 \\ 1 \end{pmatrix} + \begin{pmatrix} 1/2 \\ 0 \end{pmatrix} \right)$$
+                This gives the system: $3C_1 + \frac{1}{2}C_2 = 0$ and $C_1 = 1$.
+                <br>Solving gives $C_1=1$ and $C_2=-6$.
+            </p>
+            <p>The particular solution is:
+                $\mathbf{X}(t) = 1 \cdot e^{-3t}\begin{pmatrix} 3 \\ 1 \end{pmatrix} - 6 e^{-3t} \left( t\begin{pmatrix} 3 \\ 1 \end{pmatrix} + \begin{pmatrix} 1/2 \\ 0 \end{pmatrix} \right)$
+                <br>$\mathbf{X}(t) = e^{-3t} \left( \begin{pmatrix} 3 \\ 1 \end{pmatrix} - \begin{pmatrix} 18t \\ 6t \end{pmatrix} - \begin{pmatrix} 3 \\ 0 \end{pmatrix} \right)$
+            </p>
+            <div class="conclusion">The solution to the initial value problem is:
+                $$\mathbf{X}(t) = e^{-3t} \begin{pmatrix} -18t \\ 1-6t \end{pmatrix}$$
+            </div>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>

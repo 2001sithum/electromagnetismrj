@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAT 2302 - Linear Algebra Exam Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+  </script>
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #343a40;
+    }
+    .container {
+      width: 85%;
+      margin: auto;
+      overflow: hidden;
+      padding: 20px 0;
+    }
+    header {
+      background: #0056b3;
+      color: #ffffff;
+      padding: 2rem 0;
+      text-align: center;
+      border-bottom: 5px solid #003d7e;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+    header p {
+      margin-top: 5px;
+      font-size: 1.2em;
+    }
+    .question-section {
+      background: #ffffff;
+      margin: 30px 0;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      border-left: 5px solid #0056b3;
+    }
+    .question-title {
+      font-size: 1.8em;
+      color: #003d7e;
+      border-bottom: 2px solid #e9ecef;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    .question-block {
+      background-color: #e9f5ff;
+      border: 1px solid #bde0fe;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      font-style: italic;
+    }
+    .solution h3 {
+      color: #0056b3;
+      font-size: 1.4em;
+      margin-top: 20px;
+    }
+    .explanation {
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 5px;
+      border: 1px dashed #ced4da;
+      margin: 15px 0;
+    }
+    .conclusion {
+      font-weight: bold;
+      color: #198754;
+      background-color: #d1e7dd;
+      padding: 10px;
+      border-left: 4px solid #198754;
+      border-radius: 4px;
+      margin-top: 15px;
+    }
+    .conclusion.fail {
+      color: #dc3545;
+      background-color: #f8d7da;
+      border-left-color: #dc3545;
+    }
+    code, .math-block {
+      font-family: 'Roboto Mono', monospace;
+      background-color: #e9ecef;
+      padding: 8px 12px;
+      border-radius: 4px;
+      display: block;
+      margin: 15px 0;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>MAT 2302 - Linear Algebra</h1>
+  <p>Comprehensive Exam Solutions</p>
+</header>
+
+<div class="container">
+
+  <!-- Question 1 -->
+  <section class="question-section">
+    <h2 class="question-title">Question 1</h2>
+    <div class="question-block">
+      <strong>a)</strong> Let $V$ be the set of ordered triples of real numbers defined as $V = \{(x_1, 0, x_2) | x_1, x_2 \in \mathbb{R}\}$. Determine whether the set $V$ is a vector space over the field $\mathbb{R}$ under the following vector addition and scalar multiplication:
+      <ul>
+        <li>$(x_1, 0, x_2) + (y_1, 0, y_2) = (x_1 + y_1, 0, x_2 + y_2)$</li>
+        <li>$\alpha(x_1, 0, x_2) = (\alpha x_1, 0, \alpha x_2)$</li>
+      </ul>
+      <strong>b)</strong> Define a subspace of a vector space. Let $W$ be a non-empty subset of a vector space $V$ over the field $F$. Prove that, $W$ is a subspace of $V$ over $F$ if and only if $\alpha x + \beta y \in W$ for all $x, y \in W$ and $\alpha, \beta \in F$.
+    </div>
+    <div class="solution">
+      <h3>Solution to 1(a)</h3>
+      <div class="explanation">
+        To prove that $V$ is a vector space, we must verify that it satisfies all 10 vector space axioms. Let $\mathbf{u} = (x_1, 0, x_2)$, $\mathbf{v} = (y_1, 0, y_2)$, and $\mathbf{w} = (z_1, 0, z_2)$ be vectors in $V$, and let $\alpha, \beta$ be scalars in $\mathbb{R}$.
+      </div>
+      <h4>Additive Axioms</h4>
+      <ol>
+        <li><strong>Closure under Addition:</strong> $\mathbf{u} + \mathbf{v} = (x_1 + y_1, 0, x_2 + y_2)$. The result is an ordered triple with 0 as the second component, so it is in $V$. Axiom holds.</li>
+        <li><strong>Associativity of Addition:</strong> $(\mathbf{u} + \mathbf{v}) + \mathbf{w} = (x_1 + y_1 + z_1, 0, x_2 + y_2 + z_2)$. And $\mathbf{u} + (\mathbf{v} + \mathbf{w}) = (x_1 + y_1 + z_1, 0, x_2 + y_2 + z_2)$. They are equal. Axiom holds.</li>
+        <li><strong>Existence of Additive Identity:</strong> The zero vector is $\mathbf{0} = (0, 0, 0)$, which is in $V$. We see that $\mathbf{u} + \mathbf{0} = (x_1, 0, x_2) + (0, 0, 0) = (x_1, 0, x_2) = \mathbf{u}$. Axiom holds.</li>
+        <li><strong>Existence of Additive Inverse:</strong> For any vector $\mathbf{u} = (x_1, 0, x_2)$, the inverse is $-\mathbf{u} = (-x_1, 0, -x_2)$, which is in $V$. We see that $\mathbf{u} + (-\mathbf{u}) = (x_1 - x_1, 0, x_2 - x_2) = (0, 0, 0) = \mathbf{0}$. Axiom holds.</li>
+        <li><strong>Commutativity of Addition:</strong> $\mathbf{u} + \mathbf{v} = (x_1 + y_1, 0, x_2 + y_2) = (y_1 + x_1, 0, y_2 + x_2) = \mathbf{v} + \mathbf{u}$. Axiom holds.</li>
+      </ol>
+      <h4>Multiplicative Axioms</h4>
+      <ol start="6">
+        <li><strong>Closure under Scalar Multiplication:</strong> $\alpha \mathbf{u} = (\alpha x_1, 0, \alpha x_2)$. The result is in $V$. Axiom holds.</li>
+        <li><strong>Associativity of Scalar Multiplication:</strong> $(\alpha\beta)\mathbf{u} = ((\alpha\beta)x_1, 0, (\alpha\beta)x_2)$. And $\alpha(\beta\mathbf{u}) = \alpha(\beta x_1, 0, \beta x_2) = ((\alpha\beta)x_1, 0, (\alpha\beta)x_2)$. They are equal. Axiom holds.</li>
+        <li><strong>Distributivity (scalar over vector addition):</strong> $\alpha(\mathbf{u} + \mathbf{v}) = \alpha(x_1 + y_1, 0, x_2 + y_2) = (\alpha x_1 + \alpha y_1, 0, \alpha x_2 + \alpha y_2)$. And $\alpha\mathbf{u} + \alpha\mathbf{v} = (\alpha x_1, 0, \alpha x_2) + (\alpha y_1, 0, \alpha y_2) = (\alpha x_1 + \alpha y_1, 0, \alpha x_2 + \alpha y_2)$. They are equal. Axiom holds.</li>
+        <li><strong>Distributivity (vector over scalar addition):</strong> $(\alpha + \beta)\mathbf{u} = ((\alpha + \beta)x_1, 0, (\alpha + \beta)x_2) = (\alpha x_1 + \beta x_1, 0, \alpha x_2 + \beta x_2)$. And $\alpha\mathbf{u} + \beta\mathbf{u} = (\alpha x_1, 0, \alpha x_2) + (\beta x_1, 0, \beta x_2) = (\alpha x_1 + \beta x_1, 0, \alpha x_2 + \beta x_2)$. They are equal. Axiom holds.</li>
+        <li><strong>Multiplicative Identity:</strong> $1 \cdot \mathbf{u} = (1 \cdot x_1, 0, 1 \cdot x_2) = (x_1, 0, x_2) = \mathbf{u}$. Axiom holds.</li>
+      </ol>
+      <div class="conclusion">Since all 10 axioms are satisfied, the set $V$ is a vector space over $\mathbb{R}$.</div>
+
+      <h3>Solution to 1(b)</h3>
+      <h4>Definition of a Subspace</h4>
+      <p>A subset $W$ of a vector space $V$ over a field $F$ is a <strong>subspace</strong> of $V$ if $W$ is itself a vector space under the same operations of vector addition and scalar multiplication defined on $V$.</p>
+      <h4>Proof of the Subspace Theorem</h4>
+      <div class="explanation">This is an "if and only if" proof, so we must prove both directions. The theorem provides a powerful shortcut to check if a subset is a subspace.</div>
+      <p><strong>Part 1: (⇒) Assume $W$ is a subspace. Prove that $\alpha x + \beta y \in W$.</strong></p>
+      <ol>
+        <li>Let $x, y$ be any vectors in $W$, and let $\alpha, \beta$ be any scalars in $F$.</li>
+        <li>Since $W$ is a subspace, it is closed under scalar multiplication. Therefore, $\alpha x \in W$ and $\beta y \in W$.</li>
+        <li>Since $W$ is a subspace, it is also closed under vector addition. Therefore, the sum of these two vectors, $(\alpha x) + (\beta y)$, must also be in $W$.</li>
+        <li>Thus, $\alpha x + \beta y \in W$. This direction is proven.</li>
+      </ol>
+      <p><strong>Part 2: (⇐) Assume $\alpha x + \beta y \in W$ for all $x, y \in W$ and $\alpha, \beta \in F$. Prove that $W$ is a subspace.</strong></p>
+      <div class="explanation">We must show that $W$ satisfies the three core properties of a subspace: it's non-empty (contains the zero vector), it's closed under addition, and it's closed under scalar multiplication. The other vector space axioms (like associativity) are inherited from the parent space $V$.</div>
+      <ol>
+        <li><strong>Non-emptiness:</strong> The problem states $W$ is non-empty, so there exists at least one vector $x \in W$. To show the zero vector is in $W$, we can choose scalars $\alpha = 0$ and $\beta = 0$. By our assumption:
+          <div class="math-block">$0 \cdot x + 0 \cdot x = \mathbf{0} + \mathbf{0} = \mathbf{0} \in W$</div>
+          Thus, $W$ contains the zero vector.</li>
+        <li><strong>Closure under Addition:</strong> Let $x, y$ be any two vectors in $W$. To show their sum $x+y$ is in $W$, we can choose scalars $\alpha = 1$ and $\beta = 1$. By our assumption:
+          <div class="math-block">$1 \cdot x + 1 \cdot y = x + y \in W$</div>
+          Thus, $W$ is closed under vector addition.</li>
+        <li><strong>Closure under Scalar Multiplication:</strong> Let $x$ be any vector in $W$ and $\alpha$ be any scalar. To show $\alpha x$ is in $W$, we can choose the scalar $\beta = 0$ and any vector $y \in W$. By our assumption:
+          <div class="math-block">$\alpha x + 0 \cdot y = \alpha x + \mathbf{0} = \alpha x \in W$</div>
+          Thus, $W$ is closed under scalar multiplication.</li>
+      </ol>
+      <div class="conclusion">Since $W$ contains the zero vector and is closed under both addition and scalar multiplication, $W$ is a subspace of $V$.</div>
+    </div>
+  </section>
+
+  <!-- Question 2 -->
+  <section class="question-section">
+    <h2 class="question-title">Question 2</h2>
+    <div class="question-block">
+      <strong>a)</strong> Let $W_1$ and $W_2$ be two subspaces of the vector space $V$ over the field $F$. Prove that $W_1 + W_2 = \{w_1 + w_2 | w_1 \in W_1, w_2 \in W_2\}$ is a subspace of $V$. <br>
+      <strong>b)</strong> Let $W \subset \mathbb{R}^3$. Determine if $W$ is a subspace of $\mathbb{R}^3$ when:
+      <ol type="i">
+        <li>$W = \{(a, b, c) | a \le b \le c\}$</li>
+        <li>$W = \{(a, b, c) | b + 4c = 0\}$</li>
+      </ol>
+      <strong>c)</strong> Write the polynomial $p(t) = t^2 + 4t - 3$ as a linear combination of the polynomials $\{t^2 - 2t + 5, 2t^2 - 3t, t + 3\}$.
+    </div>
+    <div class="solution">
+      <h3>Solution to 2(a)</h3>
+      <div class="explanation">To prove $W_1 + W_2$ is a subspace, we use the three-step subspace test: check for non-emptiness, closure under addition, and closure under scalar multiplication.</div>
+      <ol>
+        <li><strong>Non-emptiness:</strong> Since $W_1$ and $W_2$ are subspaces, they must each contain the zero vector, $\mathbf{0}$. Therefore, $\mathbf{0} \in W_1$ and $\mathbf{0} \in W_2$. The sum $\mathbf{0} + \mathbf{0} = \mathbf{0}$ is in $W_1 + W_2$. Thus, $W_1 + W_2$ is non-empty.</li>
+        <li><strong>Closure under Addition:</strong> Let $\mathbf{u}, \mathbf{v} \in W_1 + W_2$. By definition, $\mathbf{u} = \mathbf{w_1} + \mathbf{w_2}$ and $\mathbf{v} = \mathbf{w_1'} + \mathbf{w_2'}$ for some $\mathbf{w_1}, \mathbf{w_1'} \in W_1$ and $\mathbf{w_2}, \mathbf{w_2'} \in W_2$.
+          Their sum is:
+          <div class="math-block">$\mathbf{u} + \mathbf{v} = (\mathbf{w_1} + \mathbf{w_2}) + (\mathbf{w_1'} + \mathbf{w_2'}) = (\mathbf{w_1} + \mathbf{w_1'}) + (\mathbf{w_2} + \mathbf{w_2'})$</div>
+          Since $W_1$ and $W_2$ are subspaces, they are closed under addition. So, $(\mathbf{w_1} + \mathbf{w_1'}) \in W_1$ and $(\mathbf{w_2} + \mathbf{w_2'}) \in W_2$. The result is a sum of an element from $W_1$ and an element from $W_2$, so $\mathbf{u} + \mathbf{v} \in W_1 + W_2$.</li>
+        <li><strong>Closure under Scalar Multiplication:</strong> Let $\mathbf{u} \in W_1 + W_2$ and $\alpha \in F$. Then $\mathbf{u} = \mathbf{w_1} + \mathbf{w_2}$ where $\mathbf{w_1} \in W_1$ and $\mathbf{w_2} \in W_2$.
+          The scalar product is:
+          <div class="math-block">$\alpha \mathbf{u} = \alpha(\mathbf{w_1} + \mathbf{w_2}) = \alpha\mathbf{w_1} + \alpha\mathbf{w_2}$</div>
+          Since $W_1$ and $W_2$ are subspaces, they are closed under scalar multiplication. So, $\alpha\mathbf{w_1} \in W_1$ and $\alpha\mathbf{w_2} \in W_2$. Their sum is in $W_1 + W_2$.</li>
+      </ol>
+      <div class="conclusion">Since $W_1 + W_2$ is non-empty and closed under both operations, it is a subspace of $V$.</div>
+
+      <h3>Solution to 2(b)</h3>
+      <h4>i. $W = \{(a, b, c) | a \le b \le c\}$</h4>
+      <ol>
+        <li><strong>Zero Vector:</strong> $(0, 0, 0) \in W$ because $0 \le 0 \le 0$. W is non-empty.</li>
+        <li><strong>Closure under Addition:</strong> Let $(a, b, c) \in W$ and $(d, e, f) \in W$. Then $a \le b \le c$ and $d \le e \le f$. Adding these inequalities gives $a+d \le b+e$ and $b+e \le c+f$. So, $a+d \le b+e \le c+f$. The sum $(a+d, b+e, c+f)$ is in $W$. This property holds.</li>
+        <li><strong>Closure under Scalar Multiplication:</strong> Let's test with a counterexample. Let $\mathbf{u} = (1, 2, 3) \in W$ since $1 \le 2 \le 3$. Let the scalar $\alpha = -1$.
+          <div class="math-block">$\alpha \mathbf{u} = -1 \cdot (1, 2, 3) = (-1, -2, -3)$</div>
+          For this vector to be in $W$, the condition $-1 \le -2 \le -3$ must be true. This is false.</li>
+      </ol>
+      <div class="conclusion fail">W is not closed under scalar multiplication. Therefore, $W$ is not a subspace of $\mathbb{R}^3$.</div>
+
+      <h4>ii. $W = \{(a, b, c) | b + 4c = 0\}$</h4>
+      <ol>
+        <li><strong>Zero Vector:</strong> $(0, 0, 0) \in W$ because $0 + 4(0) = 0$. W is non-empty.</li>
+        <li><strong>Closure under Addition:</strong> Let $\mathbf{u} = (a_1, b_1, c_1) \in W$ and $\mathbf{v} = (a_2, b_2, c_2) \in W$. Then $b_1 + 4c_1 = 0$ and $b_2 + 4c_2 = 0$.
+          Their sum is $\mathbf{u} + \mathbf{v} = (a_1+a_2, b_1+b_2, c_1+c_2)$. We test the condition:
+          <div class="math-block">$(b_1+b_2) + 4(c_1+c_2) = (b_1 + 4c_1) + (b_2 + 4c_2) = 0 + 0 = 0$</div>
+          The condition holds. $W$ is closed under addition.</li>
+        <li><strong>Closure under Scalar Multiplication:</strong> Let $\mathbf{u} = (a, b, c) \in W$, so $b + 4c = 0$. Let $\alpha$ be a scalar.
+          The scalar product is $\alpha \mathbf{u} = (\alpha a, \alpha b, \alpha c)$. We test the condition:
+          <div class="math-block">$(\alpha b) + 4(\alpha c) = \alpha(b + 4c) = \alpha(0) = 0$</div>
+          The condition holds. $W$ is closed under scalar multiplication.</li>
+      </ol>
+      <div class="conclusion">$W$ is non-empty and closed under both operations. Therefore, $W$ is a subspace of $\mathbb{R}^3$.</div>
+
+      <h3>Solution to 2(c)</h3>
+      <div class="explanation">We want to find scalars $c_1, c_2, c_3$ such that:
+        $p(t) = c_1(t^2 - 2t + 5) + c_2(2t^2 - 3t) + c_3(t + 3)$.
+        We expand the right side and equate coefficients of the powers of $t$.</div>
+      <p>$t^2 + 4t - 3 = (c_1 + 2c_2)t^2 + (-2c_1 - 3c_2 + c_3)t + (5c_1 + 3c_3)$</p>
+      This gives a system of linear equations:
+      <ol>
+        <li>$c_1 + 2c_2 = 1$</li>
+        <li>$-2c_1 - 3c_2 + c_3 = 4$</li>
+        <li>$5c_1 + 3c_3 = -3$</li>
+      </ol>
+      From (1), $c_1 = 1 - 2c_2$. Substitute into (3):
+      <p>$5(1 - 2c_2) + 3c_3 = -3 \implies 5 - 10c_2 + 3c_3 = -3 \implies 3c_3 = 10c_2 - 8 \implies c_3 = \frac{10c_2 - 8}{3}$</p>
+      Substitute $c_1$ and $c_3$ into (2):
+      <p>$-2(1 - 2c_2) - 3c_2 + \frac{10c_2 - 8}{3} = 4$</p>
+      <p>$-2 + 4c_2 - 3c_2 + \frac{10}{3}c_2 - \frac{8}{3} = 4$</p>
+      <p>$c_2 + \frac{10}{3}c_2 = 4 + 2 + \frac{8}{3} \implies \frac{13}{3}c_2 = \frac{18+8}{3} \implies \frac{13}{3}c_2 = \frac{26}{3} \implies c_2 = 2$</p>
+      Now back-substitute to find $c_1$ and $c_3$:
+      <p>$c_1 = 1 - 2(2) = -3$</p>
+      <p>$c_3 = \frac{10(2) - 8}{3} = \frac{12}{3} = 4$</p>
+      <div class="conclusion">The scalars are $c_1 = -3, c_2 = 2, c_3 = 4$. The linear combination is:
+        $p(t) = -3(t^2 - 2t + 5) + 2(2t^2 - 3t) + 4(t + 3)$.</div>
+    </div>
+  </section>
+
+  <!-- Question 3 -->
+  <section class="question-section">
+    <h2 class="question-title">Question 3</h2>
+    <div class="question-block">
+      <strong>a)</strong> Find all solutions of the following system of equations, depending on $b_1, b_2, b_3 \in \mathbb{R}$:
+      <div class="math-block">
+        $x_1 - 2x_2 - 2x_3 = b_1$
+        $2x_1 - 5x_2 - 4x_3 = b_2$
+        $4x_1 - 9x_2 - 8x_3 = b_3$
+      </div>
+      <strong>b)</strong> Using the Gauss-Jordan elimination method, compute the inverse of the matrix $A = \begin{pmatrix} -1 & 2 & 5 \\ 2 & -3 & 1 \\ -1 & 1 & 1 \end{pmatrix}$. Hence, solve the system:
+      <div class="math-block">
+        $-x_1 + 2x_2 + 5x_3 = 2$
+        $2x_1 - 3x_2 + x_3 = 15$
+        $-x_1 + x_2 + x_3 = -3$
+      </div>
+    </div>
+    <div class="solution">
+      <h3>Solution to 3(a)</h3>
+      <div class="explanation">We set up an augmented matrix and use Gaussian elimination to find the conditions on $b_1, b_2, b_3$ for a solution to exist.</div>
+      <code class="math-block">
+        [ 1  -2  -2 | b₁ ]
+        [ 2  -5  -4 | b₂ ]
+        [ 4  -9  -8 | b₃ ]
+      </code>
+      Perform row operations:
+      <ol>
+        <li>$R_2 \to R_2 - 2R_1$</li>
+        <li>$R_3 \to R_3 - 4R_1$</li>
+      </ol>
+      <code class="math-block">
+        [ 1  -2  -2 | b₁           ]
+        [ 0  -1   0 | b₂ - 2b₁     ]
+        [ 0  -1   0 | b₃ - 4b₁     ]
+      </code>
+      Now perform $R_3 \to R_3 - R_2$:
+      <code class="math-block">
+        [ 1  -2  -2 | b₁                     ]
+        [ 0  -1   0 | b₂ - 2b₁               ]
+        [ 0   0   0 | (b₃ - 4b₁) - (b₂ - 2b₁) ]
+      </code>
+      For a solution to exist, the last row must be all zeros. This gives us the consistency condition:
+      <p>$(b_3 - 4b_1) - (b_2 - 2b_1) = 0 \implies b_3 - 4b_1 - b_2 + 2b_1 = 0 \implies b_3 - b_2 - 2b_1 = 0$</p>
+      <div class="conclusion">A solution exists if and only if $b_3 = 2b_1 + b_2$.</div>
+      <p>If this condition is met, we have infinitely many solutions. Let's find the general solution.
+        From row 2: $-x_2 = b_2 - 2b_1 \implies x_2 = 2b_1 - b_2$.
+        From row 1: $x_1 - 2x_2 - 2x_3 = b_1 \implies x_1 = b_1 + 2x_2 + 2x_3$.
+        Substitute $x_2$: $x_1 = b_1 + 2(2b_1 - b_2) + 2x_3 = b_1 + 4b_1 - 2b_2 + 2x_3 = 5b_1 - 2b_2 + 2x_3$.
+        Let $x_3 = t$ be a free parameter.
+      <div class="conclusion">The general solution, provided $b_3 = 2b_1 + b_2$, is:
+        $x_1 = 5b_1 - 2b_2 + 2t$ <br>
+        $x_2 = 2b_1 - b_2$ <br>
+        $x_3 = t$ for any $t \in \mathbb{R}$.
+      </div>
+
+      <h3>Solution to 3(b)</h3>
+      <h4>Finding the Inverse of A</h4>
+      <div class="explanation">We set up the augmented matrix $[A | I]$ and row reduce it to $[I | A^{-1}]$.</div>
+      <code class="math-block">
+        [ -1   2   5 | 1  0  0 ]
+        [  2  -3   1 | 0  1  0 ]
+        [ -1   1   1 | 0  0  1 ]
+      </code>
+      $R_1 \to -R_1$:
+      <code class="math-block">
+        [  1  -2  -5 | -1  0  0 ]
+        [  2  -3   1 |  0  1  0 ]
+        [ -1   1   1 |  0  0  1 ]
+      </code>
+      $R_2 \to R_2 - 2R_1$, $R_3 \to R_3 + R_1$:
+      <code class="math-block">
+        [  1  -2  -5 | -1  0  0 ]
+        [  0   1  11 |  2  1  0 ]
+        [  0  -1  -4 | -1  0  1 ]
+      </code>
+      $R_3 \to R_3 + R_2$:
+      <code class="math-block">
+        [  1  -2  -5 | -1  0  0 ]
+        [  0   1  11 |  2  1  0 ]
+        [  0   0   7 |  1  1  1 ]
+      </code>
+      $R_3 \to \frac{1}{7}R_3$:
+      <code class="math-block">
+        [  1  -2  -5 | -1    0    0   ]
+        [  0   1  11 |  2    1    0   ]
+        [  0   0   1 | 1/7  1/7  1/7 ]
+      </code>
+      $R_1 \to R_1 + 5R_3$, $R_2 \to R_2 - 11R_3$:
+      <code class="math-block">
+        [  1  -2   0 | -2/7  5/7  5/7 ]
+        [  0   1   0 |  3/7 -4/7 -11/7]
+        [  0   0   1 |  1/7  1/7  1/7 ]
+      </code>
+      $R_1 \to R_1 + 2R_2$:
+      <code class="math-block">
+        [  1   0   0 |  4/7 -3/7 -17/7]
+        [  0   1   0 |  3/7 -4/7 -11/7]
+        [  0   0   1 |  1/7  1/7  1/7 ]
+      </code>
+      <div class="conclusion">The inverse is $A^{-1} = \frac{1}{7} \begin{pmatrix} 4 & -3 & -17 \\ 3 & -4 & -11 \\ 1 & 1 & 1 \end{pmatrix}$.</div>
+
+      <h4>Solving the System</h4>
+      <div class="explanation">The system can be written as $A\mathbf{x} = \mathbf{c}$, where $\mathbf{x} = \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix}$ and $\mathbf{c} = \begin{pmatrix} 2 \\ 15 \\ -3 \end{pmatrix}$. The solution is $\mathbf{x} = A^{-1}\mathbf{c}$.</div>
+      <div class="math-block">
+        $\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \frac{1}{7} \begin{pmatrix} 4 & -3 & -17 \\ 3 & -4 & -11 \\ 1 & 1 & 1 \end{pmatrix} \begin{pmatrix} 2 \\ 15 \\ -3 \end{pmatrix}$
+      </div>
+      <p>$\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \frac{1}{7} \begin{pmatrix} 4(2) - 3(15) - 17(-3) \\ 3(2) - 4(15) - 11(-3) \\ 1(2) + 1(15) + 1(-3) \end{pmatrix} = \frac{1}{7} \begin{pmatrix} 8 - 45 + 51 \\ 6 - 60 + 33 \\ 2 + 15 - 3 \end{pmatrix} = \frac{1}{7} \begin{pmatrix} 14 \\ -21 \\ 14 \end{pmatrix} = \begin{pmatrix} 2 \\ -3 \\ 2 \end{pmatrix}$</p>
+      <div class="conclusion">The solution is $x_1 = 2, x_2 = -3, x_3 = 2$.</div>
+    </div>
+  </section>
+
+  <!-- Question 4 -->
+  <section class="question-section">
+    <h2 class="question-title">Question 4</h2>
+    <div class="question-block">
+      <strong>a)</strong> Using row operations or otherwise prove that the determinant of the matrix $A$ is $-2$ for all $a \in \mathbb{R}$, where,
+      $A = \begin{pmatrix} (a+1)(a+2) & (a+2) & 1 \\ (a+2)(a+3) & (a+3) & 1 \\ (a+3)(a+4) & (a+4) & 1 \end{pmatrix}$ <br>
+      <strong>b)</strong> Find eigenvalues and eigenvectors of the matrix: $A = \begin{pmatrix} -2 & -4 & 2 \\ -2 & 1 & 2 \\ 4 & 2 & 5 \end{pmatrix}$
+    </div>
+    <div class="solution">
+      <h3>Solution to 4(a)</h3>
+      <div class="explanation">We use row operations to simplify the determinant. Subtracting rows from each other often simplifies polynomials. Let's perform $R_2 \to R_2 - R_1$ and $R_3 \to R_3 - R_2$. These operations do not change the value of the determinant.</div>
+      $R_2 \to R_2 - R_1$:
+      <p>The new row 2 is: <br>
+        $[(a+2)(a+3) - (a+1)(a+2), (a+3)-(a+2), 1-1]$ <br>
+        $= [(a+2)(a+3 - (a+1)), 1, 0] = [(a+2)(2), 1, 0] = [2(a+2), 1, 0]$</p>
+      $R_3 \to R_3 - R_2$:
+      <p>The new row 3 (using the original R2) is: <br>
+        $[(a+3)(a+4) - (a+2)(a+3), (a+4)-(a+3), 1-1]$ <br>
+        $= [(a+3)(a+4 - (a+2)), 1, 0] = [(a+3)(2), 1, 0] = [2(a+3), 1, 0]$</p>
+      The new matrix is:
+      <div class="math-block">$A' = \begin{pmatrix} (a+1)(a+2) & (a+2) & 1 \\ 2(a+2) & 1 & 0 \\ 2(a+3) & 1 & 0 \end{pmatrix}$</div>
+      Now, we can compute the determinant by cofactor expansion along the third column:
+      <p>$\det(A) = \det(A') = 1 \cdot \det \begin{pmatrix} 2(a+2) & 1 \\ 2(a+3) & 1 \end{pmatrix} - 0 + 0$</p>
+      <p>$\det(A) = (2(a+2))(1) - (1)(2(a+3)) = (2a + 4) - (2a + 6) = 2a + 4 - 2a - 6 = -2$</p>
+      <div class="conclusion">The determinant of A is -2, regardless of the value of $a$.</div>
+
+      <h3>Solution to 4(b)</h3>
+      <div class="explanation">
+        To find the eigenvalues, we solve the characteristic equation $\det(A - \lambda I) = 0$.
+      </div>
+      <p>$\det \begin{pmatrix} -2-\lambda & -4 & 2 \\ -2 & 1-\lambda & 2 \\ 4 & 2 & 5-\lambda \end{pmatrix} = 0$</p>
+      <p>$(-2-\lambda)[(1-\lambda)(5-\lambda) - 4] - (-4)[-2(5-\lambda) - 8] + 2[-4 - 4(1-\lambda)] = 0$</p>
+      <p>$(-2-\lambda)[\lambda^2 - 6\lambda + 1] + 4[-10+2\lambda - 8] + 2[-4 - 4+4\lambda] = 0$</p>
+      <p>$-2\lambda^2 + 12\lambda - 2 - \lambda^3 + 6\lambda^2 - \lambda + 4[2\lambda - 18] + 2[4\lambda - 8] = 0$</p>
+      <p>$-\lambda^3 + 4\lambda^2 + 11\lambda - 2 + 8\lambda - 72 + 8\lambda - 16 = 0$</p>
+      <p>$-\lambda^3 + 4\lambda^2 + 27\lambda - 90 = 0 \implies \lambda^3 - 4\lambda^2 - 27\lambda + 90 = 0$</p>
+      By testing integer factors of 90 (Rational Root Theorem), we find that $\lambda=3$ is a root: $(3)^3 - 4(3)^2 - 27(3) + 90 = 27 - 36 - 81 + 90 = 0$.
+      We can perform polynomial division by $(\lambda-3)$ to find other roots:
+      $(\lambda^3 - 4\lambda^2 - 27\lambda + 90) / (\lambda - 3) = \lambda^2 - \lambda - 30$.
+      Factoring the quadratic: $\lambda^2 - \lambda - 30 = (\lambda - 6)(\lambda + 5) = 0$.
+      The roots are $\lambda=6$ and $\lambda=-5$.
+      <div class="conclusion">The eigenvalues are $\lambda_1 = 3, \lambda_2 = 6, \lambda_3 = -5$.</div>
+
+      <div class="explanation">
+        To find the eigenvectors, we solve $(A - \lambda I)\mathbf{v} = \mathbf{0}$ for each eigenvalue.
+      </div>
+      <h4>Eigenvector for $\lambda_1 = 3$:</h4>
+      <p>$(A - 3I)\mathbf{v} = \mathbf{0} \implies \begin{pmatrix} -5 & -4 & 2 \\ -2 & -2 & 2 \\ 4 & 2 & 2 \end{pmatrix} \begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$</p>
+      Row reducing the matrix gives $x=2z, y=-3z$. The eigenvector is $\mathbf{v_1} = t \begin{pmatrix} 2 \\ -3 \\ 1 \end{pmatrix}, t \neq 0$.
+
+      <h4>Eigenvector for $\lambda_2 = 6$:</h4>
+      <p>$(A - 6I)\mathbf{v} = \mathbf{0} \implies \begin{pmatrix} -8 & -4 & 2 \\ -2 & -5 & 2 \\ 4 & 2 & -1 \end{pmatrix} \begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$</p>
+      Row reducing gives $z=2y, x=-y/2$. The eigenvector is $\mathbf{v_2} = t \begin{pmatrix} -1 \\ 2 \\ 4 \end{pmatrix}, t \neq 0$.
+
+      <h4>Eigenvector for $\lambda_3 = -5$:</h4>
+      <p>$(A + 5I)\mathbf{v} = \mathbf{0} \implies \begin{pmatrix} 3 & -4 & 2 \\ -2 & 6 & 2 \\ 4 & 2 & 10 \end{pmatrix} \begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$</p>
+      Row reducing gives $y=-2z, x=-2z$. The eigenvector is $\mathbf{v_3} = t \begin{pmatrix} -2 \\ -2 \\ 1 \end{pmatrix}, t \neq 0$.
+      <div class="conclusion">
+        The eigenvalues and corresponding eigenvectors are: <br>
+        $\lambda_1 = 3, \mathbf{v_1} = t \begin{pmatrix} 2 \\ -3 \\ 1 \end{pmatrix}$ <br>
+        $\lambda_2 = 6, \mathbf{v_2} = t \begin{pmatrix} -1 \\ 2 \\ 4 \end{pmatrix}$ <br>
+        $\lambda_3 = -5, \mathbf{v_3} = t \begin{pmatrix} -2 \\ -2 \\ 1 \end{pmatrix}$
+      </div>
+    </div>
+  </section>
+
+  <!-- Question 5 -->
+  <section class="question-section">
+    <h2 class="question-title">Question 5</h2>
+    <div class="question-block">
+      <strong>a)</strong> Define a Linear Transformation. Let $T: V \to W$ be a linear transformation. Prove the following properties:
+      <ol type="i">
+        <li>$T(\mathbf{0}_V) = \mathbf{0}_W$</li>
+        <li>$T(-\mathbf{x}) = -T(\mathbf{x})$ for all $\mathbf{x} \in V$</li>
+        <li>$T(\mathbf{x} - \mathbf{y}) = T(\mathbf{x}) - T(\mathbf{y})$ for all $\mathbf{x}, \mathbf{y} \in V$</li>
+      </ol>
+      <strong>b)</strong> Show that the following mappings are linear transformations:
+      <ol type="i">
+        <li>$T: \mathbb{R}^2 \to \mathbb{R}^3$ defined by $T(x, y) = (x + y, x - y, y)$</li>
+        <li>$T: \mathbb{R}^3 \to \mathbb{R}^2$ defined by $T(x, y, z) = (x + y, y + z)$</li>
+      </ol>
+    </div>
+    <div class="solution">
+      <h3>Solution to 5(a)</h3>
+      <h4>Definition of a Linear Transformation</h4>
+      <p>A mapping $T: V \to W$ from a vector space $V$ to a vector space $W$ is called a <strong>linear transformation</strong> if it satisfies two properties for all vectors $\mathbf{u}, \mathbf{v} \in V$ and all scalars $c \in F$:</p>
+      <ol>
+        <li><strong>Additivity:</strong> $T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v})$</li>
+        <li><strong>Homogeneity:</strong> $T(c\mathbf{u}) = cT(\mathbf{u})$</li>
+      </ol>
+      <h4>Proofs of Properties</h4>
+      <ol type="i">
+        <li><strong>Proof that $T(\mathbf{0}_V) = \mathbf{0}_W$:</strong>
+          We know that $\mathbf{0}_V = 0 \cdot \mathbf{x}$ for any vector $\mathbf{x} \in V$. Using the homogeneity property:
+          <div class="math-block">$T(\mathbf{0}_V) = T(0 \cdot \mathbf{x}) = 0 \cdot T(\mathbf{x}) = \mathbf{0}_W$</div>
+          The scalar 0 times any vector in $W$ is the zero vector of $W$.</li>
+        <li><strong>Proof that $T(-\mathbf{x}) = -T(\mathbf{x})$:</strong>
+          We know that $-\mathbf{x} = (-1) \cdot \mathbf{x}$. Using the homogeneity property:
+          <div class="math-block">$T(-\mathbf{x}) = T((-1) \cdot \mathbf{x}) = (-1) \cdot T(\mathbf{x}) = -T(\mathbf{x})$</div>
+        </li>
+        <li><strong>Proof that $T(\mathbf{x} - \mathbf{y}) = T(\mathbf{x}) - T(\mathbf{y})$:</strong>
+          We write $\mathbf{x} - \mathbf{y}$ as $\mathbf{x} + (-\mathbf{y})$. Now we use the additivity property and the result from part (ii):
+          <div class="math-block">$T(\mathbf{x} - \mathbf{y}) = T(\mathbf{x} + (-\mathbf{y})) = T(\mathbf{x}) + T(-\mathbf{y}) = T(\mathbf{x}) - T(\mathbf{y})$</div>
+        </li>
+      </ol>
+
+      <h3>Solution to 5(b)</h3>
+      <div class="explanation">For each mapping, we must verify the two properties: additivity and homogeneity.</div>
+      <h4>i. $T(x, y) = (x + y, x - y, y)$</h4>
+      Let $\mathbf{u}=(x_1, y_1)$ and $\mathbf{v}=(x_2, y_2)$. Let $c$ be a scalar.
+      <p><strong>Additivity:</strong>
+        $T(\mathbf{u} + \mathbf{v}) = T(x_1+x_2, y_1+y_2) = ((x_1+x_2) + (y_1+y_2), (x_1+x_2) - (y_1+y_2), y_1+y_2)$.<br>
+        $T(\mathbf{u}) + T(\mathbf{v}) = (x_1+y_1, x_1-y_1, y_1) + (x_2+y_2, x_2-y_2, y_2) = (x_1+y_1+x_2+y_2, x_1-y_1+x_2-y_2, y_1+y_2)$.
+        Rearranging the terms shows they are equal. Additivity holds.
+      </p>
+      <p><strong>Homogeneity:</strong>
+        $T(c\mathbf{u}) = T(cx_1, cy_1) = (cx_1+cy_1, cx_1-cy_1, cy_1)$.<br>
+        $cT(\mathbf{u}) = c(x_1+y_1, x_1-y_1, y_1) = (c(x_1+y_1), c(x_1-y_1), cy_1) = (cx_1+cy_1, cx_1-cy_1, cy_1)$.
+        They are equal. Homogeneity holds.
+      </p>
+      <div class="conclusion">Since both properties hold, $T$ is a linear transformation.</div>
+
+      <h4>ii. $T(x, y, z) = (x + y, y + z)$</h4>
+      Let $\mathbf{u}=(x_1, y_1, z_1)$ and $\mathbf{v}=(x_2, y_2, z_2)$. Let $c$ be a scalar.
+      <p><strong>Additivity:</strong>
+        $T(\mathbf{u} + \mathbf{v}) = T(x_1+x_2, y_1+y_2, z_1+z_2) = ((x_1+x_2) + (y_1+y_2), (y_1+y_2) + (z_1+z_2))$.<br>
+        $T(\mathbf{u}) + T(\mathbf{v}) = (x_1+y_1, y_1+z_1) + (x_2+y_2, y_2+z_2) = (x_1+y_1+x_2+y_2, y_1+z_1+y_2+z_2)$.
+        Rearranging the terms shows they are equal. Additivity holds.
+      </p>
+      <p><strong>Homogeneity:</strong>
+        $T(c\mathbf{u}) = T(cx_1, cy_1, cz_1) = (cx_1+cy_1, cy_1+cz_1)$.<br>
+        $cT(\mathbf{u}) = c(x_1+y_1, y_1+z_1) = (c(x_1+y_1), c(y_1+z_1)) = (cx_1+cy_1, cy_1+cz_1)$.
+        They are equal. Homogeneity holds.
+      </p>
+      <div class="conclusion">Since both properties hold, $T$ is a linear transformation.</div>
+    </div>
+  </section>
+
+  <!-- Question 6 -->
+  <section class="question-section">
+    <h2 class="question-title">Question 6</h2>
+    <div class="question-block">
+      <strong>a)</strong> Define a Kernel of a vector space. Let $T$ be a linear transformation on an n-dimensional vector space over the field $F$. Then prove that, Rank(T) + Nullity(T) = dim(V).
+      <br>
+      <strong>b)</strong> The linear transformation $T: \mathbb{R}^4 \to \mathbb{R}^3$ is defined by $T(x_1, x_2, x_3, x_4) = (x_1 - x_2 + x_3 + x_4, x_1 + 2x_3 - x_4, x_1 + x_2 + 3x_3 - 3x_4)$. Find the dimension and a basis for each of its rank and null spaces and verify the Rank-Nullity theorem.
+    </div>
+    <div class="solution">
+      <h3>Solution to 6(a)</h3>
+      <h4>Definition of Kernel</h4>
+      <p>The <strong>Kernel</strong> (or null space) of a linear transformation $T: V \to W$, denoted as Ker(T) or N(T), is the set of all vectors in $V$ that are mapped to the zero vector in $W$.
+      <div class="math-block">Ker(T) = $\{\mathbf{v} \in V | T(\mathbf{v}) = \mathbf{0}_W\}$</div>
+      The dimension of the Kernel is called the <strong>Nullity</strong> of T.</p>
+      <h4>Proof of the Rank-Nullity Theorem</h4>
+      <div class="explanation">The theorem states $\text{dim}(\text{Im}(T)) + \text{dim}(\text{Ker}(T)) = \text{dim}(V)$. The dimension of the Image (Im(T)) is the Rank.</div>
+      <ol>
+        <li>Let $\text{dim}(V) = n$ and let $\text{dim}(\text{Ker}(T)) = k$. The kernel is a subspace of $V$.</li>
+        <li>Let $\{\mathbf{v}_1, \mathbf{v}_2, ..., \mathbf{v}_k\}$ be a basis for Ker(T).</li>
+        <li>Since this is a set of linearly independent vectors in $V$, we can extend it to form a basis for the entire space $V$. Let this extended basis for $V$ be $\{\mathbf{v}_1, ..., \mathbf{v}_k, \mathbf{u}_1, ..., \mathbf{u}_{n-k}\}$.</li>
+        <li>Our goal is to show that the set $S = \{T(\mathbf{u}_1), ..., T(\mathbf{u}_{n-k})\}$ forms a basis for the Image of T (Im(T)). If we can prove this, it means $\text{dim}(\text{Im}(T)) = n-k$. The theorem would then follow:
+          <div class="math-block">$\text{Rank(T) + Nullity(T)} = (n-k) + k = n = \text{dim}(V)$</div></li>
+        <li><strong>We must prove $S$ spans Im(T) and is linearly independent.</strong>
+          <ul>
+            <li><strong>Spanning:</strong> Let $\mathbf{w}$ be any vector in Im(T). Then $\mathbf{w} = T(\mathbf{v})$ for some $\mathbf{v} \in V$. We can write $\mathbf{v}$ as a linear combination of the basis vectors of $V$:
+              <p>$\mathbf{v} = c_1\mathbf{v}_1 + ... + c_k\mathbf{v}_k + d_1\mathbf{u}_1 + ... + d_{n-k}\mathbf{u}_{n-k}$</p>
+              Applying $T$:
+              <p>$\mathbf{w} = T(\mathbf{v}) = c_1 T(\mathbf{v}_1) + ... + c_k T(\mathbf{v}_k) + d_1 T(\mathbf{u}_1) + ... + d_{n-k} T(\mathbf{u}_{n-k})$</p>
+              Since $\{\mathbf{v}_i\}$ are in the kernel, $T(\mathbf{v}_i) = \mathbf{0}$. So the equation simplifies to:
+              <p>$\mathbf{w} = d_1 T(\mathbf{u}_1) + ... + d_{n-k} T(\mathbf{u}_{n-k})$</p>
+              This shows that any vector $\mathbf{w}$ in the image can be written as a linear combination of the vectors in $S$. Thus, $S$ spans Im(T).</li>
+            <li><strong>Linear Independence:</strong> Consider the equation:
+              <p>$a_1 T(\mathbf{u}_1) + ... + a_{n-k} T(\mathbf{u}_{n-k}) = \mathbf{0}_W$</p>
+              Using linearity, this is $T(a_1\mathbf{u}_1 + ... + a_{n-k}\mathbf{u}_{n-k}) = \mathbf{0}_W$.
+              This means the vector $\mathbf{z} = a_1\mathbf{u}_1 + ... + a_{n-k}\mathbf{u}_{n-k}$ is in Ker(T). Therefore, $\mathbf{z}$ can be written as a linear combination of the basis vectors of the kernel:
+              <p>$\mathbf{z} = b_1\mathbf{v}_1 + ... + b_k\mathbf{v}_k$</p>
+              Combining these gives:
+              <p>$a_1\mathbf{u}_1 + ... + a_{n-k}\mathbf{u}_{n-k} = b_1\mathbf{v}_1 + ... + b_k\mathbf{v}_k$</p>
+              <p>$a_1\mathbf{u}_1 + ... + a_{n-k}\mathbf{u}_{n-k} - b_1\mathbf{v}_1 - ... - b_k\mathbf{v}_k = \mathbf{0}_V$</p>
+              But $\{\mathbf{v}_1, ..., \mathbf{v}_k, \mathbf{u}_1, ..., \mathbf{u}_{n-k}\}$ is a basis for $V$ and is therefore linearly independent. The only solution is that all coefficients must be zero: $a_1=...=a_{n-k}=0$ and $b_1=...=b_k=0$.
+              Since all $a_i=0$, the set $S$ is linearly independent.</li>
+          </ul>
+        </li>
+      </ol>
+      <div class="conclusion">Since $S$ is a basis for Im(T) with $n-k$ vectors, $\text{Rank}(T) = n-k$. The theorem is proven.</div>
+
+      <h3>Solution to 6(b)</h3>
+      <div class="explanation">First, we find the standard matrix representation of T. The columns of this matrix are $T(\mathbf{e_1}), T(\mathbf{e_2}), T(\mathbf{e_3}), T(\mathbf{e_4})$.</div>
+      $T(1,0,0,0) = (1,1,1)$ <br>
+      $T(0,1,0,0) = (-1,0,1)$ <br>
+      $T(0,0,1,0) = (1,2,3)$ <br>
+      $T(0,0,0,1) = (1,-1,-3)$ <br>
+      The matrix A for T is:
+      <code class="math-block">A =
+        [ 1  -1   1   1 ]
+        [ 1   0   2  -1 ]
+        [ 1   1   3  -3 ]
+      </code>
+      <h4>Null Space (Kernel)</h4>
+      <div class="explanation">We need to solve $A\mathbf{x} = \mathbf{0}$ by row-reducing the augmented matrix $[A|\mathbf{0}]$.</div>
+      Row-reducing A gives the Row Echelon Form:
+      <code class="math-block">
+        [ 1  0   2  -1 ]
+        [ 0  1   1  -2 ]
+        [ 0  0   0   0 ]
+      </code>
+      This corresponds to the system:
+      <p>$x_1 + 2x_3 - x_4 = 0 \implies x_1 = -2x_3 + x_4$</p>
+      <p>$x_2 + x_3 - 2x_4 = 0 \implies x_2 = -x_3 + 2x_4$</p>
+      Let the free variables be $x_3 = s$ and $x_4 = t$. The solution is:
+      <p>$\mathbf{x} = \begin{pmatrix} -2s+t \\ -s+2t \\ s \\ t \end{pmatrix} = s \begin{pmatrix} -2 \\ -1 \\ 1 \\ 0 \end{pmatrix} + t \begin{pmatrix} 1 \\ 2 \\ 0 \\ 1 \end{pmatrix}$</p>
+      <div class="conclusion">
+        A basis for the null space is $\{(-2, -1, 1, 0), (1, 2, 0, 1)\}$.<br>
+        The dimension of the null space is 2. So, <strong>Nullity(T) = 2</strong>.
+      </div>
+
+      <h4>Rank (Image Space)</h4>
+      <div class="explanation">The image of T is the column space of A. A basis for the column space is given by the columns of the original matrix A that correspond to the pivot columns in its row-echelon form. The pivots are in columns 1 and 2.</div>
+      <div class="conclusion">
+        A basis for the image space is the first two columns of A: $\{(1, 1, 1), (-1, 0, 1)\}$.<br>
+        The dimension of the image space is 2. So, <strong>Rank(T) = 2</strong>.
+      </div>
+
+      <h4>Verification of the Rank-Nullity Theorem</h4>
+      <p>The theorem states: Rank(T) + Nullity(T) = dim(V).</p>
+      <p>Here, V = $\mathbb{R}^4$, so dim(V) = 4.</p>
+      <p>We found Rank(T) = 2 and Nullity(T) = 2.</p>
+      <div class="math-block">2 + 2 = 4</div>
+      <div class="conclusion">The Rank-Nullity theorem is verified.</div>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>
