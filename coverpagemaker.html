@@ -34,7 +34,7 @@
       align-items: center;
       text-align: center;
       border: 6px double #000;
-      transition: all 0.2s ease-in-out; /* Smooth transitions for customizations */
+      transition: all 0.2s ease-in-out;
     }
 
     .logo {
@@ -48,11 +48,16 @@
     .university-name { font-size: calc(26px * var(--font-multiplier)); font-weight: bold; color: #1a1a1a; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
     .faculty-name { font-size: calc(22px * var(--font-multiplier)); font-weight: 600; color: #333; margin-bottom: 80px; }
     .course-title { font-size: calc(24px * var(--font-multiplier)); font-weight: bold; color: #000; margin-bottom: 30px; }
-    .assignment-no { font-size: calc(22px * var(--font-multiplier)); font-weight: bold; color: #000; margin-bottom: 120px; }
+    .assignment-no { font-size: calc(22px * var(--font-multiplier)); font-weight: bold; color: #000; margin-bottom: 100px; }
     .submission-label { font-size: calc(16px * var(--font-multiplier)); color: #555; margin-bottom: 15px; }
-    .student-name { font-size: calc(20px * var(--font-multiplier)); font-weight: 600; color: #000; margin-bottom: 50px; }
-    .registration-label { font-size: calc(16px * var(--font-multiplier)); color: #555; margin-bottom: 15px; }
-    .registration-no { font-size: calc(18px * var(--font-multiplier)); color: #000; }
+    .student-name { font-size: calc(20px * var(--font-multiplier)); font-weight: 600; color: #000; margin-bottom: 40px; }
+    .registration-label, .index-label { font-size: calc(16px * var(--font-multiplier)); color: #555; margin-bottom: 15px; }
+    .registration-no, .index-no { font-size: calc(18px * var(--font-multiplier)); color: #000; }
+
+    /* New section styling */
+    .registration-section { margin-bottom: 40px; }
+    .index-section { transition: opacity 0.3s, max-height 0.3s; overflow: hidden; max-height: 100px; opacity: 1; }
+    .index-section.hidden { max-height: 0; opacity: 0; margin: 0; }
 
     [contenteditable="true"] {
       cursor: text; padding: 4px 8px; border-radius: 4px; transition: background-color 0.2s; outline: none; border-bottom: 2px solid transparent;
@@ -65,6 +70,7 @@
     .instructions { background: #fff; border: 1px solid #ddd; padding: 15px 20px; margin-bottom: 15px; border-radius: 8px; font-size: 14px; color: #333; }
     .instructions h3 { margin-top: 0; }
     .instructions b { color: #0056b3; }
+    .instructions p:last-child { font-style: italic; color: #555; }
 
     /* --- Customization Panel --- */
     .customization-panel { background: #fff; border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 8px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
@@ -99,7 +105,8 @@
 <div class="ui-container">
   <div class="instructions">
     <h3>Advanced Editable Cover Page</h3>
-    <p>Use the controls below to customize the appearance. Then, edit the text on the page and click your desired export button.</p>
+    <p>Use the controls to customize the look, edit the text, and click your desired export button.</p>
+    <p><b>Tip:</b> If you don't need the "Index No." field, just delete all the text inside it to make it disappear.</p>
   </div>
 
   <!-- Customization Panel -->
@@ -149,8 +156,17 @@
   <p class="assignment-no" contenteditable="true">Assignment No. – 01</p>
   <p class="submission-label">Submitted by:</p>
   <p class="student-name" contenteditable="true">Y.M. Nadeeja Madurajeewani Yapa</p>
-  <p class="registration-label">Registration No.</p>
-  <p class="registration-no" contenteditable="true">SSH/2024/464</p>
+
+  <!-- Updated Registration and New Index Sections -->
+  <div class="registration-section">
+    <p class="registration-label">Registration No.</p>
+    <p class="registration-no" contenteditable="true">SSH/2024/464</p>
+  </div>
+
+  <div class="index-section" id="index-number-section">
+    <p class="index-label">Index No.</p>
+    <p class="index-no" contenteditable="true">12345678</p>
+  </div>
 </div>
 
 <script>
@@ -158,66 +174,61 @@
     const coverPage = document.getElementById('capture-area');
     const logo = coverPage.querySelector('.logo');
 
-    // Customization Controls
+    // --- Customization Controls ---
     const fontFamilySelect = document.getElementById('font-family');
+    fontFamilySelect.addEventListener('change', () => coverPage.style.fontFamily = fontFamilySelect.value);
+
     const borderStyleSelect = document.getElementById('border-style');
+    borderStyleSelect.addEventListener('change', () => coverPage.style.border = borderStyleSelect.value);
+
     const logoSizeSlider = document.getElementById('logo-size');
+    logoSizeSlider.addEventListener('input', () => logo.style.width = logoSizeSlider.value + 'px');
+
     const fontSizeControls = document.getElementById('font-size-controls');
-
-    // Apply Font Family
-    fontFamilySelect.addEventListener('change', function () {
-      coverPage.style.fontFamily = this.value;
-    });
-
-    // Apply Border Style
-    borderStyleSelect.addEventListener('change', function () {
-      coverPage.style.border = this.value;
-    });
-
-    // Apply Logo Size
-    logoSizeSlider.addEventListener('input', function () {
-      logo.style.width = this.value + 'px';
-    });
-
-    // Apply Font Size
-    fontSizeControls.addEventListener('click', function (e) {
+    fontSizeControls.addEventListener('click', (e) => {
       if (e.target.tagName === 'BUTTON') {
-        // Update active button state
         fontSizeControls.querySelector('.active').classList.remove('active');
         e.target.classList.add('active');
-
-        const scale = e.target.getAttribute('data-scale');
-        document.documentElement.style.setProperty('--font-multiplier', scale);
+        document.documentElement.style.setProperty('--font-multiplier', e.target.getAttribute('data-scale'));
       }
     });
 
-    // Save as PNG functionality
+    // --- Smart Placeholder for Index Number ---
+    const indexSection = document.getElementById('index-number-section');
+    const indexInput = indexSection.querySelector('.index-no');
+
+    const checkIndexVisibility = () => {
+      if (indexInput.textContent.trim() === '') {
+        indexSection.classList.add('hidden');
+      } else {
+        indexSection.classList.remove('hidden');
+      }
+    };
+
+    indexInput.addEventListener('input', checkIndexVisibility);
+    // Initial check in case the default is empty
+    checkIndexVisibility();
+
+    // --- PNG Export Functionality ---
     const savePngButton = document.getElementById('save-png-btn');
     savePngButton.addEventListener('click', function () {
-      const originalButtonText = this.textContent;
       this.textContent = 'Generating...';
       this.disabled = true;
 
-      html2canvas(coverPage, {
-        scale: 2, // Increase scale for higher resolution
-        useCORS: true,
-        logging: false,
-        onclone: (doc) => {
-          // Remove the focus outline from editable fields in the clone
+      html2canvas(coverPage, { scale: 2, useCORS: true, logging: false, onclone: (doc) => {
           const activeElement = doc.querySelector('[contenteditable="true"]:focus');
-          if(activeElement) {
-            activeElement.blur();
-          }
-        }
-      }).then(canvas => {
-        const link = document.createElement('a');
-        link.download = 'cover-page.png';
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-      }).finally(() => {
-        this.textContent = originalButtonText;
-        this.disabled = false;
-      });
+          if(activeElement) activeElement.blur();
+        }})
+              .then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'cover-page.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+              })
+              .finally(() => {
+                this.textContent = 'Save as PNG';
+                this.disabled = false;
+              });
     });
   });
 </script>
