@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHY 2102 Guide | 1. Foundations (Ultra-Detailed)</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; line-height: 1.7; margin: 0; padding: 0; background-color: #f8f9fa; color: #212529; }
+    .navbar { background-color: #343a40; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+    .navbar a { float: left; display: block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; font-size: 1.1em; }
+    .navbar a:hover { background-color: #007bff; color: white; }
+    .navbar a.active { background-color: #0056b3; color: white; }
+    .container { max-width: 950px; margin: 20px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    h1, h2, h3 { color: #0056b3; border-bottom: 2px solid #dee2e6; padding-bottom: 10px; }
+    .formula-box { background-color: #e9ecef; border-left: 5px solid #0056b3; padding: 15px; margin: 20px 0; overflow-x: auto; border-radius: 5px; font-size: 1.1em; }
+    .solution-box { border: 1px solid #007bff; border-radius: 5px; padding: 20px; margin: 20px 0; background-color: #f7faff; }
+    .solution-box h4 { margin-top: 0; color: #0056b3; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+    .step { margin-bottom: 15px; padding-left: 20px; border-left: 3px solid #ced4da; }
+    .question-box { background-color: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 5px; margin-bottom: 10px; }
+    .prep-box { background-color: #d1ecf1; border: 1px solid #bee5eb; padding: 20px; border-radius: 5px; margin-top: 25px; }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="part1_foundations_ultradetailed.html" class="active">1. Foundations</a>
+  <a href="part2_wave_theory_ultradetailed.html">2. EM Wave Theory</a>
+  <a href="part3_wave_applications_ultradetailed.html">3. Wave Applications</a>
+  <a href="part4_ac_circuits_theory_ultradetailed.html">4. AC Circuit Theory</a>
+  <a href="part5_ac_circuits_applications_ultradetailed.html">5. AC Circuit Applications</a>
+</div>
+
+<div class="container">
+  <h1>Part 1: Foundations & Maxwell's Equations (Ultra-Detailed)</h1>
+
+  <div class="section">
+    <h2>Stoke's Theorem and Conservative Fields</h2>
+    <div class="question-box"><strong>Question (Jan/Feb 2023, Q3a):</strong> Using Stoke's theorem, prove that the curl of the gradient of a scalar (\(\Phi\)) is zero.</div>
+    <div class="solution-box">
+      <h4>Ultra-Detailed Derivation of \( \nabla \times (\nabla \Phi) = 0 \)</h4>
+      <div class="step">
+        <strong>Step 1: Define a Conservative Field.</strong>
+        <p>A vector field \( \vec{A} \) is called conservative if it can be expressed as the gradient of a scalar potential field \( \Phi \). Let's define our field this way:</p>
+        $$ \vec{A} = \nabla \Phi $$
+      </div>
+      <div class="step">
+        <strong>Step 2: Recall the Fundamental Theorem for Gradients.</strong>
+        <p>This theorem states that the line integral of a gradient field between two points, P and Q, depends only on the values of the scalar potential at those endpoints, not the path taken.</p>
+        $$ \int_P^Q (\nabla \Phi) \cdot d\vec{l} = \Phi(Q) - \Phi(P) $$
+      </div>
+      <div class="step">
+        <strong>Step 3: Apply the theorem to a closed path.</strong>
+        <p>For any closed path \( C \), the starting point P is the same as the ending point Q. Therefore, the line integral of our conservative field \( \vec{A} \) around this closed path must be zero.</p>
+        $$ \oint_C \vec{A} \cdot d\vec{l} = \oint_C (\nabla \Phi) \cdot d\vec{l} = \Phi(P) - \Phi(P) = 0 $$
+        <p>This is a defining property: the circulation of a conservative field is always zero.</p>
+      </div>
+      <div class="step">
+        <strong>Step 4: State Stoke's Theorem.</strong>
+        <p>Stoke's theorem provides a relationship between a line integral around a closed loop C and a surface integral over any surface S that has C as its boundary:</p>
+        $$ \oint_C \vec{A} \cdot d\vec{l} = \int_S (\nabla \times \vec{A}) \cdot d\vec{S} $$
+      </div>
+      <div class="step">
+        <strong>Step 5: Combine the results.</strong>
+        <p>From Step 3, we know the left-hand side of Stoke's theorem is zero for our field \( \vec{A} = \nabla \Phi \). Therefore, the right-hand side must also be zero.</p>
+        $$ 0 = \int_S (\nabla \times \vec{A}) \cdot d\vec{S} $$
+        <p>Substituting \( \vec{A} = \nabla \Phi \) back in gives:</p>
+        $$ \int_S (\nabla \times (\nabla \Phi)) \cdot d\vec{S} = 0 $$
+      </div>
+      <div class="step">
+        <strong>Step 6: The Final Conclusion.</strong>
+        <p>The equation from Step 5 must hold true for *any* choice of closed path C, which means it must hold for *any* corresponding surface S. If the integral of a continuous vector field over every possible surface is zero, then the vector field itself must be identically zero at every point.</p>
+        <div class="formula-box">$$ \nabla \times (\nabla \Phi) = 0 $$</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prep-box">
+    <h3>Future Exam Preparation: Model Question</h3>
+    <p><strong>Question:</strong> Using the differential forms of the Ampere-Maxwell Law and Gauss's Law for Electricity, provide an ultra-detailed derivation of the equation of continuity (\( \nabla \cdot \vec{J} + \partial\rho/\partial t = 0 \)).</p>
+    <div class="solution-box">
+      <h4>Ultra-Detailed Model Answer</h4>
+      <div class="step">
+        <strong>Step 1: Start with the differential form of the Ampere-Maxwell Law.</strong>
+        $$ \nabla \times \vec{B} = \mu_0\vec{J} + \mu_0\varepsilon_0 \frac{\partial \vec{E}}{\partial t} $$
+      </div>
+      <div class="step">
+        <strong>Step 2: Take the divergence of every term in the equation.</strong>
+        <p>The divergence is a linear operator, so we can apply it to each term individually.</p>
+        $$ \nabla \cdot (\nabla \times \vec{B}) = \nabla \cdot (\mu_0\vec{J}) + \nabla \cdot (\mu_0\varepsilon_0 \frac{\partial \vec{E}}{\partial t}) $$
+      </div>
+      <div class="step">
+        <strong>Step 3: Apply the vector calculus identity: "The divergence of the curl is always zero."</strong>
+        <p>For any vector field \( \vec{F} \), it is a mathematical identity that \( \nabla \cdot (\nabla \times \vec{F}) = 0 \). Therefore, the left-hand side of our equation is zero.</p>
+        $$ 0 = \nabla \cdot (\mu_0\vec{J}) + \nabla \cdot (\mu_0\varepsilon_0 \frac{\partial \vec{E}}{\partial t}) $$
+      </div>
+      <div class="step">
+        <strong>Step 4: Pull constants out of the divergence and commute operators.</strong>
+        <p>The constants \( \mu_0 \) and \( \varepsilon_0 \) can be pulled outside the divergence operator. The spatial divergence and the partial time derivative are independent and can be swapped.</p>
+        $$ 0 = \mu_0 (\nabla \cdot \vec{J}) + \mu_0\varepsilon_0 \frac{\partial}{\partial t} (\nabla \cdot \vec{E}) $$
+      </div>
+      <div class="step">
+        <strong>Step 5: Substitute the differential form of Gauss's Law for Electricity.</strong>
+        <p>Gauss's Law is \( \nabla \cdot \vec{E} = \rho/\varepsilon_0 \). We substitute this into the equation from Step 4.</p>
+        $$ 0 = \mu_0 (\nabla \cdot \vec{J}) + \mu_0\varepsilon_0 \frac{\partial}{\partial t} \left( \frac{\rho}{\varepsilon_0} \right) $$
+      </div>
+      <div class="step">
+        <strong>Step 6: Simplify the expression.</strong>
+        <p>Inside the time derivative, the constant \( 1/\varepsilon_0 \) can be pulled out, cancelling with the \( \varepsilon_0 \) in front.</p>
+        $$ 0 = \mu_0 (\nabla \cdot \vec{J}) + \mu_0 \frac{\partial\rho}{\partial t} $$
+        <p>Finally, divide the entire equation by the non-zero constant \( \mu_0 \).</p>
+        <div class="formula-box">$$ \nabla \cdot \vec{J} + \frac{\partial\rho}{\partial t} = 0 $$</div>
+        <p>This is the equation of continuity, which represents the local conservation of electric charge.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
+

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Part 1: Vector Operators & Integral Theorems</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; line-height: 1.7; margin: 0; padding: 0; background-color: #f8f9fa; color: #212529; }
+    .navbar { background-color: #343a40; overflow: hidden; }
+    .navbar a { float: left; display: block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; }
+    .navbar a:hover { background-color: #007bff; color: white; }
+    .navbar a.active { background-color: #0056b3; color: white; }
+    .container { max-width: 900px; margin: 20px auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    h1, h2, h3 { color: #0056b3; border-bottom: 2px solid #0056b3; padding-bottom: 10px; }
+    .formula { background-color: #e9ecef; border-left: 5px solid #0056b3; padding: 15px; margin: 20px 0; overflow-x: auto; border-radius: 5px; font-size: 1.1em; }
+    .derivation-box { border: 1px solid #ced4da; border-radius: 5px; padding: 20px; margin: 20px 0; background-color: #fdfdff; }
+    .derivation-box h4 { margin-top: 0; color: #007bff; }
+    .step { margin-bottom: 15px; }
+    .note { font-style: italic; color: #555; background-color: #f9f9f9; border: 1px solid #ddd; padding: 10px; margin-top: 10px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="index.html" class="active">1. Vector Operators</a>
+  <a href="maxwell.html">2. Maxwell's Equations</a>
+  <a href="em_waves.html">3. EM Waves</a>
+  <a href="ac_basics.html">4. AC Basics</a>
+  <a href="rlc_circuits.html">5. RLC Circuits</a>
+</div>
+
+<div class="container">
+  <h1>Part 1: Vector Operators & Integral Theorems</h1>
+
+  <div class="section">
+    <h2>The Del Operator (∇)</h2>
+    <p>In vector calculus, the <strong>Del operator</strong>, denoted by \( \nabla \), is a fundamental vector differential operator. It is not a vector in itself, but it acts on scalar or vector fields to produce results like the gradient, divergence, and curl.</p>
+    <p>In Cartesian coordinates, it is defined as:</p>
+    <div class="formula">
+      $$ \vec{\nabla} = \hat{i} \frac{\partial}{\partial x} + \hat{j} \frac{\partial}{\partial y} + \hat{k} \frac{\partial}{\partial z} $$
+    </div>
+    <p>Here, \( \hat{i}, \hat{j}, \hat{k} \) are the unit vectors along the x, y, and z axes, respectively.</p>
+  </div>
+
+  <div class="section">
+    <h2>The Three Fundamental Operations</h2>
+
+    <h3>1. Gradient of a Scalar Field (\( \nabla \phi \))</h3>
+    <p>When \( \nabla \) acts on a scalar field \( \phi(x, y, z) \), it produces a vector field called the <strong>gradient</strong>. This vector points in the direction of the greatest rate of increase of the scalar field, and its magnitude is that rate of increase.</p>
+    <div class="derivation-box">
+      <h4>Derivation</h4>
+      <div class="step">
+        <strong>Step 1:</strong> Start with the Del operator and a scalar field \( \phi \).
+        $$ \vec{\nabla} = \hat{i} \frac{\partial}{\partial x} + \hat{j} \frac{\partial}{\partial y} + \hat{k} \frac{\partial}{\partial z} $$
+      </div>
+      <div class="step">
+        <strong>Step 2:</strong> Apply the operator to \( \phi \) by distributing the partial derivatives.
+        $$ \nabla \phi = \left(\hat{i} \frac{\partial}{\partial x} + \hat{j} \frac{\partial}{\partial y} + \hat{k} \frac{\partial}{\partial z}\right) \phi $$
+      </div>
+      <div class="step">
+        <strong>Result:</strong> This gives the gradient vector.
+        <div class="formula">$$ \nabla \phi = \hat{i} \frac{\partial \phi}{\partial x} + \hat{j} \frac{\partial \phi}{\partial y} + \hat{k} \frac{\partial \phi}{\partial z} $$</div>
+      </div>
+    </div>
+    <p><strong>Example:</strong> If \( \phi = x + y \), then \( \frac{\partial \phi}{\partial x} = 1 \), \( \frac{\partial \phi}{\partial y} = 1 \), and \( \frac{\partial \phi}{\partial z} = 0 \). Therefore, \( \nabla \phi = \hat{i} + \hat{j} \).</p>
+
+    <h3>2. Divergence of a Vector Field (\( \nabla \cdot \vec{A} \))</h3>
+    <p>The dot product of \( \nabla \) with a vector field \( \vec{A}(x, y, z) \) produces a scalar field called the <strong>divergence</strong>. It measures the magnitude of a vector field's source or sink at a given point. A positive divergence indicates a source (flux flowing out), while a negative divergence indicates a sink (flux flowing in).</p>
+    <div class="derivation-box">
+      <h4>Derivation</h4>
+      <div class="step">
+        <strong>Step 1:</strong> Define the Del operator and a vector field \( \vec{A} = A_x \hat{i} + A_y \hat{j} + A_z \hat{k} \).
+      </div>
+      <div class="step">
+        <strong>Step 2:</strong> Take the dot product. Remember that \( \hat{i} \cdot \hat{i} = 1 \), \( \hat{i} \cdot \hat{j} = 0 \), etc.
+        $$ \nabla \cdot \vec{A} = \left(\hat{i} \frac{\partial}{\partial x} + \hat{j} \frac{\partial}{\partial y} + \hat{k} \frac{\partial}{\partial z}\right) \cdot (A_x \hat{i} + A_y \hat{j} + A_z \hat{k}) $$
+      </div>
+      <div class="step">
+        <strong>Result:</strong> The terms with non-matching unit vectors become zero.
+        <div class="formula">$$ \nabla \cdot \vec{A} = \frac{\partial A_x}{\partial x} + \frac{\partial A_y}{\partial y} + \frac{\partial A_z}{\partial z} $$</div>
+      </div>
+    </div>
+
+    <h3>3. Curl of a Vector Field (\( \nabla \times \vec{A} \))</h3>
+    <p>The cross product of \( \nabla \) with a vector field \( \vec{A} \) produces another vector field called the <strong>curl</strong>. The curl measures the tendency of the vector field to rotate or circulate around a point. The direction of the curl vector is given by the right-hand rule.</p>
+    <div class="derivation-box">
+      <h4>Derivation (using determinant form)</h4>
+      <div class="step">
+        <strong>Step 1:</strong> The cross product can be conveniently expressed as the determinant of a matrix.
+        $$ \nabla \times \vec{A} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ A_x & A_y & A_z \end{vmatrix} $$
+      </div>
+      <div class="step">
+        <strong>Step 2:</strong> Expand the determinant.
+        $$ = \hat{i} \left(\frac{\partial A_z}{\partial y} - \frac{\partial A_y}{\partial z}\right) - \hat{j} \left(\frac{\partial A_z}{\partial x} - \frac{\partial A_x}{\partial z}\right) + \hat{k} \left(\frac{\partial A_y}{\partial x} - \frac{\partial A_x}{\partial y}\right) $$
+      </div>
+      <div class="step">
+        <strong>Result:</strong> The final expression for the curl vector.
+        <div class="formula">$$ \nabla \times \vec{A} = \left(\frac{\partial A_z}{\partial y} - \frac{\partial A_y}{\partial z}\right)\hat{i} + \left(\frac{\partial A_x}{\partial z} - \frac{\partial A_z}{\partial x}\right)\hat{j} + \left(\frac{\partial A_y}{\partial x} - \frac{\partial A_x}{\partial y}\right)\hat{k} $$</div>
+      </div>
+    </div>
+    <p><strong>Example:</strong> If \( \vec{A} = x\hat{i} + y\hat{j} + z\hat{k} \), all partial derivatives like \( \frac{\partial A_z}{\partial y} \) are zero, so \( \nabla \times \vec{A} = 0 \). This field has no rotation.</p>
+  </div>
+
+  <div class="section">
+    <h2>Fundamental Integral Theorems</h2>
+    <p>These theorems are crucial for relating the differential forms of physical laws (like Maxwell's equations) to their integral forms, which are often easier to measure experimentally.</p>
+
+    <h3>Gauss's Divergence Theorem</h3>
+    <p>This theorem relates the total flux of a vector field \( \vec{A} \) out of a closed surface \( S \) to the integral of the divergence of the field over the volume \( V \) enclosed by that surface.</p>
+    <p>In essence, it states that <strong>the total outward flow from a volume is the sum of all the sources minus the sinks inside it.</strong></p>
+    <div class="formula">
+      $$ \oint_S \vec{A} \cdot d\vec{s} = \int_V (\nabla \cdot \vec{A}) dV $$
+    </div>
+    <p>This theorem allows us to convert a surface integral into a volume integral, which is a key step in deriving the differential form of Gauss's Law for electricity.</p>
+
+    <h3>Stoke's Theorem</h3>
+    <p>This theorem relates the line integral of a vector field \( \vec{A} \) around a closed loop \( C \) to the integral of the curl of the field over any open surface \( S \) bounded by that loop.</p>
+    <p>In essence, it states that <strong>the total circulation around a loop is the sum of all the tiny circulations (curls) on the surface enclosed by the loop.</strong></p>
+    <div class="formula">
+      $$ \oint_C \vec{A} \cdot d\vec{l} = \int_S (\nabla \times \vec{A}) \cdot d\vec{s} $$
+    </div>
+    <p>This theorem is essential for deriving the differential forms of Faraday's Law and Ampere's Law.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHY 2102 Study Guide | Part 4: AC Theory</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.7; margin: 0; padding: 0; background-color: #f8f9fa; color: #212529; }
+        .navbar { background-color: #343a40; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .navbar a { float: left; display: block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; font-size: 1.1em; }
+        .navbar a:hover { background-color: #007bff; color: white; }
+        .navbar a.active { background-color: #0056b3; color: white; }
+        .container { max-width: 950px; margin: 20px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #0056b3; border-bottom: 2px solid #dee2e6; padding-bottom: 10px; }
+        .formula-box { background-color: #e9ecef; border-left: 5px solid #0056b3; padding: 15px; margin: 20px 0; overflow-x: auto; border-radius: 5px; font-size: 1.1em; }
+        .solution-box { border: 1px solid #007bff; border-radius: 5px; padding: 20px; margin: 20px 0; background-color: #f7faff; }
+        .solution-box h4 { margin-top: 0; color: #0056b3; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+        .step { margin-bottom: 15px; }
+        .question-box { background-color: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 5px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="1_foundations.html">1. Foundations</a>
+    <a href="2_em_waves.html">2. EM Waves</a>
+    <a href="3_wave_apps.html">3. Wave Applications</a>
+    <a href="4_ac_theory.html" class="active">4. AC Theory</a>
+    <a href="5_ac_apps.html">5. AC Applications</a>
+</div>
+
+<div class="container">
+    <h1>Part 4: AC Circuits - RLC Theory & Resonance</h1>
+
+    <div class="section">
+        <h2>Inductive and Capacitive Reactance</h2>
+        <h3>Short Notes: Reactance</h3>
+        <p>Reactance (X) is the opposition of a circuit element to alternating current, caused by the element's inductance or capacitance. Inductive reactance (\(X_L\)) increases with frequency, while capacitive reactance (\(X_C\)) decreases with frequency.</p>
+        <div class="question-box"><strong>Question (Jan/Feb 2023, Q2a.i):</strong> What is meant by inductive reactance and capacitive reactance in terms of the rms values of the voltage and current? Show that these can also be expressed in terms of maximum voltage and current.</div>
+        <div class="solution-box">
+            <h4>Solution</h4>
+            <div class="step">
+                <strong>Inductive Reactance (\(X_L\)):</strong> It is the ratio of the RMS voltage across an inductor to the RMS current through it.
+                <div class="formula-box">$$ X_L = \frac{V_{L,rms}}{I_{rms}} $$</div>
+                To express this in terms of maximum values, we use \( V_{rms} = V_m / \sqrt{2} \) and \( I_{rms} = I_m / \sqrt{2} \).
+                $$ X_L = \frac{V_{L,m} / \sqrt{2}}{I_m / \sqrt{2}} = \frac{V_{L,m}}{I_m} $$
+                We also know from theory that \( V_{L,m} = I_m (\omega L) \), so \( X_L = \omega L \).
+            </div>
+            <div class="step">
+                <strong>Capacitive Reactance (\(X_C\)):</strong> It is the ratio of the RMS voltage across a capacitor to the RMS current through it.
+                <div class="formula-box">$$ X_C = \frac{V_{C,rms}}{I_{rms}} $$</div>
+                Similarly, in terms of maximum values:
+                $$ X_C = \frac{V_{C,m} / \sqrt{2}}{I_m / \sqrt{2}} = \frac{V_{C,m}}{I_m} $$
+                We also know from theory that \( V_{C,m} = I_m (1/\omega C) \), so \( X_C = 1/\omega C \).
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Kirchhoff's Voltage Law in RLC Circuits</h2>
+        <div class="question-box"><strong>Question (Jan/Feb 2023, Q2a.ii & Nov/Dec 2023, Q2b.iii):</strong> The sum of the peak voltages across each of the elements in a series RLC circuit is usually greater than the peak applied voltage. Doesn't this violate Kirchhoff's voltage law? Explain.</div>
+        <div class="solution-box">
+            <h4>Explanation</h4>
+            <p>This does <strong>not</strong> violate Kirchhoff's voltage law (KVL). KVL states that the sum of the <strong>instantaneous</strong> voltages around a closed loop is zero (\(\sum v_i(t) = 0\)). The key is that the peak voltages across the resistor, inductor, and capacitor do not occur at the same time.</p>
+            <div class="step">
+                <strong>Phase Differences:</strong>
+                <ul>
+                    <li>The voltage across the resistor (\(V_R\)) is in phase with the current.</li>
+                    <li>The voltage across the inductor (\(V_L\)) leads the current by 90°.</li>
+                    <li>The voltage across the capacitor (\(V_C\)) lags the current by 90°.</li>
+                </ul>
+            </div>
+            <div class="step">
+                <strong>Phasor Addition:</strong> Because of these phase differences, the peak voltages must be added as vectors (phasors), not as simple scalars. The voltage across the inductor and capacitor are 180° out of phase with each other, so their effects subtract. The total applied peak voltage \(V_m\) is found using the Pythagorean theorem on the phasor diagram:
+                <div class="formula-box">$$ V_m = \sqrt{V_{R,m}^2 + (V_{L,m} - V_{C,m})^2} $$</div>
+            </div>
+            <div class="step">
+                <strong>Conclusion:</strong> The scalar sum \( V_{R,m} + V_{L,m} + V_{C,m} \) can be, and often is, greater than \( V_m \). However, the vector sum of the instantaneous voltages at any moment in time is always equal to the instantaneous source voltage, so KVL is always satisfied.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Resonance in Series RLC Circuits</h2>
+        <div class="question-box"><strong>Question (Nov/Dec 2023, Q2a.i):</strong> Discuss the phenomenon of resonance in series RLC circuit.</div>
+        <div class="solution-box">
+            <h4>Discussion of Resonance</h4>
+            <div class="step">
+                <strong>Definition:</strong> Resonance in a series RLC circuit is the specific frequency at which the inductive reactance (\(X_L\)) equals the capacitive reactance (\(X_C\)).
+            </div>
+            <div class="step">
+                <strong>Condition:</strong> The condition for resonance is \( X_L = X_C \), which leads to the resonant frequency \( \omega_0 = 1/\sqrt{LC} \).
+            </div>
+            <div class="step">
+                <strong>Characteristics at Resonance:</strong>
+                <ul>
+                    <li><strong>Minimum Impedance:</strong> The total impedance \( Z = \sqrt{R^2 + (X_L - X_C)^2} \) becomes minimum, \( Z = R \). The reactive components cancel each other out.</li>
+                    <li><strong>Maximum Current:</strong> Since the impedance is at its minimum, for a given source voltage, the current in the circuit reaches its maximum value, \( I_{max} = V/R \).</li>
+                    <li><strong>Unity Power Factor:</strong> The phase angle \( \phi = \tan^{-1}((X_L - X_C)/R) \) becomes zero. This means the voltage and current are in phase, and the circuit behaves as if it were purely resistive. The power factor \( \cos(\phi) = 1 \), leading to maximum power transfer from the source to the resistor.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Phasor Relationships</h2>
+        <div class="question-box"><strong>Question (Nov/Dec 2023, Q2b.i):</strong> "The voltage across the capacitor lags the current by \( \pi/2 \)". Explain the statement.</div>
+        <div class="solution-box">
+            <h4>Explanation</h4>
+            <p>This statement describes the phase relationship between voltage and current in a purely capacitive AC circuit.</p>
+            <div class="step">
+                <strong>Physical Reason:</strong> A capacitor stores charge. To have a voltage across it, charge must first accumulate. Current is the flow of charge (\( i = dq/dt \)). This means current must flow *first* to build up the charge that creates the voltage. Therefore, the current waveform must lead the voltage waveform in time.
+            </div>
+            <div class="step">
+                <strong>Mathematical Proof:</strong> Let the current be \( i(t) = I_m \cos(\omega t) \). The voltage across the capacitor is found by integrating the current, since \( v_C(t) = \frac{1}{C}\int i(t) dt \).
+                $$ v_C(t) = \frac{1}{C}\int I_m \cos(\omega t) dt = \frac{I_m}{\omega C} \sin(\omega t) $$
+                Using the identity \( \sin(\theta) = \cos(\theta - \pi/2) \), we can write:
+                $$ v_C(t) = \frac{I_m}{\omega C} \cos(\omega t - \pi/2) $$
+            </div>
+            <div class="step">
+                <strong>Conclusion:</strong> Comparing \( i(t) = I_m \cos(\omega t) \) with \( v_C(t) = V_m \cos(\omega t - \pi/2) \), we see that the voltage waveform is shifted by \( -\pi/2 \) radians relative to the current. This is equivalent to saying the voltage lags the current by \( \pi/2 \) (or 90°), or conversely, the current leads the voltage by \( \pi/2 \).
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

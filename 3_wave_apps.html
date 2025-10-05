@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHY 2102 Study Guide | Part 3: Wave Applications</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.7; margin: 0; padding: 0; background-color: #f8f9fa; color: #212529; }
+        .navbar { background-color: #343a40; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .navbar a { float: left; display: block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; font-size: 1.1em; }
+        .navbar a:hover { background-color: #007bff; color: white; }
+        .navbar a.active { background-color: #0056b3; color: white; }
+        .container { max-width: 950px; margin: 20px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #0056b3; border-bottom: 2px solid #dee2e6; padding-bottom: 10px; }
+        .formula-box { background-color: #e9ecef; border-left: 5px solid #0056b3; padding: 15px; margin: 20px 0; overflow-x: auto; border-radius: 5px; font-size: 1.1em; }
+        .solution-box { border: 1px solid #007bff; border-radius: 5px; padding: 20px; margin: 20px 0; background-color: #f7faff; }
+        .solution-box h4 { margin-top: 0; color: #0056b3; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+        .step { margin-bottom: 15px; }
+        .question-box { background-color: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 5px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <a href="1_foundations.html">1. Foundations</a>
+    <a href="2_em_waves.html">2. EM Waves</a>
+    <a href="3_wave_apps.html" class="active">3. Wave Applications</a>
+    <a href="4_ac_theory.html">4. AC Theory</a>
+    <a href="5_ac_apps.html">5. AC Applications</a>
+</div>
+<div class="container">
+    <h1>Part 3: Applications of Electromagnetic Waves</h1>
+
+    <div class="section">
+        <h2>Analysis of a Given EM Wave</h2>
+        <div class="question-box"><strong>Question (Jan/Feb 2023, Q1c):</strong> The magnetic field of an electromagnetic wave is described as \( \vec{B} = B_0 \sin(kx - \omega t) \hat{j} \).
+            <br>(i) What is the wave length (\(\lambda\)) of the wave?
+            <br>(ii) Write an expression for the electric field (\(\vec{E}\)) associated with this wave.
+            <br>(iii) What is the direction and the magnitude of the Poynting vector associated with this wave?
+        </div>
+        <div class="solution-box">
+            <h4>Solution</h4>
+            <div class="step"><strong>(i) Wavelength (\(\lambda\)):</strong> The wavelength is related to the wave number \( k \) by the formula \( k = 2\pi / \lambda \). Therefore, if we knew the value of \( k \), we could find the wavelength.
+                <div class="formula-box">$$ \lambda = \frac{2\pi}{k} $$</div>
+                The question does not provide a value for k, so the answer is in terms of k.
+            </div>
+            <div class="step"><strong>(ii) Electric Field (\(\vec{E}\)):</strong>
+                <p><strong>Direction:</strong> The direction of propagation is given by the argument \( (kx - \omega t) \), which indicates travel in the +x direction. The Poynting vector \( \vec{S} \propto \vec{E} \times \vec{B} \) must point in the direction of propagation (\( \hat{i} \)). We are given \( \vec{B} \) is in the \( \hat{j} \) direction. For \( \vec{E} \times \vec{B} \) to be in the \( \hat{i} \) direction, \( \vec{E} \) must be in the \( -\hat{k} \) direction, since \( (-\hat{k}) \times \hat{j} = \hat{i} \).
+                <p><strong>Magnitude:</strong> The amplitudes are related by \( E_0 = c B_0 \).</p>
+                <p><strong>Expression:</strong> The electric field must be in phase with the magnetic field.</p>
+                <div class="formula-box">$$ \vec{E} = -E_0 \sin(kx - \omega t) \hat{k} = -c B_0 \sin(kx - \omega t) \hat{k} $$</div>
+            </div>
+            <div class="step"><strong>(iii) Poynting Vector (\(\vec{S}\)):</strong>
+                <p><strong>Direction:</strong> As determined above, the direction of propagation is the +x direction (\(\hat{i}\)).</p>
+                <p><strong>Magnitude:</strong> The instantaneous magnitude is \( S = \frac{EB}{\mu_0} \). The time-averaged magnitude (intensity) is what is usually meant.</p>
+                <div class="formula-box">$$ I = \langle S \rangle = \frac{E_0 B_0}{2\mu_0} = \frac{(c B_0) B_0}{2\mu_0} = \frac{c B_0^2}{2\mu_0} $$</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Solar Constant</h2>
+        <div class="question-box"><strong>Question (Nov/Dec 2023, Q1c):</strong> At the upper surface of the Earth's atmosphere, the time-averaged magnitude of the Poynting vector \( \langle S \rangle = 1.35 \times 10^3 \) W/m² is referred to as the solar constant. (i) Assuming the Sun's radiation is a plane sinusoidal wave, obtain the magnitudes of the electric and magnetic fields.</div>
+        <div class="solution-box">
+            <h4>Solution</h4>
+            <div class="step"><strong>Step 1: Find Electric Field Amplitude (\(E_m\)):</strong> Use the intensity formula.
+                $$ I = \langle S \rangle = \frac{E_m^2}{2\mu_0 c} $$
+                $$ E_m = \sqrt{2\mu_0 c I} = \sqrt{2 (4\pi \times 10^{-7}) (3.0 \times 10^8) (1.35 \times 10^3)} $$
+                $$ E_m = \sqrt{1017.9 \times 10^3} \approx 1009 \text{ V/m} $$
+            </div>
+            <div class="step"><strong>Step 2: Find Magnetic Field Amplitude (\(B_m\)):</strong> Use the relationship \( E_m = c B_m \).
+                $$ B_m = \frac{E_m}{c} = \frac{1009 \text{ V/m}}{3.0 \times 10^8 \text{ m/s}} \approx 3.36 \times 10^{-6} \text{ T} $$
+            </div>
+            <div class="formula-box">$$ E_m \approx 1009 \text{ V/m} \quad \text{and} \quad B_m \approx 3.36 \text{ µT} $$</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Standing Waves</h2>
+        <div class="question-box"><strong>Question (Nov/Dec 2023, Q1d):</strong> Calculate the intensity of the standing wave given by \(E_y(x,t) = 2E_0\cos(kx)\cos(\omega t)\) and \(B_z(x,t) = 2B_0\sin(kx)\sin(\omega t)\). Hence, prove that the energy carried by the two waves... cancel each other with no net energy transfer.</div>
+        <div class="solution-box">
+            <h4>Solution</h4>
+            <div class="step"><strong>Step 1: Calculate the Poynting Vector \( \vec{S} \):</strong> The wave propagates in the x-direction.
+                $$ \vec{S} = \frac{1}{\mu_0}(\vec{E} \times \vec{B}) = \frac{1}{\mu_0} (E_y \hat{j} \times B_z \hat{k}) = \frac{E_y B_z}{\mu_0} \hat{i} $$
+                $$ S_x = \frac{1}{\mu_0} (2E_0\cos(kx)\cos(\omega t))(2B_0\sin(kx)\sin(\omega t)) $$
+                $$ S_x = \frac{4E_0 B_0}{\mu_0} \cos(kx)\sin(kx)\cos(\omega t)\sin(\omega t) $$
+            </div>
+            <div class="step"><strong>Step 2: Simplify using trigonometric identities:</strong> \( \sin(2\alpha)=2\sin\alpha\cos\alpha \).
+                $$ S_x = \frac{E_0 B_0}{\mu_0} (2\cos(kx)\sin(kx))(2\cos(\omega t)\sin(\omega t)) $$
+                $$ S_x = \frac{E_0 B_0}{\mu_0} \sin(2kx) \sin(2\omega t) $$
+            </div>
+            <div class="step"><strong>Step 3: Calculate the Intensity (Time-Averaged Poynting Vector):</strong> We need to find the average of \( S_x \) over one period.
+                $$ I = \langle S_x \rangle = \left\langle \frac{E_0 B_0}{\mu_0} \sin(2kx) \sin(2\omega t) \right\rangle $$
+                The term \( \sin(2kx) \) is constant with respect to time. The average of \( \sin(2\omega t) \) over one full cycle is zero.
+                $$ \langle \sin(2\omega t) \rangle = 0 $$
+                <div class="formula-box">$$ I = \langle S_x \rangle = \frac{E_0 B_0}{\mu_0} \sin(2kx) \times 0 = 0 $$</div>
+                <strong>Conclusion:</strong> Since the time-averaged Poynting vector (intensity) is zero at all points in space, there is no net energy transfer over a cycle. Energy is stored in the E and B fields and sloshes back and forth between nodes and antinodes, but it does not propagate.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>EMF in a Loop Antenna</h2>
+        <div class="question-box"><strong>Question (Jan/Feb 2023, Q1d):</strong> Find the ratio of the emf generated in a loop antenna by a television wave (100 MHz) to that generated by a radio wave (1 MHz) if both have equal electric field intensities.</div>
+        <div class="solution-box">
+            <h4>Solution</h4>
+            <div class="step"><strong>Step 1: Relate EMF to Changing Magnetic Flux:</strong> According to Faraday's Law of Induction, the induced EMF (\(\mathcal{E}\)) in a loop is given by the rate of change of magnetic flux through it.
+                $$ \mathcal{E} = - \frac{d\Phi_B}{dt} = -A \frac{dB}{dt} $$
+                where A is the area of the loop.
+            </div>
+            <div class="step"><strong>Step 2: Express B in terms of time:</strong> For an EM wave, \( B(t) = B_m \cos(\omega t) \).
+                $$ \frac{dB}{dt} = - \omega B_m \sin(\omega t) $$
+                The maximum EMF is \( \mathcal{E}_m = A \omega B_m \).
+            </div>
+            <div class="step"><strong>Step 3: Relate Bm to Em:</strong> We know \( B_m = E_m / c \). The question states that \( E_m \) is the same for both waves.
+                $$ \mathcal{E}_m = A \omega \frac{E_m}{c} $$
+            </div>
+            <div class="step"><strong>Step 4: Form the ratio:</strong> The EMF is proportional to the angular frequency \( \omega \) (or frequency \( f \), since \( \omega = 2\pi f \)). All other terms (A, Em, c) are constant.
+                $$ \frac{\mathcal{E}_{\text{TV}}}{\mathcal{E}_{\text{Radio}}} = \frac{A \omega_{\text{TV}} (E_m/c)}{A \omega_{\text{Radio}} (E_m/c)} = \frac{\omega_{\text{TV}}}{\omega_{\text{Radio}}} = \frac{f_{\text{TV}}}{f_{\text{Radio}}} $$
+            </div>
+            <div class="step"><strong>Step 5: Calculate the final value.</strong>
+                $$ \frac{\mathcal{E}_{\text{TV}}}{\mathcal{E}_{\text{Radio}}} = \frac{100 \text{ MHz}}{1 \text{ MHz}} = 100 $$
+                <div class="formula-box">The ratio of the EMFs is 100.</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

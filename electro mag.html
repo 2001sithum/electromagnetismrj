@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physics Lecture Notes</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h1, h2, h3, h4 {
+      color: #0056b3;
+      border-bottom: 2px solid #0056b3;
+      padding-bottom: 10px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .formula {
+      background-color: #eef;
+      border-left: 5px solid #0056b3;
+      padding: 15px;
+      margin: 20px 0;
+      overflow-x: auto;
+      border-radius: 5px;
+    }
+    .highlight {
+      background-color: #ffecb3;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .note {
+      font-style: italic;
+      color: #555;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+    img.diagram {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    ul {
+      list-style-type: square;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>Physics Notes: Electromagnetism and AC Circuits</h1>
+
+  <!-- ======================= SECTION: Vector Operators ======================= -->
+  <div class="section" id="vector-operators">
+    <h2>Vector Operators</h2>
+    <p class="note">The first two pages of this unit introduce some notations and their properties associated with vector algebra. Readers are encouraged to read any electromagnetism book and try to prove the properties.</p>
+
+    <h4>Del Operator (∇)</h4>
+    <p>In vector algebra, the vector differential operator, denoted by ∇ (Del), is defined as:</p>
+    <div class="formula">
+      $$ \vec{\nabla} = \hat{i} \frac{\partial}{\partial x} + \hat{j} \frac{\partial}{\partial y} + \hat{k} \frac{\partial}{\partial z} $$
+    </div>
+
+    <h4>Gradient, Divergence, and Curl</h4>
+    <ul>
+      <li><strong>Gradient (Grad):</strong> The gradient of a scalar field \( \phi \) is a vector field.
+        <div class="formula">$$ \nabla \phi = \text{Grad} \, \phi $$</div>
+      </li>
+      <li><strong>Divergence (Div):</strong> The divergence of a vector field \( \vec{A} \) is a scalar field.
+        <div class="formula">$$ \nabla \cdot \vec{A} = \text{Div} \, \vec{A} $$</div>
+      </li>
+      <li><strong>Curl:</strong> The curl of a vector field \( \vec{A} \) is another vector field.
+        <div class="formula">$$ \nabla \times \vec{A} = \text{Curl} \, \vec{A} $$</div>
+      </li>
+    </ul>
+
+    <h4>Example: Gradient</h4>
+    <p>Consider a scalar field \( \phi = x + y \). Then its gradient is:</p>
+    <div class="formula">
+      $$ \nabla \phi = \hat{i} \frac{\partial}{\partial x}(x+y) + \hat{j} \frac{\partial}{\partial y}(x+y) + \hat{k} \frac{\partial}{\partial z}(x+y) $$
+      $$ \nabla \phi = \hat{i}(1) + \hat{j}(1) + \hat{k}(0) = \hat{i} + \hat{j} $$
+    </div>
+
+    <h4>Divergence of a Vector</h4>
+    <p>For a vector \( \vec{A} = A_x \hat{i} + A_y \hat{j} + A_z \hat{k} \), the divergence is:</p>
+    <div class="formula">
+      $$ \nabla \cdot \vec{A} = \frac{\partial A_x}{\partial x} + \frac{\partial A_y}{\partial y} + \frac{\partial A_z}{\partial z} $$
+    </div>
+
+    <h4>Curl of a Vector</h4>
+    <p>The curl of a vector \( \vec{A} \) can be expressed as a determinant:</p>
+    <div class="formula">
+      $$ \nabla \times \vec{A} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ A_x & A_y & A_z \end{vmatrix} $$
+    </div>
+    <p>For example, if \( \vec{A} = x \hat{i} + y \hat{j} + z \hat{k} \):</p>
+    <div class="formula">
+      $$ \nabla \times \vec{A} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ x & y & z \end{vmatrix} = \hat{i}(0-0) - \hat{j}(0-0) + \hat{k}(0-0) = 0 $$
+    </div>
+
+    <h4>Properties and Identities</h4>
+    <ul>
+      <li>\( \nabla \cdot (\vec{A} + \vec{B}) = \nabla \cdot \vec{A} + \nabla \cdot \vec{B} \)</li>
+      <li>\( \nabla \cdot (k\vec{A}) = k(\nabla \cdot \vec{A}) \) (for scalar k)</li>
+      <li>\( \nabla \times (\vec{A} + \vec{B}) = \nabla \times \vec{A} + \nabla \times \vec{B} \)</li>
+      <li>\( \nabla \times (k\vec{A}) = k(\nabla \times \vec{A}) \) (for scalar k)</li>
+      <li>Divergence of Curl is zero: \( \nabla \cdot (\nabla \times \vec{A}) = 0 \)</li>
+      <li>Curl of Gradient is zero: \( \nabla \times (\nabla \phi) = 0 \)</li>
+    </ul>
+  </div>
+
+  <!-- ======================= SECTION: Integral Theorems ======================= -->
+  <div class="section" id="integral-theorems">
+    <h2>Integral Theorems</h2>
+
+    <h4>Gauss's Divergence Theorem</h4>
+    <p>This theorem relates the flux of a vector field through a closed surface to the divergence of the field in the volume enclosed. It converts a surface integral into a volume integral.</p>
+    <div class="formula">
+      $$ \oint_S \vec{A} \cdot d\vec{s} = \int_V (\nabla \cdot \vec{A}) dV $$
+    </div>
+
+    <h4>Stoke's Theorem</h4>
+    <p>This theorem states that the line integral of a vector field \( \vec{A} \) around a closed curve C is equal to the surface integral of the curl of \( \vec{A} \) over any surface S bounded by C. It converts a line integral to a surface integral.</p>
+    <div class="formula">
+      $$ \oint_C \vec{A} \cdot d\vec{l} = \int_S (\nabla \times \vec{A}) \cdot d\vec{s} $$
+    </div>
+  </div>
+
+  <!-- ======================= SECTION: Classification of Vector Fields ======================= -->
+  <div class="section" id="vector-fields">
+    <h2>The Classification of Vector Fields</h2>
+    <p>Vector fields can be classified into four kinds based on their curl and divergence.</p>
+
+    <h4>1. Lamellar (Irrotational) Field</h4>
+    <p>Characterized by zero curl. It can be expressed as the gradient of a scalar potential \( \phi \).</p>
+    <div class="formula">$$ \nabla \times \vec{F} = 0 \quad \implies \quad \vec{F} = -\nabla \phi $$</div>
+
+    <h4>2. Solenoidal Field</h4>
+    <p>Characterized by zero divergence, which means there are no sources or sinks. It can be expressed as the curl of a vector potential \( \vec{A} \).</p>
+    <div class="formula">$$ \nabla \cdot \vec{F} = 0 \quad \implies \quad \vec{F} = \nabla \times \vec{A} $$</div>
+
+    <h4>Helmholtz's Theorem and The Four Kinds of Fields</h4>
+    <p>A vector field \( \vec{F} \) is uniquely determined by its divergence and curl. It can be expressed as the sum of a lamellar field (gradient of a scalar potential) and a solenoidal field (curl of a vector potential).</p>
+    <div class="formula">$$ \vec{F} = -\nabla \phi + \nabla \times \vec{A} $$</div>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Condition</th>
+        <th>Field Type</th>
+        <th>Governing Equation</th>
+        <th>Example</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>\( \nabla \times \vec{F} = 0 \)<br>\( \nabla \cdot \vec{F} = 0 \)</td>
+        <td>Irrotational and Solenoidal</td>
+        <td><strong>Laplace's Equation:</strong><br>\( \vec{F} = -\nabla \phi \)<br>\( \nabla^2 \phi = 0 \)</td>
+        <td>Electric field in charge-free space.</td>
+      </tr>
+      <tr>
+        <td>\( \nabla \times \vec{F} = 0 \)<br>\( \nabla \cdot \vec{F} \neq 0 \)</td>
+        <td>Irrotational, Not Solenoidal</td>
+        <td><strong>Poisson's Equation:</strong><br>\( \vec{F} = -\nabla \phi \)<br>\( \nabla^2 \phi \neq 0 \)</td>
+        <td>Electric field with charge distribution.</td>
+      </tr>
+      <tr>
+        <td>\( \nabla \times \vec{F} \neq 0 \)<br>\( \nabla \cdot \vec{F} = 0 \)</td>
+        <td>Rotational, Solenoidal</td>
+        <td><strong>Vector Potential Equation:</strong><br>\( \vec{F} = \nabla \times \vec{A} \)<br>\( \nabla^2 \vec{A} \neq 0 \) (in Lorenz gauge)</td>
+        <td>Magnetic field from a steady current.</td>
+      </tr>
+      <tr>
+        <td>\( \nabla \times \vec{F} \neq 0 \)<br>\( \nabla \cdot \vec{F} \neq 0 \)</td>
+        <td>General Vector Field</td>
+        <td><strong>Helmholtz's Theorem:</strong><br>\( \vec{F} = -\nabla \phi + \nabla \times \vec{A} \)</td>
+        <td>Electromagnetic field in general.</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ======================= SECTION: Maxwell's Equations ======================= -->
+  <div class="section" id="maxwells-equations">
+    <h2>Electromagnetic Theory: Maxwell's Equations</h2>
+    <p>Maxwell's equations are a set of four fundamental equations that form the foundation of classical electromagnetism, classical optics, and electric circuits.</p>
+
+    <h4>1. Gauss's Law for Electricity</h4>
+    <p>Relates the net electric flux through a closed surface to the net electric charge enclosed within that surface.</p>
+    <div class="formula">
+      $$ \nabla \cdot \vec{E} = \frac{\rho}{\varepsilon_0} $$
+    </div>
+
+    <h4>2. Gauss's Law for Magnetism</h4>
+    <p>States that there are no magnetic monopoles. The net magnetic flux out of any closed surface is zero.</p>
+    <div class="formula">
+      $$ \nabla \cdot \vec{B} = 0 $$
+    </div>
+
+    <h4>3. Faraday's Law of Induction</h4>
+    <p>A changing magnetic field induces an electromotive force (e.m.f), which creates a curling electric field.</p>
+    <div class="formula">
+      $$ \nabla \times \vec{E} = - \frac{\partial \vec{B}}{\partial t} $$
+    </div>
+
+    <h4>4. Ampere-Maxwell's Law</h4>
+    <p>Magnetic fields are generated by electric currents and by changing electric fields (displacement current).</p>
+    <div class="formula">
+      $$ \nabla \times \vec{B} = \mu_0 \vec{J} + \mu_0 \varepsilon_0 \frac{\partial \vec{E}}{\partial t} $$
+    </div>
+
+    <h4>Equation of Continuity</h4>
+    <p>This equation expresses the principle of local charge conservation.</p>
+    <div class="formula">
+      $$ \nabla \cdot \vec{J} + \frac{\partial \rho}{\partial t} = 0 $$
+    </div>
+    <p>It means that the change in charge density \( \rho \) in a volume is balanced by the net current \( \vec{J} \) flowing out of its surface.</p>
+  </div>
+
+  <!-- ======================= SECTION: Electromagnetic Waves ======================= -->
+  <div class="section" id="em-waves">
+    <h2>Electromagnetic Waves</h2>
+    <p>In a vacuum (where \( \rho = 0, \vec{J} = 0 \)), Maxwell's equations can be combined to form wave equations for the electric and magnetic fields.</p>
+
+    <h4>The Wave Equation</h4>
+    <p>Taking the curl of Faraday's Law and using the vector identity \( \nabla \times (\nabla \times \vec{E}) = \nabla(\nabla \cdot \vec{E}) - \nabla^2 \vec{E} \), we arrive at the wave equation for \( \vec{E} \):</p>
+    <div class="formula">
+      $$ \nabla^2 \vec{E} = \mu_0 \varepsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2} $$
+    </div>
+    <p>A similar equation exists for the magnetic field \( \vec{B} \):</p>
+    <div class="formula">
+      $$ \nabla^2 \vec{B} = \mu_0 \varepsilon_0 \frac{\partial^2 \vec{B}}{\partial t^2} $$
+    </div>
+    <p>The speed of these waves is given by:</p>
+    <div class="formula">
+      $$ c = \frac{1}{\sqrt{\mu_0 \varepsilon_0}} $$
+    </div>
+
+    <h4>Plane Wave Solution</h4>
+    <p>A simple solution to the wave equation is a sinusoidal plane wave traveling in the x-direction:</p>
+    <div class="formula">
+      $$ \vec{E} = \vec{E}_m \cos(kx - \omega t) \quad \text{and} \quad \vec{B} = \vec{B}_m \cos(kx - \omega t) $$
+    </div>
+    <p>From Maxwell's equations, it can be shown that the magnitudes of the fields are related by:</p>
+    <div class="formula">
+      $$ \frac{E_m}{B_m} = c $$
+    </div>
+
+    <h4>Energy and the Poynting Vector</h4>
+    <p>Electromagnetic waves carry energy. The rate of energy flow per unit area is given by the Poynting vector \( \vec{S} \):</p>
+    <div class="formula">
+      $$ \vec{S} = \frac{1}{\mu_0} (\vec{E} \times \vec{B}) $$
+    </div>
+    <p>The energy densities of the electric (\( u_E \)) and magnetic (\( u_B \)) fields are equal in an EM wave:</p>
+    <div class="formula">
+      $$ u_E = \frac{1}{2}\varepsilon_0 E^2 \quad \text{and} \quad u_B = \frac{1}{2\mu_0} B^2 \quad \implies \quad u_E = u_B $$
+    </div>
+    <p>The time-averaged intensity \( I \) of the wave is the average magnitude of the Poynting vector:</p>
+    <div class="formula">
+      $$ I = S_{avg} = \frac{E_m B_m}{2\mu_0} = \frac{E_m^2}{2\mu_0 c} = \frac{c B_m^2}{2\mu_0} $$
+    </div>
+  </div>
+
+  <!-- ======================= SECTION: AC Theory ======================= -->
+  <div class="section" id="ac-theory">
+    <h2>AC Theory</h2>
+
+    <h4>Basic Definitions</h4>
+    <p>Alternating Current (AC) is described by sinusoidal functions of time.</p>
+    <ul>
+      <li><strong>Voltage:</strong> \( V(t) = V_0 \sin(\omega t) \)</li>
+      <li><strong>Current:</strong> \( I(t) = I_0 \sin(\omega t + \phi) \)</li>
+    </ul>
+    <p>Here, \( V_0 \) and \( I_0 \) are the peak amplitudes, \( \omega = 2\pi f \) is the angular frequency, and \( \phi \) is the phase angle between voltage and current.</p>
+
+    <h4>Average and RMS Values</h4>
+    <ul>
+      <li><strong>Average Value (full cycle):</strong> The average of a sine wave over a full cycle is 0.</li>
+      <li><strong>Average Value (half cycle):</strong> \( I_{avg} = \frac{2I_0}{\pi} \approx 0.637 I_0 \)</li>
+      <li><strong>Root Mean Square (RMS) Value:</strong> The effective value of an AC current or voltage. It's the equivalent DC value that would produce the same heating effect.
+        <div class="formula">$$ I_{rms} = \frac{I_0}{\sqrt{2}} \approx 0.707 I_0 $$</div>
+        <div class="formula">$$ V_{rms} = \frac{V_0}{\sqrt{2}} \approx 0.707 V_0 $$</div>
+      </li>
+      <li><strong>Form Factor:</strong> The ratio of the RMS value to the average value (over a half-cycle).
+        <div class="formula">$$ \text{Form Factor} = \frac{I_{rms}}{I_{avg}} = \frac{I_0/\sqrt{2}}{2I_0/\pi} = \frac{\pi}{2\sqrt{2}} \approx 1.11 $$</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ======================= SECTION: AC Circuits ======================= -->
+  <div class="section" id="ac-circuits">
+    <h2>AC Circuits</h2>
+    <p>The behavior of resistors, capacitors, and inductors in AC circuits is described by their impedance.</p>
+
+    <h4>Impedance (Z)</h4>
+    <p>Impedance is the complex generalization of resistance for AC circuits. \( Z = R + jX \), where R is resistance and X is reactance.</p>
+
+    <h4>Components in AC Circuits</h4>
+    <ul>
+      <li>
+        <strong>Resistor (R):</strong>
+        <p>Voltage and current are in phase (\(\phi = 0\)).</p>
+        <div class="formula">$$ Z_R = R $$</div>
+      </li>
+      <li>
+        <strong>Inductor (L):</strong>
+        <p>Voltage leads the current by 90° (\(\phi = \pi/2\)). The opposition to current is called inductive reactance \( X_L \).</p>
+        <div class="formula">$$ Z_L = j\omega L \quad \implies \quad X_L = \omega L $$</div>
+      </li>
+      <li>
+        <strong>Capacitor (C):</strong>
+        <p>Current leads the voltage by 90° (\(\phi = -\pi/2\)). The opposition to current is called capacitive reactance \( X_C \).</p>
+        <div class="formula">$$ Z_C = \frac{1}{j\omega C} = -j\frac{1}{\omega C} \quad \implies \quad X_C = \frac{1}{\omega C} $$</div>
+      </li>
+    </ul>
+
+    <h4>The Series RLC Circuit</h4>
+    <p>For a resistor, inductor, and capacitor connected in series, the total impedance is:</p>
+    <div class="formula">
+      $$ Z = Z_R + Z_L + Z_C = R + j\omega L - j\frac{1}{\omega C} = R + j\left(X_L - X_C\right) $$
+    </div>
+    <p>The magnitude of the impedance is:</p>
+    <div class="formula">
+      $$ |Z| = \sqrt{R^2 + (X_L - X_C)^2} $$
+    </div>
+    <p>The phase angle \( \phi \) between the voltage and current is:</p>
+    <div class="formula">
+      $$ \tan(\phi) = \frac{X_L - X_C}{R} $$
+    </div>
+
+    <h4>Resonance in a Series RLC Circuit</h4>
+    <p>Resonance occurs when the inductive and capacitive reactances cancel each other out (\( X_L = X_C \)). At this point, the impedance is at its minimum (\( Z = R \)), and the current is at its maximum.</p>
+    <p>The resonant angular frequency \( \omega_0 \) is:</p>
+    <div class="formula">
+      $$ \omega L = \frac{1}{\omega C} \quad \implies \quad \omega_0 = \frac{1}{\sqrt{LC}} $$
+    </div>
+    <p>At resonance, the current is in phase with the voltage (\( \phi = 0 \)).</p>
+
+    <h4>Quality Factor (Q)</h4>
+    <p>The Q factor is a measure of the "sharpness" of the resonance peak. A high Q factor indicates a narrow bandwidth and high selectivity.</p>
+    <div class="formula">
+      $$ Q = \frac{\omega_0 L}{R} = \frac{1}{\omega_0 C R} = \frac{1}{R}\sqrt{\frac{L}{C}} $$
+    </div>
+    <p>At resonance, the voltage across the inductor and capacitor can be much larger than the source voltage, a phenomenon called voltage magnification:</p>
+    <div class="formula">
+      $$ V_L = V_C = Q \cdot V_{\text{source}} $$
+    </div>
+
+    <h4>Power in AC Circuits</h4>
+    <p>The instantaneous power is \( P(t) = V(t)I(t) \). The average power dissipated in an AC circuit depends on the phase angle \( \phi \) and is given by:</p>
+    <div class="formula">
+      $$ P_{avg} = V_{rms} I_{rms} \cos(\phi) $$
+    </div>
+    <p>The term \( \cos(\phi) \) is called the <strong>power factor</strong>. Power is only dissipated in the resistor, so the average power can also be written as:</p>
+    <div class="formula">
+      $$ P_{avg} = I_{rms}^2 R $$
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

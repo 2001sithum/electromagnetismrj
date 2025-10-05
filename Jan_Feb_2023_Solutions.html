@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHY 2102 Exam Solutions | Jan/Feb 2023</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body { font-family: 'Segoe UI', serif; line-height: 1.8; margin: 0; padding: 0; background-color: #f8f9fa; color: #212529; }
+    .container { max-width: 900px; margin: 20px auto; background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-top: 8px solid #0056b3; }
+    h1, h2, h3 { color: #0056b3; border-bottom: 2px solid #dee2e6; padding-bottom: 10px; margin-top: 30px; }
+    h1 { text-align: center; color: #343a40; border: none; }
+    .header-info { text-align: center; margin-bottom: 40px; color: #6c757d; }
+    .question-block { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #e9ecef; }
+    .question-title { font-weight: bold; font-size: 1.2em; color: #007bff; }
+    .formula-box { background-color: #e9ecef; border-left: 5px solid #0056b3; padding: 15px; margin: 20px 0; overflow-x: auto; border-radius: 5px; font-size: 1.1em; }
+    .solution-box { border: 1px solid #28a745; border-radius: 5px; padding: 20px; margin: 20px 0; background-color: #f7fff9; }
+    .solution-box h4 { margin-top: 0; color: #155724; border-bottom: 1px solid #a3cfbb; padding-bottom: 5px; }
+    .step { margin-bottom: 15px; padding-left: 20px; border-left: 3px solid #ced4da; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>PHY 2102 - ELECTROMAGNETISM</h1>
+  <div class="header-info">
+    Complete Solutions for Examination – Jan/Feb 2023
+  </div>
+
+  <!-- ======================= QUESTION 1 ======================= -->
+  <div class="question-block" id="q1">
+    <h2>Question 1</h2>
+
+    <div class="question-title">a) Show that at a given instant the ratio of the electric field to the magnetic field of an electromagnetic wave equals the speed of light. (10 marks)</div>
+    <div class="solution-box">
+      <h4>Detailed Derivation: Proving E/B = c</h4>
+      <div class="step">
+        <strong>Step 1: Assume a Plane Wave Solution.</strong>
+        <p>Consider a plane electromagnetic wave propagating in the +x direction. The electric field \( \vec{E} \) is polarized in the y-direction, and the magnetic field \( \vec{B} \) is in the z-direction.</p>
+        $$ \vec{E}(x,t) = E_m \cos(kx - \omega t) \hat{j} $$
+        $$ \vec{B}(x,t) = B_m \cos(kx - \omega t) \hat{k} $$
+      </div>
+      <div class="step">
+        <strong>Step 2: Apply Faraday's Law in Differential Form.</strong>
+        <p>Faraday's Law is \( \nabla \times \vec{E} = - \frac{\partial \vec{B}}{\partial t} \). We will evaluate both sides of this equation for our plane wave.</p>
+      </div>
+      <div class="step">
+        <strong>Step 3: Evaluate the Left-Hand Side (LHS), the Curl of E.</strong>
+        $$ \nabla \times \vec{E} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ 0 & E_y(x,t) & 0 \end{vmatrix} = \hat{k} \left(\frac{\partial E_y}{\partial x}\right) $$
+        <p>Now, perform the partial derivative with respect to x:</p>
+        $$ \frac{\partial E_y}{\partial x} = \frac{\partial}{\partial x} [E_m \cos(kx - \omega t)] = E_m [-\sin(kx - \omega t) \cdot k] = -k E_m \sin(kx - \omega t) $$
+        <p>So, the LHS is: \( \nabla \times \vec{E} = -k E_m \sin(kx - \omega t) \hat{k} \).</p>
+      </div>
+      <div class="step">
+        <strong>Step 4: Evaluate the Right-Hand Side (RHS) of Faraday's Law.</strong>
+        $$ - \frac{\partial \vec{B}}{\partial t} = - \frac{\partial}{\partial t} [B_m \cos(kx - \omega t) \hat{k}] $$
+        <p>Perform the partial derivative with respect to time:</p>
+        $$ - \frac{\partial \vec{B}}{\partial t} = - B_m [-\sin(kx - \omega t) \cdot (-\omega)] \hat{k} = \omega B_m \sin(kx - \omega t) \hat{k} $$
+      </div>
+      <div class="step">
+        <strong>Step 5: Equate the two sides and solve.</strong>
+        <p>Now we set the LHS equal to the RHS:</p>
+        $$ -k E_m \sin(kx - \omega t) \hat{k} = \omega B_m \sin(kx - \omega t) \hat{k} $$
+        <p>The vector components and the sinusoidal terms cancel out. Taking the magnitude of both sides:</p>
+        $$ k E_m = \omega B_m $$
+      </div>
+      <div class="step">
+        <strong>Step 6: Relate to the speed of light.</strong>
+        <p>The speed of a wave is \( c = \omega/k \). Rearranging the result from Step 5:</p>
+        $$ \frac{E_m}{B_m} = \frac{\omega}{k} = c $$
+        <p>Since this relationship holds for the amplitudes, it holds for the instantaneous magnitudes \(E\) and \(B\) as well.</p>
+        <div class="formula-box">$$ \frac{E}{B} = c $$</div>
+      </div>
+    </div>
+
+    <div class="question-title">b) Prove that the intensity of an electromagnetic wave is given by \( I = \frac{E_m^2}{2\mu_0 c} \). (12 marks)</div>
+    <div class="solution-box">
+      <h4>Detailed Derivation: Wave Intensity</h4>
+      <div class="step"><strong>Step 1: Define the Poynting Vector.</strong>
+        <p>The Poynting vector \( \vec{S} \) gives the instantaneous power per unit area. \( \vec{S} = \frac{1}{\mu_0} (\vec{E} \times \vec{B}) \)</p>
+      </div>
+      <div class="step"><strong>Step 2: Find the magnitude of S for a plane wave.</strong>
+        <p>Since \( \vec{E} \perp \vec{B} \), the magnitude is \( S = \frac{EB}{\mu_0} \).</p>
+      </div>
+      <div class="step"><strong>Step 3: Express S in terms of E only.</strong>
+        <p>Using \( B = E/c \), we get \( S = \frac{E(E/c)}{\mu_0} = \frac{E^2}{\mu_0 c} \).</p>
+      </div>
+      <div class="step"><strong>Step 4: Define Intensity as the Time-Average of S.</strong>
+        <p>Intensity \( I \) is the average power per unit area. For a sinusoidal wave \( E = E_m \cos(kx - \omega t) \), we average S over one period T.</p>
+        $$ I = \langle S \rangle = \left\langle \frac{E_m^2 \cos^2(kx - \omega t)}{\mu_0 c} \right\rangle = \frac{E_m^2}{\mu_0 c} \langle \cos^2(kx - \omega t) \rangle $$
+      </div>
+      <div class="step"><strong>Step 5: Evaluate the time-average of \( \cos^2 \).</strong>
+        <p>The average of \( \cos^2(\theta) \) over a full cycle is \( 1/2 \).</p>
+        <p>Proof: \( \langle \cos^2 \theta \rangle = \frac{1}{T} \int_0^T \cos^2(\omega t) dt = \frac{1}{T} \int_0^T \frac{1 + \cos(2\omega t)}{2} dt \). The integral of \( \cos(2\omega t) \) over a full period is zero, leaving \( \frac{1}{2T} \int_0^T dt = \frac{T}{2T} = 1/2 \).</p>
+      </div>
+      <div class="step"><strong>Step 6: Conclude the proof.</strong>
+        <div class="formula-box">$$ I = \frac{E_m^2}{\mu_0 c} \cdot \frac{1}{2} = \frac{E_m^2}{2\mu_0 c} $$</div>
+      </div>
+    </div>
+
+    <div class="question-title">c) Given \( \vec{B} = B_0 \sin(kx - \omega t) \hat{j} \). Find (i) wavelength, (ii) \( \vec{E} \), (iii) direction and magnitude of \( \vec{S} \). (9 marks total)</div>
+    <div class="solution-box">
+      <h4>Detailed Solution</h4>
+      <div class="step"><strong>(i) Wavelength (\(\lambda\)):</strong> The wavelength is related to the wave number \(k\) by definition:
+        <div class="formula-box">$$ \lambda = \frac{2\pi}{k} $$</div>
+      </div>
+      <div class="step"><strong>(ii) Electric Field (\(\vec{E}\)):</strong>
+        <p><strong>Direction:</strong> The propagation direction (\(\vec{k}\)) is \(+\hat{i}\) (from \(kx\)). The Poynting vector \( \vec{S} \propto \vec{E} \times \vec{B} \) must point in \(+\hat{i}\). Since \( \vec{B} \) is \(+\hat{j}\), the right-hand rule requires \( \vec{E} \) to be in the \(-\hat{k}\) direction because \( (-\hat{k}) \times (+\hat{j}) = +\hat{i} \).</p>
+        <p><strong>Magnitude:</strong> The amplitude is \( E_0 = c B_0 \). The E-field must be in phase with the B-field.</p>
+        <div class="formula-box">$$ \vec{E}(x,t) = -c B_0 \sin(kx - \omega t) \hat{k} $$</div>
+      </div>
+      <div class="step"><strong>(iii) Poynting Vector (\(\vec{S}\)):</strong>
+        <p><strong>Direction:</strong> The direction of energy propagation is the +x direction (\(+\hat{i}\)).</p>
+        <p><strong>Magnitude (Time-Averaged Intensity):</strong></p>
+        <div class="formula-box">$$ I = \langle S \rangle = \frac{E_0 B_0}{2\mu_0} = \frac{(c B_0) B_0}{2\mu_0} = \frac{c B_0^2}{2\mu_0} $$</div>
+      </div>
+    </div>
+
+    <div class="question-title">d) Find the ratio of the emf generated in a loop antenna by a TV wave (100 MHz) to a radio wave (1 MHz) if both have equal E-field intensities. (14 marks)</div>
+    <div class="solution-box">
+      <h4>Detailed Solution: EMF in a Loop Antenna</h4>
+      <div class="step"><strong>Step 1: Faraday's Law of Induction.</strong>
+        <p>The induced EMF (\(\mathcal{E}\)) is the negative rate of change of magnetic flux \( \Phi_B \).</p>
+        $$ \mathcal{E}(t) = - \frac{d\Phi_B}{dt} $$
+      </div>
+      <div class="step"><strong>Step 2: Flux from a Plane Wave.</strong>
+        <p>For a loop of area A with a perpendicular B-field, \( \Phi_B = B \cdot A \). The B-field varies as \( B(t) = B_m \cos(\omega t) \).</p>
+        $$ \Phi_B(t) = A B_m \cos(\omega t) $$
+      </div>
+      <div class="step"><strong>Step 3: Differentiate to find EMF.</strong>
+        $$ \mathcal{E}(t) = - \frac{d}{dt} [A B_m \cos(\omega t)] = - A B_m [-\omega \sin(\omega t)] = A \omega B_m \sin(\omega t) $$
+      </div>
+      <div class="step"><strong>Step 4: Find the Peak EMF.</strong>
+        <p>The peak EMF, \( \mathcal{E}_m \), occurs when \( \sin(\omega t) = 1 \):</p>
+        $$ \mathcal{E}_m = A \omega B_m $$
+      </div>
+      <div class="step"><strong>Step 5: Relate to the Electric Field.</strong>
+        <p>Using \( B_m = E_m / c \) and substituting: \( \mathcal{E}_m = A \omega (E_m / c) \).</p>
+      </div>
+      <div class="step"><strong>Step 6: Form the Ratio.</strong>
+        <p>The question states that the antenna area (A) and electric field intensity (\( E_m \)) are the same for both waves. The speed of light c is constant.</p>
+        $$ \frac{\mathcal{E}_{m, \text{TV}}}{\mathcal{E}_{m, \text{Radio}}} = \frac{A \omega_{\text{TV}} (E_m/c)}{A \omega_{\text{Radio}} (E_m/c)} = \frac{\omega_{\text{TV}}}{\omega_{\text{Radio}}} $$
+      </div>
+      <div class="step"><strong>Step 7: Substitute Frequencies.</strong>
+        <p>Since \( \omega = 2\pi f \):</p>
+        $$ \frac{\mathcal{E}_{m, \text{TV}}}{\mathcal{E}_{m, \text{Radio}}} = \frac{2\pi f_{\text{TV}}}{2\pi f_{\text{Radio}}} = \frac{f_{\text{TV}}}{f_{\text{Radio}}} = \frac{100 \text{ MHz}}{1 \text{ MHz}} = 100 $$
+        <div class="formula-box">The ratio of the induced EMFs is 100.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================= QUESTION 2 ======================= -->
+  <div class="question-block" id="q2">
+    <h2>Question 2</h2>
+
+    <div class="question-title">a) i. What is meant by inductive and capacitive reactance in terms of rms values? Show they can also be expressed in terms of maximum values. (10 marks)</div>
+    <div class="solution-box">
+      <h4>Solution: Reactance Definitions</h4>
+      <div class="step"><strong>Inductive Reactance (\(X_L\)):</strong> It is the opposition to AC current by an inductor. It is defined as the ratio of the RMS voltage across the inductor to the RMS current through it.
+        <div class="formula-box">$$ X_L = \frac{V_{L,rms}}{I_{rms}} $$</div>
+        To express this using maximum (peak) values, we use the relations \( V_{rms} = V_m / \sqrt{2} \) and \( I_{rms} = I_m / \sqrt{2} \).
+        $$ X_L = \frac{V_{L,m} / \sqrt{2}}{I_m / \sqrt{2}} = \frac{V_{L,m}}{I_m} $$
+      </div>
+      <div class="step"><strong>Capacitive Reactance (\(X_C\)):</strong> It is the opposition to AC current by a capacitor, defined as the ratio of the RMS voltage across it to the RMS current.
+        <div class="formula-box">$$ X_C = \frac{V_{C,rms}}{I_{rms}} $$</div>
+        Similarly, in terms of maximum values:
+        $$ X_C = \frac{V_{C,m} / \sqrt{2}}{I_m / \sqrt{2}} = \frac{V_{C,m}}{I_m} $$
+      </div>
+    </div>
+
+    <div class="question-title">a) ii. The sum of the peak voltages across each element in a series RLC circuit is usually greater than the peak applied voltage. Doesn't this violate Kirchhoff's voltage law? Explain. (10 marks)</div>
+    <div class="solution-box">
+      <h4>Explanation: KVL in RLC Circuits</h4>
+      <p>This does <strong>not</strong> violate Kirchhoff's voltage law (KVL). KVL applies to the sum of <strong>instantaneous</strong> voltages (\(\sum v_i(t) = 0\)), not the sum of their peak values.</p>
+      <div class="step"><strong>Phase Differences:</strong> The peak voltages across R, L, and C occur at different times.
+        <ul>
+          <li>\(v_R\) is in phase with the current \(i\).</li>
+          <li>\(v_L\) leads the current \(i\) by 90°.</li>
+          <li>\(v_C\) lags the current \(i\) by 90°.</li>
+        </ul>
+      </div>
+      <div class="step"><strong>Phasor Addition:</strong> To find the peak source voltage \(V_{s,m}\), we must add the peak voltages as vectors (phasors). The voltages across the inductor and capacitor are 180° out of phase, so they subtract. The total peak voltage is the vector sum:
+        <div class="formula-box">$$ V_{s,m} = \sqrt{V_{R,m}^2 + (V_{L,m} - V_{C,m})^2} $$</div>
+        Because of this vector addition, the simple scalar sum \( V_{R,m} + V_{L,m} + V_{C,m} \) will generally be greater than \( V_{s,m} \). However, at any instant \(t\), the sum of the instantaneous voltages \( v_R(t) + v_L(t) + v_C(t) \) always equals the instantaneous source voltage \( v_s(t) \), so KVL holds.
+      </div>
+    </div>
+
+    <div class="question-title">a) iii. Design an un-driven LC circuit with \(V_m = 100\) V, \(I_m = 10\) A, and oscillation frequency \(f = 1000\) Hz. Find L and C. (15 marks)</div>
+    <div class="solution-box">
+      <h4>Solution: LC Circuit Design</h4>
+      <div class="step"><strong>Step 1: Use Conservation of Energy.</strong> In an ideal LC circuit, the maximum energy stored in the capacitor's electric field equals the maximum energy in the inductor's magnetic field.
+        $$ E_{C,max} = E_{L,max} \implies \frac{1}{2} C V_m^2 = \frac{1}{2} L I_m^2 $$
+        $$ C (100 \text{ V})^2 = L (10 \text{ A})^2 \implies 10000 C = 100 L \implies L = 100C $$
+      </div>
+      <div class="step"><strong>Step 2: Use the Oscillation Frequency Formula.</strong> The natural angular frequency is \( \omega_0 = 2\pi f = 1/\sqrt{LC} \).
+        $$ \omega_0 = 2\pi (1000 \text{ Hz}) = 2000\pi \text{ rad/s} $$
+        $$ (2000\pi)^2 = \frac{1}{LC} $$
+      </div>
+      <div class="step"><strong>Step 3: Solve for C.</strong> Substitute \( L = 100C \) into the frequency equation:
+        $$ (2000\pi)^2 = \frac{1}{(100C)C} = \frac{1}{100C^2} $$
+        $$ C^2 = \frac{1}{100 \times (2000\pi)^2} \implies C = \frac{1}{\sqrt{100} \times 2000\pi} = \frac{1}{10 \times 2000\pi} = \frac{1}{20000\pi} $$
+        <div class="formula-box">$$ C \approx 1.59 \times 10^{-5} \text{ F} \quad \text{or} \quad 15.9 \text{ µF} $$</div>
+      </div>
+      <div class="step"><strong>Step 4: Solve for L.</strong>
+        $$ L = 100C = 100 \times (1.59 \times 10^{-5}) \approx 1.59 \times 10^{-3} \text{ H} $$
+        <div class="formula-box">$$ L \approx 1.59 \text{ mH} $$</div>
+      </div>
+    </div>
+
+    <div class="question-title">b) i. What is meant by the Quality factor (Q) of a circuit? (5 marks)</div>
+    <div class="solution-box">
+      <h4>Solution: Quality Factor (Q)</h4>
+      <p>The Quality factor (Q) is a dimensionless parameter that describes the performance of a resonant circuit. It has several related meanings:</p>
+      <ul>
+        <li><strong>Sharpness of Resonance:</strong> It quantifies how "sharp" or "selective" the resonance peak is. A high Q-factor means a very narrow bandwidth, so the circuit responds strongly only to frequencies very close to resonance.</li>
+        <li><strong>Energy Storage vs. Dissipation:</strong> It is formally defined as the ratio of the energy stored in the circuit's reactive elements (L and C) to the energy dissipated by the resistor per radian of the oscillation. \( Q = \omega \frac{\text{Energy Stored}}{\text{Average Power Loss}} \).</li>
+        <li><strong>Formula:</strong> For a series RLC circuit, it is given by \( Q = \frac{\omega_0 L}{R} \) or \( Q = \frac{1}{\omega_0 C R} \).</li>
+      </ul>
+    </div>
+
+    <div class="question-title">b) ii. Prove that the voltage magnification of a RLC circuit is equal to its Q at resonance. (10 marks)</div>
+    <div class="solution-box">
+      <h4>Proof: Voltage Magnification = Q</h4>
+      <div class="step"><strong>Step 1: Define Voltage Magnification.</strong> It is the ratio of the peak voltage across the inductor (or capacitor) to the peak voltage of the source at resonance.
+        $$ \text{Magnification} = \frac{V_{L,m}}{V_{s,m}} $$
+      </div>
+      <div class="step"><strong>Step 2: Conditions at Resonance.</strong> At the resonant frequency \( \omega_0 \), the impedance is at its minimum, \( Z = R \).</div>
+      <div class="step"><strong>Step 3: Calculate the Peak Current.</strong> The peak current in the circuit is maximum at resonance: \( I_m = V_{s,m} / Z = V_{s,m} / R \).</div>
+      <div class="step"><strong>Step 4: Calculate the Peak Voltage across the Inductor.</strong>
+        $$ V_{L,m} = I_m X_L = I_m (\omega_0 L) $$
+      </div>
+      <div class="step"><strong>Step 5: Substitute and Conclude.</strong> Substitute the expression for \(I_m\) from Step 3 into Step 4:
+        $$ V_{L,m} = \left( \frac{V_{s,m}}{R} \right) (\omega_0 L) $$
+        <p>Rearrange to find the magnification ratio:</p>
+        $$ \frac{V_{L,m}}{V_{s,m}} = \frac{\omega_0 L}{R} $$
+        <p>By definition, \( Q = \frac{\omega_0 L}{R} \). Therefore:</p>
+        <div class="formula-box">$$ \text{Voltage Magnification} = Q $$</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================= QUESTION 3 ======================= -->
+  <div class="question-block" id="q3">
+    <h2>Question 3</h2>
+
+    <div class="question-title">a) i. State Stoke's theorem. (6 marks)</div>
+    <div class="solution-box">
+      <h4>Statement of Stoke's Theorem</h4>
+      <p>Stoke's theorem states that the line integral of a vector field \( \vec{A} \) around a simple, closed path \( C \) is equal to the surface integral of the curl of that vector field, \( \nabla \times \vec{A} \), over any open surface \( S \) that is bounded by the path \( C \).</p>
+      <div class="formula-box">$$ \oint_C \vec{A} \cdot d\vec{l} = \int_S (\nabla \times \vec{A}) \cdot d\vec{S} $$</div>
+    </div>
+
+    <div class="question-title">a) ii. Using Stoke's theorem, prove that the curl of the gradient of a scalar (\(\Phi\)) is zero. (10 marks)</div>
+    <div class="solution-box">
+      <h4>Proof: \( \nabla \times (\nabla \Phi) = 0 \)</h4>
+      <div class="step">
+        <strong>Step 1: Consider the line integral of a gradient field.</strong>
+        <p>Let \( \vec{A} = \nabla \Phi \). The fundamental theorem for gradients states that the line integral of \( \nabla \Phi \) along any path from point P to Q is \( \Phi(Q) - \Phi(P) \).</p>
+      </div>
+      <div class="step">
+        <strong>Step 2: Evaluate the integral for a closed path.</strong>
+        <p>For any closed path C, the start and end points are the same. Therefore, the line integral is zero.</p>
+        $$ \oint_C (\nabla \Phi) \cdot d\vec{l} = 0 $$
+      </div>
+      <div class="step">
+        <strong>Step 3: Apply Stoke's Theorem.</strong>
+        <p>Stoke's theorem relates this line integral to the flux of the curl:</p>
+        $$ \oint_C (\nabla \Phi) \cdot d\vec{l} = \int_S (\nabla \times (\nabla \Phi)) \cdot d\vec{S} $$
+      </div>
+      <div class="step">
+        <strong>Step 4: Conclude the proof.</strong>
+        <p>Combining the results, we have: \( \int_S (\nabla \times (\nabla \Phi)) \cdot d\vec{S} = 0 \). Since this must be true for any arbitrary surface S, the integrand itself must be zero everywhere.</p>
+        <div class="formula-box">$$ \nabla \times (\nabla \Phi) = 0 $$</div>
+      </div>
+    </div>
+
+    <div class="question-title">b) i. Write the Maxwell's equations and explain the significance of each equation with the use of integral forms. (16 marks)</div>
+    <div class="solution-box">
+      <h4>Maxwell's Equations and Their Significance</h4>
+      <ol>
+        <li><strong>Gauss's Law for Electricity:</strong> \( \oint_S \vec{E} \cdot d\vec{S} = \frac{Q_{enc}}{\varepsilon_0} \)
+          <br><strong>Significance:</strong> Electric charges are the sources/sinks of the electric field. The net electric flux out of a closed surface is proportional to the net charge enclosed.</li>
+        <li><strong>Gauss's Law for Magnetism:</strong> \( \oint_S \vec{B} \cdot d\vec{S} = 0 \)
+          <br><strong>Significance:</strong> There are no magnetic monopoles. Magnetic field lines are always closed loops. The net magnetic flux out of any closed surface is zero.</li>
+        <li><strong>Faraday's Law of Induction:</strong> \( \oint_C \vec{E} \cdot d\vec{l} = - \frac{d\Phi_B}{dt} \)
+          <br><strong>Significance:</strong> A time-varying magnetic flux induces a circulating electric field (an EMF). This is the principle behind electric generators.</li>
+        <li><strong>Ampere-Maxwell Law:</strong> \( \oint_C \vec{B} \cdot d\vec{l} = \mu_0 I_{enc} + \mu_0 \varepsilon_0 \frac{d\Phi_E}{dt} \)
+          <br><strong>Significance:</strong> A circulating magnetic field is produced by both electric currents (\(I_{enc}\)) and by time-varying electric fields (the "displacement current"). This second term was Maxwell's crucial contribution, predicting the existence of EM waves.</li>
+      </ol>
+    </div>
+
+    <div class="question-title">b) ii. How do Maxwell's equations imply that electromagnetic waves exist in free space and that light is such a wave? (8 marks)</div>
+    <div class="solution-box">
+      <h4>Implication of EM Waves</h4>
+      <div class="step"><strong>Step 1: Maxwell's Equations in Free Space.</strong>
+        <p>In a vacuum (free space), there are no charges (\(\rho=0\)) or currents (\(J=0\)). Faraday's Law and the Ampere-Maxwell Law become highly symmetric:</p>
+        <p>\( \nabla \times \vec{E} = - \partial \vec{B}/\partial t \) (A changing B-field creates an E-field)</p>
+        <p>\( \nabla \times \vec{B} = \mu_0 \varepsilon_0 \partial \vec{E}/\partial t \) (A changing E-field creates a B-field)</p>
+      </div>
+      <div class="step"><strong>Step 2: Self-Propagation.</strong>
+        <p>These two laws show a "chicken-and-egg" relationship. A changing B-field creates a changing E-field, which in turn creates a changing B-field, and so on. This allows for a self-sustaining disturbance to propagate through space, independent of any charges or currents. This disturbance is an electromagnetic wave.</p>
+      </div>
+      <div class="step"><strong>Step 3: Derivation of the Wave Equation.</strong>
+        <p>By taking the curl of Faraday's law and substituting the Ampere-Maxwell law, one can derive the wave equation:</p>
+        <div class="formula-box">$$ \nabla^2\vec{E} = \mu_0 \varepsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2} $$</div>
+      </div>
+      <div class="step"><strong>Step 4: Calculation of Wave Speed.</strong>
+        <p>This is a standard wave equation of the form \( \nabla^2\psi = (1/v^2)\partial^2\psi/\partial t^2 \). By comparison, the speed of these waves is \( v = 1/\sqrt{\mu_0 \varepsilon_0} \).</p>
+        <p>Using the experimentally measured values for \( \mu_0 \) and \( \varepsilon_0 \), Maxwell calculated this speed:</p>
+        $$ v = \frac{1}{\sqrt{(4\pi \times 10^{-7}) \times (8.85 \times 10^{-12})}} \approx 3.0 \times 10^8 \text{ m/s} $$
+      </div>
+      <div class="step"><strong>Step 5: Conclusion.</strong>
+        <p>This calculated speed was identical to the experimentally measured speed of light, c. This was powerful evidence that light is an electromagnetic wave.</p>
+      </div>
+    </div>
+
+    <div class="question-title">b) iii. Suppose magnetic monopoles did exist. What form would Maxwell's equations take? Justify your answer. (10 marks)</div>
+    <div class="solution-box">
+      <h4>Maxwell's Equations with Magnetic Monopoles</h4>
+      <p>If magnetic monopoles existed, they would be sources of the magnetic field, just as electric charges are sources of the electric field. This would make Maxwell's equations more symmetric.</p>
+      <div class="step"><strong>1. Gauss's Law for Magnetism would be non-zero:</strong> If we denote magnetic charge density as \( \rho_m \), the law would become symmetric with its electric counterpart.
+        <div class="formula-box">$$ \nabla \cdot \vec{B} = \mu_0 \rho_m $$</div>
+        This means magnetic field lines would originate from north monopoles and terminate on south monopoles.
+      </div>
+      <div class="step"><strong>2. Faraday's Law would have a magnetic current term:</strong> A flow of magnetic monopoles would constitute a magnetic current, \( \vec{J}_m \). This would induce a circulating electric field.
+        <div class="formula-box">$$ \nabla \times \vec{E} = - \frac{\partial \vec{B}}{\partial t} - \mu_0 \vec{J}_m $$</div>
+      </div>
+      <p><strong>Justification:</strong> The primary justification is symmetry. The laws of electromagnetism exhibit a beautiful duality. The existence of electric charges and currents strongly suggests, by symmetry, that their magnetic counterparts could also exist. The modified equations restore this perfect symmetry to the laws of nature. (The other two Maxwell's equations would remain unchanged).</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHY 2102 Guide | 4. AC Circuit Theory (Ultra-Detailed)</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; line-height: 1.7; margin: 0; padding: 0; background-color: #f8f9fa; color: #212529; }
+    .navbar { background-color: #343a40; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+    .navbar a { float: left; display: block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; font-size: 1.1em; }
+    .navbar a:hover { background-color: #007bff; color: white; }
+    .navbar a.active { background-color: #0056b3; color: white; }
+    .container { max-width: 950px; margin: 20px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    h1, h2, h3 { color: #0056b3; border-bottom: 2px solid #dee2e6; padding-bottom: 10px; }
+    .formula-box { background-color: #e9ecef; border-left: 5px solid #0056b3; padding: 15px; margin: 20px 0; overflow-x: auto; border-radius: 5px; font-size: 1.1em; }
+    .solution-box { border: 1px solid #007bff; border-radius: 5px; padding: 20px; margin: 20px 0; background-color: #f7faff; }
+    .solution-box h4 { margin-top: 0; color: #0056b3; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+    .step { margin-bottom: 15px; padding-left: 20px; border-left: 3px solid #ced4da; }
+    .question-box { background-color: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 5px; margin-bottom: 10px; }
+    .prep-box { background-color: #d1ecf1; border: 1px solid #bee5eb; padding: 20px; border-radius: 5px; margin-top: 25px; }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="part1_foundations_ultradetailed.html">1. Foundations</a>
+  <a href="part2_wave_theory_ultradetailed.html">2. EM Wave Theory</a>
+  <a href="part3_wave_applications_ultradetailed.html">3. Wave Applications</a>
+  <a href="part4_ac_circuits_theory_ultradetailed.html" class="active">4. AC Circuit Theory</a>
+  <a href="part5_ac_circuits_applications_ultradetailed.html">5. AC Circuit Applications</a>
+</div>
+
+<div class="container">
+  <h1>Part 4: AC Circuit Theory (Ultra-Detailed)</h1>
+
+  <div class="section">
+    <h2>Phase Relationship in an Inductor</h2>
+    <div class="question-box"><strong>Model Question (Implied):</strong> Provide a full derivation explaining why "the voltage across an inductor leads the current by \( \pi/2 \)".</div>
+    <div class="solution-box">
+      <h4>Ultra-Detailed Explanation and Derivation</h4>
+      <div class="step"><strong>Physical Intuition:</strong> An inductor opposes changes in current due to Lenz's Law (it generates a back-EMF). For a current to start flowing and increase, a voltage must be applied *first* to overcome this opposition. Therefore, the voltage waveform must lead the current waveform in time.</div>
+      <div class="step">
+        <strong>Mathematical Derivation:</strong>
+        <p>1. Start with the fundamental relationship for an inductor: the voltage across it is proportional to the rate of change of current through it.</p>
+        $$ v_L(t) = L \frac{di(t)}{dt} $$
+        <p>2. To find the phase relationship, let's assume a sinusoidal current flows through the inductor:</p>
+        $$ i(t) = I_m \sin(\omega t) $$
+        <p>3. Differentiate the current to find the voltage:</p>
+        $$ v_L(t) = L \frac{d}{dt}[I_m \sin(\omega t)] = L I_m \frac{d}{dt}[\sin(\omega t)] $$
+        <p>4. Perform the differentiation using the chain rule:</p>
+        $$ v_L(t) = L I_m [\cos(\omega t) \cdot \omega] = \omega L I_m \cos(\omega t) $$
+        <p>5. The peak voltage is \( V_m = \omega L I_m \). So, \( v_L(t) = V_m \cos(\omega t) \).</p>
+        <p>6. To compare the phases, express both voltage and current using the same function (e.g., sine). Use the identity \( \cos(\theta) = \sin(\theta + \pi/2) \).</p>
+        $$ v_L(t) = V_m \sin(\omega t + \pi/2) $$
+        <p>7. <strong>Conclusion:</strong> Comparing \( i(t) = I_m \sin(\omega t) \) with \( v_L(t) = V_m \sin(\omega t + \pi/2) \), we see that the voltage's phase angle is \( \pi/2 \) ahead of the current's phase angle. This means the voltage leads the current by \( \pi/2 \). </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>RLC Series Impedance and Resonance</h2>
+    <div class="question-box"><strong>Model Question (Implied):</strong> Provide an ultra-detailed derivation of the impedance Z and phase angle \( \phi \) for a series RLC circuit.</div>
+    <div class="solution-box">
+      <h4>Ultra-Detailed Derivation using Phasors</h4>
+      <div class="step"><strong>1. Set up the Phasor Diagram:</strong> In a series circuit, the current \( i(t) \) is the same through all components. We use its phasor, \( I_m \), as the reference, placing it along the positive x-axis.</div>
+      <div class="step"><strong>2. Draw Voltage Phasors for Each Component:</strong>
+        <ul>
+          <li><strong>Resistor:</strong> Voltage is in phase with current. So, \( V_{R,m} \) is also along the x-axis. Its length is \( I_m R \).</li>
+          <li><strong>Inductor:</strong> Voltage leads current by 90°. So, \( V_{L,m} \) is along the positive y-axis. Its length is \( I_m X_L \).</li>
+          <li><strong>Capacitor:</strong> Voltage lags current by 90°. So, \( V_{C,m} \) is along the negative y-axis. Its length is \( I_m X_C \).</li>
+        </ul>
+      </div>
+      <div class="step"><strong>3. Find the Total Voltage Phasor by Vector Addition:</strong>
+        <p>The total source voltage phasor, \( V_{s,m} \), is the vector sum of the individual voltage phasors.</p>
+        <p>The total x-component is just \( V_{R,m} \).</p>
+        <p>The total y-component is the sum of the inductor and capacitor voltages: \( V_{L,m} - V_{C,m} \).</p>
+        <p>The total voltage phasor \( V_{s,m} \) is the hypotenuse of a right triangle with these two components as its sides.</p>
+      </div>
+      <div class="step"><strong>4. Derive the Magnitude of the Impedance (Z):</strong>
+        <p>Using the Pythagorean theorem on the phasor triangle:</p>
+        $$ (V_{s,m})^2 = (V_{R,m})^2 + (V_{L,m} - V_{C,m})^2 $$
+        <p>Substitute the Ohm's law equivalents for each peak voltage (\(V_m = I_m X\)):</p>
+        $$ (V_{s,m})^2 = (I_m R)^2 + (I_m X_L - I_m X_C)^2 $$
+        <p>Factor out the common \( I_m^2 \):</p>
+        $$ (V_{s,m})^2 = I_m^2 [R^2 + (X_L - X_C)^2] $$
+        <p>Impedance Z is defined as the ratio of total peak voltage to total peak current, \( Z = V_{s,m} / I_m \). Rearrange the equation:</p>
+        $$ \frac{(V_{s,m})^2}{I_m^2} = R^2 + (X_L - X_C)^2 \implies Z^2 = R^2 + (X_L - X_C)^2 $$
+        <div class="formula-box">$$ Z = \sqrt{R^2 + (X_L - X_C)^2} $$</div>
+      </div>
+      <div class="step"><strong>5. Derive the Phase Angle (\( \phi \)):</strong>
+        <p>The phase angle \( \phi \) is the angle between the total voltage phasor \( V_{s,m} \) and the current phasor \( I_m \) (the x-axis). From the right triangle in the phasor diagram:</p>
+        $$ \tan(\phi) = \frac{\text{opposite}}{\text{adjacent}} = \frac{V_{L,m} - V_{C,m}}{V_{R,m}} $$
+        <p>Substitute the Ohm's law equivalents:</p>
+        $$ \tan(\phi) = \frac{I_m X_L - I_m X_C}{I_m R} = \frac{I_m (X_L - X_C)}{I_m R} $$
+        <div class="formula-box">$$ \tan(\phi) = \frac{X_L - X_C}{R} $$</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

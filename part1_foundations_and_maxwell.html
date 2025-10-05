@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHY 2102 Guide | Part 1: Foundations & Maxwell</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.7; margin: 0; padding: 0; background-color: #f8f9fa; color: #212529; }
+        .navbar { background-color: #343a40; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .navbar a { float: left; display: block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; font-size: 1.1em; }
+        .navbar a:hover { background-color: #007bff; color: white; }
+        .navbar a.active { background-color: #0056b3; color: white; }
+        .container { max-width: 950px; margin: 20px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #0056b3; border-bottom: 2px solid #dee2e6; padding-bottom: 10px; }
+        .formula-box { background-color: #e9ecef; border-left: 5px solid #0056b3; padding: 15px; margin: 20px 0; overflow-x: auto; border-radius: 5px; font-size: 1.1em; }
+        .solution-box { border: 1px solid #007bff; border-radius: 5px; padding: 20px; margin: 20px 0; background-color: #f7faff; }
+        .solution-box h4 { margin-top: 0; color: #0056b3; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+        .step { margin-bottom: 15px; }
+        .question-box { background-color: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 5px; margin-bottom: 10px; }
+        .prep-box { background-color: #d1ecf1; border: 1px solid #bee5eb; padding: 15px; border-radius: 5px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="part1_foundations_and_maxwell.html" class="active">1. Foundations & Maxwell</a>
+    <a href="part2_wave_theory.html">2. EM Wave Theory</a>
+    <a href="part3_wave_applications.html">3. Wave Applications</a>
+    <a href="part4_ac_fundamentals.html">4. AC Fundamentals</a>
+    <a href="part5_ac_applications.html">5. AC Applications</a>
+</div>
+
+<div class="container">
+    <h1>Part 1: Foundations - Vector Calculus & Maxwell's Equations</h1>
+
+    <div class="section">
+        <h2>Stoke's Theorem and its Application</h2>
+        <h3>Short Notes: Stoke's Theorem</h3>
+        <p>Stoke's theorem relates a surface integral of the curl of a vector field to the line integral of that vector field around the boundary of the surface. It essentially says that the total "rotation" on a surface is equal to the "circulation" around its edge.</p>
+        <div class="formula-box">$$ \oint_C \vec{A} \cdot d\vec{l} = \int_S (\nabla \times \vec{A}) \cdot d\vec{S} $$</div>
+
+        <div class="question-box"><strong>Question (Jan/Feb 2023, Q3a):</strong> (i) State Stoke's theorem. (ii) Using Stoke's theorem, prove that the curl of the gradient of a scalar (\(\Phi\)) is zero.</div>
+        <div class="solution-box">
+            <h4>Solution</h4>
+            <div class="step"><strong>(i) Statement of Stoke's Theorem:</strong> The line integral of a vector field \( \vec{A} \) around a closed path \( C \) is equal to the surface integral of the curl of \( \vec{A} \) over any open surface \( S \) bounded by the path \( C \).</div>
+            <div class="step">
+                <strong>(ii) Proof that \( \nabla \times (\nabla \Phi) = 0 \):</strong>
+                <p><strong>Step 1:</strong> Let a vector field \( \vec{A} \) be the gradient of a scalar potential \( \Phi \), so \( \vec{A} = \nabla \Phi \).</p>
+                <p><strong>Step 2:</strong> The line integral of a gradient field around a closed path is always zero because the start and end points are the same (\(\Phi(a) - \Phi(a) = 0\)).</p>
+                $$ \oint_C \vec{A} \cdot d\vec{l} = \oint_C (\nabla \Phi) \cdot d\vec{l} = 0 $$
+                <p><strong>Step 3:</strong> Apply Stoke's theorem to this result: \( \oint_C \vec{A} \cdot d\vec{l} = \int_S (\nabla \times \vec{A}) \cdot d\vec{S} \).</p>
+                $$ 0 = \int_S (\nabla \times (\nabla \Phi)) \cdot d\vec{S} $$
+                <p><strong>Step 4:</strong> Since this equation must hold true for any arbitrary surface \( S \), the integrand itself must be zero everywhere.</p>
+                <div class="formula-box">$$ \nabla \times (\nabla \Phi) = 0 $$</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Maxwell's Equations</h2>
+        <div class="question-box"><strong>Question (Jan/Feb 2023, Q3b.i & Nov/Dec 2023, Q3a.i):</strong> Write the Maxwell's equations and explain the significance of each equation with the use of integral forms.</div>
+        <div class="solution-box">
+            <h4>Solution: Maxwell's Equations and Their Significance</h4>
+            <ol>
+                <li><strong>Gauss's Law for Electricity:</strong> \( \oint_S \vec{E} \cdot d\vec{S} = \frac{Q_{enc}}{\varepsilon_0} \)
+                    <br><strong>Significance:</strong> Electric charges create electric fields. The net flux out of a closed surface is proportional to the net charge enclosed.</li>
+                <li><strong>Gauss's Law for Magnetism:</strong> \( \oint_S \vec{B} \cdot d\vec{S} = 0 \)
+                    <br><strong>Significance:</strong> There are no magnetic monopoles. Magnetic field lines always form closed loops.</li>
+                <li><strong>Faraday's Law of Induction:</strong> \( \oint_C \vec{E} \cdot d\vec{l} = - \frac{d\Phi_B}{dt} \)
+                    <br><strong>Significance:</strong> A changing magnetic flux induces an electromotive force (EMF) and a curling electric field. This is the basis for generators.</li>
+                <li><strong>Ampere-Maxwell Law:</strong> \( \oint_C \vec{B} \cdot d\vec{l} = \mu_0 I_{enc} + \mu_0 \varepsilon_0 \frac{d\Phi_E}{dt} \)
+                    <br><strong>Significance:</strong> A magnetic field is created by electric currents (\(I_{enc}\)) and by changing electric fields (the "displacement current" term). This unification is key to the existence of EM waves.</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>The Ampere-Maxwell Law and Displacement Current</h2>
+        <div class="question-box"><strong>Question (Nov/Dec 2023, Q3a.ii):</strong> Discuss the limitations of the Ampere's equation and justify the additional term by Maxwell...</div>
+        <div class="solution-box">
+            <h4>Solution</h4>
+            <div class="step"><strong>Limitation of Ampere's Original Law (\( \oint \vec{B} \cdot d\vec{l} = \mu_0 I_{enc} \)):</strong> It fails for non-steady currents, such as in a charging capacitor. It violates the law of conservation of charge (the continuity equation \( \nabla \cdot \vec{J} = -\partial\rho/\partial t \)) because taking the divergence of Ampere's law gives \( \nabla \cdot \vec{J} = 0 \), which is only true for steady currents.</div>
+            <div class="step"><strong>Justification of Maxwell's Term:</strong> Maxwell proposed that a changing electric field (\(\partial\vec{E}/\partial t\)) in the gap of a capacitor creates a magnetic field just like a real current. This "displacement current" (\(I_d = \varepsilon_0 d\Phi_E/dt\)) restores consistency with charge conservation and completes the theory, predicting EM waves.</div>
+            <div class="step"><strong>Condition for Vanishing Contribution:</strong> Maxwell's term vanishes when the electric field is static (\( \partial \vec{E}/\partial t = 0 \)), which is the condition for magnetostatics. In this case, the law reduces to Ampere's original law.</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Magnetic Monopoles</h2>
+        <div class="question-box"><strong>Question (Jan/Feb 2023, Q3b.iii):</strong> Suppose magnetic monopoles did exist. What form would Maxwell's equations take?</div>
+        <div class="solution-box">
+            <h4>Solution</h4>
+            <p>If magnetic monopoles existed, they would act as sources of the magnetic field, making the equations for electricity and magnetism symmetric.</p>
+            <div class="step"><strong>1. Gauss's Law for Magnetism:</strong> Would become non-zero, with \( \rho_m \) as the magnetic charge density.
+                <div class="formula-box">$$ \nabla \cdot \vec{B} = \mu_0 \rho_m $$</div>
+            </div>
+            <div class="step"><strong>2. Faraday's Law:</strong> Would include a magnetic current term \( \vec{J}_m \).
+                <div class="formula-box">$$ \nabla \times \vec{E} = - \frac{\partial \vec{B}}{\partial t} - \mu_0 \vec{J}_m $$</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="prep-box">
+        <h3>Future Exam Preparation</h3>
+        <p><strong>Practice Question 1:</strong> Using the Divergence Theorem, prove that the divergence of the curl of any vector field \( \vec{A} \) is zero (\( \nabla \cdot (\nabla \times \vec{A}) = 0 \)).</p>
+        <p><strong>Hint:</strong> Consider a volume that is split into two by a surface S. The flux of \( \nabla \times \vec{A} \) out of each sub-volume can be related to a line integral on S, which will cancel.</p>
+        <p><strong>Practice Question 2:</strong> The charge density inside a sphere of radius R is decreasing uniformly with time, \( \rho(t) = \rho_0(1 - t/T) \). Use the continuity equation in integral form \( \oint_S \vec{J} \cdot d\vec{S} = - \frac{dQ_{enc}}{dt} \) to find the total current flowing out of the sphere's surface as a function of time.</p>
+    </div>
+</div>
+</body>
+</html>

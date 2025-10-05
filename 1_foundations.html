@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHY 2102 Study Guide | Part 1: Foundations</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; line-height: 1.7; margin: 0; padding: 0; background-color: #f8f9fa; color: #212529; }
+    .navbar { background-color: #343a40; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .navbar a { float: left; display: block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; font-size: 1.1em; }
+    .navbar a:hover { background-color: #007bff; color: white; }
+    .navbar a.active { background-color: #0056b3; color: white; }
+    .container { max-width: 950px; margin: 20px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    h1, h2, h3 { color: #0056b3; border-bottom: 2px solid #dee2e6; padding-bottom: 10px; }
+    .formula-box { background-color: #e9ecef; border-left: 5px solid #0056b3; padding: 15px; margin: 20px 0; overflow-x: auto; border-radius: 5px; font-size: 1.1em; }
+    .solution-box { border: 1px solid #007bff; border-radius: 5px; padding: 20px; margin: 20px 0; background-color: #f7faff; }
+    .solution-box h4 { margin-top: 0; color: #0056b3; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+    .step { margin-bottom: 15px; }
+    .question-box { background-color: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 5px; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="1_foundations.html" class="active">1. Foundations</a>
+  <a href="2_em_waves.html">2. EM Waves</a>
+  <a href="3_wave_apps.html">3. Wave Applications</a>
+  <a href="4_ac_theory.html">4. AC Theory</a>
+  <a href="5_ac_apps.html">5. AC Applications</a>
+</div>
+
+<div class="container">
+  <h1>Part 1: Foundations - Vector Calculus & Maxwell's Equations</h1>
+
+  <div class="section">
+    <h2>Stoke's Theorem and its Application</h2>
+    <h3>Short Notes: Stoke's Theorem</h3>
+    <p>Stoke's theorem is a fundamental concept in vector calculus that relates a surface integral of the curl of a vector field to the line integral of that vector field around the boundary of the surface. It essentially says that the total "circulation" or "rotation" on a surface is equal to the circulation around its edge.</p>
+    <div class="formula-box">$$ \oint_C \vec{A} \cdot d\vec{l} = \int_S (\nabla \times \vec{A}) \cdot d\vec{S} $$</div>
+    <p>Where \( C \) is the closed curve that is the boundary of the open surface \( S \).</p>
+
+    <div class="question-box"><strong>Question (Jan/Feb 2023, Q3a):</strong> (i) State Stoke's theorem. (ii) Using Stoke's theorem, prove that the curl of the gradient of a scalar (\(\Phi\)) is zero.</div>
+    <div class="solution-box">
+      <h4>Solution</h4>
+      <div class="step"><strong>(i) Statement of Stoke's Theorem:</strong> The line integral of a vector field \( \vec{A} \) around a closed path \( C \) is equal to the surface integral of the curl of \( \vec{A} \) over any open surface \( S \) bounded by the path \( C \). Mathematically: \( \oint_C \vec{A} \cdot d\vec{l} = \int_S (\nabla \times \vec{A}) \cdot d\vec{S} \).</div>
+      <div class="step">
+        <strong>(ii) Proof that \( \nabla \times (\nabla \Phi) = 0 \):</strong>
+        <p><strong>Step 1:</strong> Let the vector field \( \vec{A} \) be the gradient of a scalar potential \( \Phi \), so \( \vec{A} = \nabla \Phi \).</p>
+        <p><strong>Step 2:</strong> Consider the line integral of this field \( \vec{A} \) around any closed path C from a point 'a' back to 'a'.</p>
+        $$ \oint_C \vec{A} \cdot d\vec{l} = \oint_C (\nabla \Phi) \cdot d\vec{l} $$
+        <p><strong>Step 3:</strong> By the fundamental theorem for gradients, the integral of a gradient between two points depends only on the value of the scalar function at the endpoints. For a closed path, the start and end points are the same.</p>
+        $$ \oint_C (\nabla \Phi) \cdot d\vec{l} = \Phi(a) - \Phi(a) = 0 $$
+        <p><strong>Step 4:</strong> Now apply Stoke's theorem to this result.</p>
+        $$ \oint_C \vec{A} \cdot d\vec{l} = \int_S (\nabla \times \vec{A}) \cdot d\vec{S} $$
+        $$ 0 = \int_S (\nabla \times (\nabla \Phi)) \cdot d\vec{S} $$
+        <p><strong>Step 5:</strong> Since this equation must hold true for any arbitrary surface \( S \), the integrand itself must be zero everywhere.</p>
+        <div class="formula-box">$$ \nabla \times (\nabla \Phi) = 0 $$</div>
+        This proves that the curl of a gradient is always zero. This type of field is called "irrotational" or "conservative".
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Maxwell's Equations</h2>
+    <h3>Short Notes: The Four Equations</h3>
+    <p>Maxwell's equations are the complete set of laws governing classical electromagnetism. They describe how charges and currents create electric and magnetic fields, and how these fields interact.</p>
+    <div class="question-box"><strong>Question (Jan/Feb 2023, Q3b.i & Nov/Dec 2023, Q3a.i):</strong> Write the Maxwell's equations and explain the significance of each equation with the use of integral forms.</div>
+    <div class="solution-box">
+      <h4>Solution: Maxwell's Equations and Their Significance</h4>
+      <ol>
+        <li>
+          <strong>Gauss's Law for Electricity:</strong>
+          <div class="formula-box">$$ \oint_S \vec{E} \cdot d\vec{S} = \frac{Q_{enc}}{\varepsilon_0} \quad \left| \quad \nabla \cdot \vec{E} = \frac{\rho}{\varepsilon_0} \right. $$</div>
+          <strong>Significance:</strong> It states that electric charges are the sources and sinks of the electric field. The net electric flux out of any closed surface is proportional to the net charge enclosed. This is the foundation of electrostatics.
+        </li>
+        <li>
+          <strong>Gauss's Law for Magnetism:</strong>
+          <div class="formula-box">$$ \oint_S \vec{B} \cdot d\vec{S} = 0 \quad \left| \quad \nabla \cdot \vec{B} = 0 \right. $$</div>
+          <strong>Significance:</strong> It states that there are no magnetic monopoles (isolated north or south poles). Magnetic field lines always form closed loops. The net magnetic flux out of any closed surface is always zero.
+        </li>
+        <li>
+          <strong>Faraday's Law of Induction:</strong>
+          <div class="formula-box">$$ \oint_C \vec{E} \cdot d\vec{l} = - \frac{d\Phi_B}{dt} \quad \left| \quad \nabla \times \vec{E} = - \frac{\partial \vec{B}}{\partial t} \right. $$</div>
+          <strong>Significance:</strong> It describes how a changing magnetic flux (\(\Phi_B\)) through a surface induces an electromotive force (EMF), or a "curling" electric field, around the boundary of that surface. This is the principle behind electric generators and inductors.
+        </li>
+        <li>
+          <strong>Ampere-Maxwell Law:</strong>
+          <div class="formula-box">$$ \oint_C \vec{B} \cdot d\vec{l} = \mu_0 I_{enc} + \mu_0 \varepsilon_0 \frac{d\Phi_E}{dt} \quad \left| \quad \nabla \times \vec{B} = \mu_0 \vec{J} + \mu_0 \varepsilon_0 \frac{\partial \vec{E}}{\partial t} \right. $$</div>
+          <strong>Significance:</strong> It states that a magnetic field can be created in two ways: by an electric current (\(I_{enc}\) or \(\vec{J}\)), and by a changing electric flux (\(\Phi_E\)). The second term, \( \mu_0 \varepsilon_0 \frac{d\Phi_E}{dt} \), is Maxwell's crucial "displacement current," which predicts the existence of electromagnetic waves.
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>The Ampere-Maxwell Law and Displacement Current</h2>
+    <div class="question-box"><strong>Question (Nov/Dec 2023, Q3a.ii):</strong> Discuss the limitations of the Ampere's equation and justify the additional term by Maxwell...</div>
+    <div class="solution-box">
+      <h4>Solution</h4>
+      <div class="step">
+        <strong>Limitation of Ampere's Original Law:</strong> Ampere's original law was \( \oint \vec{B} \cdot d\vec{l} = \mu_0 I_{enc} \). This law works perfectly for steady currents (magnetostatics). However, it fails for situations with time-varying fields, like a charging capacitor. If you take the divergence of both sides (\( \nabla \cdot (\nabla \times \vec{B}) = \mu_0 \nabla \cdot \vec{J} \)), the left side is identically zero, implying \( \nabla \cdot \vec{J} = 0 \). This contradicts the equation of continuity (\( \nabla \cdot \vec{J} = -\partial\rho/\partial t \)), which must hold true. Ampere's law was therefore incomplete.
+      </div>
+      <div class="step">
+        <strong>Justification of Maxwell's Additional Term:</strong> Maxwell introduced the displacement current term, \( I_d = \varepsilon_0 \frac{d\Phi_E}{dt} \), to fix this inconsistency. He proposed that a changing electric field in the gap of a charging capacitor acts as a source of magnetic field, just like a real current. This restored the validity of the continuity equation for time-varying fields and led to the full Ampere-Maxwell law.
+      </div>
+      <div class="step">
+        <strong>Condition for Maxwell's Contribution to Vanish:</strong> Maxwell's contribution, the displacement current term, vanishes when the electric field is constant in time.
+        $$ \frac{\partial \vec{E}}{\partial t} = 0 $$
+        This is the condition for **magnetostatics** (steady currents and static electric fields). In this case, the Ampere-Maxwell law reduces back to Ampere's original law.
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>What if Magnetic Monopoles Existed?</h2>
+    <div class="question-box"><strong>Question (Jan/Feb 2023, Q3b.iii):</strong> Suppose magnetic monopoles did exist. What form would Maxwell's equations take? Justify your answer.</div>
+    <div class="solution-box">
+      <h4>Solution</h4>
+      <p>If magnetic monopoles existed, they would be sources of the magnetic field, just as electric charges are sources of the electric field. This would require modifying the two Maxwell's equations that deal with magnetism to be symmetric with their electric counterparts.</p>
+      <div class="step">
+        <strong>1. Gauss's Law for Magnetism would be non-zero:</strong> Let \( \rho_m \) be the magnetic charge density. The law would become analogous to Gauss's law for electricity.
+        <div class="formula-box">$$ \nabla \cdot \vec{B} = \mu_0 \rho_m $$</div>
+        This means the magnetic field would diverge from magnetic charges.
+      </div>
+      <div class="step">
+        <strong>2. Faraday's Law would have a magnetic current term:</strong> A flow of magnetic monopoles would constitute a magnetic current, \( \vec{J}_m \). This magnetic current would create a curling electric field, similar to how an electric current creates a curling magnetic field.
+        <div class="formula-box">$$ \nabla \times \vec{E} = - \frac{\partial \vec{B}}{\partial t} - \mu_0 \vec{J}_m $$</div>
+      </div>
+      <p><strong>Justification:</strong> The justification is based on symmetry. The universe appears to have a beautiful symmetry between electricity and magnetism. The existence of electric charges and currents implies, by symmetry, that magnetic charges (monopoles) and magnetic currents could also exist. The modified equations restore this symmetry perfectly. To date, no magnetic monopoles have been experimentally confirmed.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
+<!--4_ac_theory.html-->
+<!--1_foundations.html-->
+<!--part5_ac_circuits_applications_ultradetailed.html-->
+<!--part2_wave_theory_ultradetailed.html-->
+<!--rlc_circuits.html-->
+<!--part5_ac_circuits_applications.html-->
+<!--electro mag.html-->
+<!--part1_foundations_ultradetailed.html-->
+<!--maxwell.html-->
+<!--Jan_Feb_2023_Solutions.html-->
+<!--part1_foundations_and_maxwell.html-->
+<!--part2_wave_theory.html-->
+<!--part4_ac_circuits_theory_ultradetailed.html-->
+<!--2_em_waves.html-->
+<!--em_waves.html-->
+<!--3_wave_apps.html-->
+<!--5_ac_apps.html-->
+<!--part3_wave_applications.html-->
+<!--electro2.html-->
+<!--ac_basics.html-->
+<!--part4_ac_circuits_theory.html-->
+<!--part3_wave_applications_ultradetailed.html-->
+<!--part1_foundations_ultradetailed.html part1_foundations_and_maxwell.html electro2.html 1_foundations.html Jan_Feb_2023_Solutions.html-->

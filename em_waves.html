@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 3: Electromagnetic Waves</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.7; margin: 0; padding: 0; background-color: #f8f9fa; color: #212529; }
+        .navbar { background-color: #343a40; overflow: hidden; }
+        .navbar a { float: left; display: block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; }
+        .navbar a:hover { background-color: #007bff; color: white; }
+        .navbar a.active { background-color: #0056b3; color: white; }
+        .container { max-width: 900px; margin: 20px auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #0056b3; border-bottom: 2px solid #0056b3; padding-bottom: 10px; }
+        .formula { background-color: #e9ecef; border-left: 5px solid #0056b3; padding: 15px; margin: 20px 0; overflow-x: auto; border-radius: 5px; font-size: 1.1em; }
+        .derivation-box { border: 1px solid #ced4da; border-radius: 5px; padding: 20px; margin: 20px 0; background-color: #fdfdff; }
+        .derivation-box h4 { margin-top: 0; color: #007bff; }
+        .step { margin-bottom: 15px; }
+        .note { font-style: italic; color: #555; background-color: #f9f9f9; border: 1px solid #ddd; padding: 10px; margin-top: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="electro2.html">1. Vector Operators</a>
+    <a href="maxwell.html">2. Maxwell's Equations</a>
+    <a href="em_waves.html" class="active">3. EM Waves</a>
+    <a href="ac_basics.html">4. AC Basics</a>
+    <a href="rlc_circuits.html">5. RLC Circuits</a>
+</div>
+
+<div class="container">
+    <h1>Part 3: Electromagnetic Waves</h1>
+    <p>One of the most profound predictions of Maxwell's equations is the existence of self-propagating electromagnetic waves. This derivation shows how the wave equation naturally emerges from the fundamental laws of E&M.</p>
+
+    <div class="section">
+        <h2>Deriving the Wave Equation in Free Space</h2>
+        <p>We consider "free space," which means there are no charges (\( \rho = 0 \)) and no currents (\( \vec{J} = 0 \)).</p>
+
+        <div class="derivation-box">
+            <h4>Derivation for the Electric Field (\( \vec{E} \))</h4>
+            <div class="step">
+                <strong>Step 1:</strong> Start with Maxwell's equations in free space.
+                <ol>
+                    <li>\( \nabla \cdot \vec{E} = 0 \)</li>
+                    <li>\( \nabla \cdot \vec{B} = 0 \)</li>
+                    <li>\( \nabla \times \vec{E} = - \frac{\partial \vec{B}}{\partial t} \) (Faraday's Law)</li>
+                    <li>\( \nabla \times \vec{B} = \mu_0 \varepsilon_0 \frac{\partial \vec{E}}{\partial t} \) (Ampere-Maxwell Law)</li>
+                </ol>
+            </div>
+            <div class="step">
+                <strong>Step 2:</strong> Take the curl of Faraday's Law (Eq. 3).
+                $$ \nabla \times (\nabla \times \vec{E}) = \nabla \times \left(- \frac{\partial \vec{B}}{\partial t}\right) $$
+                $$ \nabla \times (\nabla \times \vec{E}) = - \frac{\partial}{\partial t} (\nabla \times \vec{B}) $$
+            </div>
+            <div class="step">
+                <strong>Step 3:</strong> Apply the vector identity \( \nabla \times (\nabla \times \vec{A}) = \nabla(\nabla \cdot \vec{A}) - \nabla^2 \vec{A} \) to the left side.
+                $$ \nabla(\nabla \cdot \vec{E}) - \nabla^2 \vec{E} = - \frac{\partial}{\partial t} (\nabla \times \vec{B}) $$
+            </div>
+            <div class="step">
+                <strong>Step 4:</strong> Substitute Eq. 1 (\( \nabla \cdot \vec{E} = 0 \)) into the left side and Eq. 4 (\( \nabla \times \vec{B} \)) into the right side.
+                $$ \nabla(0) - \nabla^2 \vec{E} = - \frac{\partial}{\partial t} \left(\mu_0 \varepsilon_0 \frac{\partial \vec{E}}{\partial t}\right) $$
+                $$ - \nabla^2 \vec{E} = - \mu_0 \varepsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2} $$
+            </div>
+            <div class="step">
+                <strong>Result:</strong> This simplifies to the wave equation for the electric field.
+                <div class="formula">$$ \nabla^2 \vec{E} = \mu_0 \varepsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2} $$</div>
+                <p class="note">A similar derivation, starting with the curl of the Ampere-Maxwell law, yields the same wave equation for the magnetic field: \( \nabla^2 \vec{B} = \mu_0 \varepsilon_0 \frac{\partial^2 \vec{B}}{\partial t^2} \)</p>
+            </div>
+        </div>
+
+        <h3>The Speed of Light</h3>
+        <p>The standard form of a 3D wave equation is \( \nabla^2 \psi = \frac{1}{v^2} \frac{\partial^2 \psi}{\partial t^2} \), where \( v \) is the wave speed.</p>
+        <p>By comparing our derived equation to the standard form, we can identify the speed of electromagnetic waves:</p>
+        <div class="formula">
+            $$ \frac{1}{v^2} = \mu_0 \varepsilon_0 \quad \implies \quad v = \frac{1}{\sqrt{\mu_0 \varepsilon_0}} $$
+        </div>
+        <p>Plugging in the known values for the permeability of free space (\( \mu_0 \)) and the permittivity of free space (\( \varepsilon_0 \)), Maxwell calculated this speed to be approximately \( 3 \times 10^8 \) m/s, the experimentally measured speed of light. This led to the revolutionary conclusion that <strong>light is an electromagnetic wave</strong>. This speed is denoted by \( c \).</p>
+    </div>
+
+    <div class="section">
+        <h2>Plane Wave Solutions</h2>
+        <p>A simple and important solution to the wave equation is a sinusoidal plane wave traveling in the x-direction. The electric and magnetic fields are perpendicular to each other and to the direction of propagation.</p>
+        <div class="formula">
+            $$ \vec{E}(x,t) = E_m \cos(kx - \omega t) \hat{j} $$
+            $$ \vec{B}(x,t) = B_m \cos(kx - \omega t) \hat{k} $$
+        </div>
+        <p>Here, \( E_m \) and \( B_m \) are the peak amplitudes, \( k = 2\pi/\lambda \) is the wave number, and \( \omega = 2\pi f \) is the angular frequency. The wave speed is \( c = \omega/k \).</p>
+        <p>From Maxwell's equations, a direct relationship between the amplitudes can be derived:</p>
+        <div class="formula">
+            $$ E_m = c B_m $$
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Energy and the Poynting Vector</h2>
+        <p>Electromagnetic waves transport energy. The rate of energy flow per unit area is described by the <strong>Poynting vector</strong>, \( \vec{S} \).</p>
+        <div class="formula">
+            $$ \vec{S} = \frac{1}{\mu_0} (\vec{E} \times \vec{B}) $$
+        </div>
+        <p>The direction of \( \vec{S} \) is the direction of wave propagation, and its magnitude represents the instantaneous intensity (power per unit area) of the wave.</p>
+
+        <h3>Energy Density</h3>
+        <p>The total energy density \( u \) (energy per unit volume) in an electromagnetic field is the sum of the energy densities of the electric field (\( u_E \)) and the magnetic field (\( u_B \)).</p>
+        <div class="formula">
+            $$ u_E = \frac{1}{2} \varepsilon_0 E^2 \quad \text{and} \quad u_B = \frac{B^2}{2\mu_0} $$
+        </div>
+        <p>For an electromagnetic wave, the energy is shared equally between the electric and magnetic fields, so \( u_E = u_B \).</p>
+
+        <h3>Wave Intensity</h3>
+        <p>The intensity \( I \) of a wave is the time-averaged magnitude of the Poynting vector, \( S_{avg} \). For a sinusoidal wave, this is:</p>
+        <div class="formula">
+            $$ I = S_{avg} = \frac{E_m B_m}{2\mu_0} = \frac{E_m^2}{2\mu_0 c} $$
+        </div>
+        <p>This is often referred to as the wave intensity.</p>
+    </div>
+</div>
+
+</body>
+</html>

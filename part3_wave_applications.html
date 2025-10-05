@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHY 2102 Guide | 3. Wave Applications</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; line-height: 1.7; margin: 0; padding: 0; background-color: #f8f9fa; color: #212529; }
+    .navbar { background-color: #343a40; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .navbar a { float: left; display: block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; font-size: 1.1em; }
+    .navbar a:hover { background-color: #007bff; color: white; }
+    .navbar a.active { background-color: #0056b3; color: white; }
+    .container { max-width: 950px; margin: 20px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    h1, h2, h3 { color: #0056b3; border-bottom: 2px solid #dee2e6; padding-bottom: 10px; }
+    .formula-box { background-color: #e9ecef; border-left: 5px solid #0056b3; padding: 15px; margin: 20px 0; overflow-x: auto; border-radius: 5px; font-size: 1.1em; }
+    .solution-box { border: 1px solid #007bff; border-radius: 5px; padding: 20px; margin: 20px 0; background-color: #f7faff; }
+    .solution-box h4 { margin-top: 0; color: #0056b3; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+    .step { margin-bottom: 15px; }
+    .question-box { background-color: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 5px; margin-bottom: 10px; }
+    .prep-box { background-color: #d1ecf1; border: 1px solid #bee5eb; padding: 20px; border-radius: 5px; margin-top: 25px; }
+  </style>
+</head>
+<body>
+<div class="navbar">
+  <a href="part1_foundations.html">1. Foundations</a>
+  <a href="part2_wave_theory.html">2. EM Wave Theory</a>
+  <a href="part3_wave_applications.html" class="active">3. Wave Applications</a>
+  <a href="part4_ac_circuits_theory.html">4. AC Circuit Theory</a>
+  <a href="part5_ac_circuits_applications.html">5. AC Circuit Applications</a>
+</div>
+<div class="container">
+  <h1>Part 3: Applications of Electromagnetic Waves</h1>
+
+  <div class="section">
+    <h2>Analysis of a Given EM Wave</h2>
+    <div class="question-box"><strong>Question (Jan/Feb 2023, Q1c):</strong> Given \( \vec{B} = B_0 \sin(kx - \omega t) \hat{j} \), find (i) wavelength, (ii) \( \vec{E} \), (iii) direction and magnitude of \( \vec{S} \).</div>
+    <div class="solution-box">
+      <h4>Solution</h4>
+      <div class="step"><strong>(i) Wavelength:</strong> \( \lambda = 2\pi/k \).</div>
+      <div class="step"><strong>(ii) Electric Field:</strong> The propagation direction is \(+\hat{i}\). \( \vec{S} \propto \vec{E} \times \vec{B} \) must point in \(+\hat{i}\). Since \( \vec{B} \) is \(+\hat{j}\), \( \vec{E} \) must be \(-\hat{k}\) because \( (-\hat{k}) \times (+\hat{j}) = +\hat{i} \). Amplitude is \( E_0 = c B_0 \).
+        <div class="formula-box">$$ \vec{E} = -c B_0 \sin(kx - \omega t) \hat{k} $$</div>
+      </div>
+      <div class="step"><strong>(iii) Poynting Vector:</strong> Direction is \(+\hat{i}\). Time-averaged magnitude (intensity) is:
+        <div class="formula-box">$$ I = \langle S \rangle = \frac{c B_0^2}{2\mu_0} $$</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Solar Constant and Total Power</h2>
+    <div class="question-box"><strong>Question (Nov/Dec 2023, Q1c):</strong> Given \( \langle S \rangle = 1.35 \times 10^3 \) W/m², (i) find \(E_m\) and \(B_m\). (ii) Find the total power radiated by the Sun at distance R = 1.5 x 10¹¹ m.</div>
+    <div class="solution-box">
+      <h4>Solution</h4>
+      <div class="step"><strong>(i) E and B field magnitudes:</strong>
+        <p>\( E_m = \sqrt{2\mu_0 c \langle S \rangle} = \sqrt{2 (4\pi \times 10^{-7}) (3 \times 10^8) (1.35 \times 10^3)} \approx 1009 \text{ V/m} \)</p>
+        <p>\( B_m = E_m / c \approx 3.36 \times 10^{-6} \text{ T} \)</p>
+      </div>
+      <div class="step"><strong>(ii) Total Power Radiated:</strong> Total power is intensity multiplied by the surface area of a sphere of radius R.
+        $$ P = \langle S \rangle \times (4\pi R^2) = (1.35 \times 10^3) \times (4\pi (1.5 \times 10^{11})^2) \approx 3.82 \times 10^{26} \text{ W} $$
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Standing Waves</h2>
+    <div class="question-box"><strong>Question (Nov/Dec 2023, Q1d):</strong> Calculate the intensity of the standing wave given by \(E_y = 2E_0\cos(kx)\cos(\omega t)\) and \(B_z = 2B_0\sin(kx)\sin(\omega t)\). Prove no net energy transfer.</div>
+    <div class="solution-box">
+      <h4>Solution</h4>
+      <div class="step"><strong>1. Poynting Vector \( \vec{S} \):</strong> \( \vec{S} = \frac{1}{\mu_0}(\vec{E} \times \vec{B}) = \frac{E_y B_z}{\mu_0} \hat{i} = \frac{4E_0 B_0}{\mu_0} \cos(kx)\sin(kx)\cos(\omega t)\sin(\omega t) \hat{i} \).</div>
+      <div class="step"><strong>2. Simplify:</strong> Using \( \sin(2\alpha)=2\sin\alpha\cos\alpha \), we get \( S_x = \frac{E_0 B_0}{\mu_0} \sin(2kx) \sin(2\omega t) \).</div>
+      <div class="step"><strong>3. Intensity (Time-Average):</strong> The average of \( \sin(2\omega t) \) over a full cycle is zero.
+        <div class="formula-box">$$ I = \langle S_x \rangle = 0 $$</div>
+        This proves there is no net energy propagation.
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>EMF in a Loop Antenna</h2>
+    <div class="question-box"><strong>Question (Jan/Feb 2023, Q1d):</strong> Find the ratio of emf from a TV wave (100 MHz) to a radio wave (1 MHz) if both have equal E-field intensities.</div>
+    <div class="solution-box">
+      <h4>Solution</h4>
+      <div class="step"><strong>1. Induced EMF:</strong> From Faraday's Law, \( \mathcal{E} = -d\Phi_B/dt \). The peak EMF is \( \mathcal{E}_m = A \omega B_m \).</div>
+      <div class="step"><strong>2. Relate to E-field:</strong> Since \( B_m = E_m/c \) and \( E_m \) is constant, \( \mathcal{E}_m = A \omega (E_m/c) \). This shows \( \mathcal{E}_m \propto \omega \propto f \).</div>
+      <div class="step"><strong>3. Form the ratio:</strong>
+        <div class="formula-box">$$ \frac{\mathcal{E}_{\text{TV}}}{\mathcal{E}_{\text{Radio}}} = \frac{f_{\text{TV}}}{f_{\text{Radio}}} = \frac{100 \text{ MHz}}{1 \text{ MHz}} = 100 $$</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prep-box">
+    <h3>Future Exam Preparation: Model Questions</h3>
+    <p><strong>Question 1 (Nov/Dec 2023, Q3b.iii based):</strong> A 10 MHz uniform plane wave travels in a nonmagnetic (\(\mu = \mu_0\)) medium with relative permittivity \( \varepsilon_r = 9 \). Find: (a) the phase velocity, (b) the wavenumber, (c) the wavelength, and (d) the intrinsic impedance of the medium.</p>
+    <div class="solution-box">
+      <h4>Model Answer 1</h4>
+      <p><strong>(a) Phase Velocity (v):</strong> The refractive index is \( n = \sqrt{\varepsilon_r \mu_r} = \sqrt{9 \times 1} = 3 \). The velocity is \( v = c/n = (3 \times 10^8 \text{ m/s}) / 3 = 1 \times 10^8 \text{ m/s} \).</p>
+      <p><strong>(b) Wavenumber (k):</strong> The angular frequency is \( \omega = 2\pi f = 2\pi(10 \times 10^6) \text{ rad/s} \). The wavenumber is \( k = \omega/v = 2\pi \times 10^7 / (1 \times 10^8) = 0.2\pi \approx 0.628 \text{ rad/m} \).</p>
+      <p><strong>(c) Wavelength (\(\lambda\)):</strong> \( \lambda = 2\pi/k = 2\pi / (0.2\pi) = 10 \text{ m} \).</p>
+      <p><strong>(d) Intrinsic Impedance (\(\eta\)):</strong> \( \eta = \sqrt{\mu/\varepsilon} = \sqrt{\mu_0/(\varepsilon_r \varepsilon_0)} = \frac{1}{\sqrt{\varepsilon_r}}\sqrt{\mu_0/\varepsilon_0} \). The term \( \sqrt{\mu_0/\varepsilon_0} \) is the impedance of free space, \( \eta_0 \approx 377 \, \Omega \). So, \( \eta = \eta_0 / \sqrt{\varepsilon_r} = 377 / 3 \approx 125.7 \, \Omega \).</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHY 2102 Guide | 4. AC Circuit Theory</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; line-height: 1.7; margin: 0; padding: 0; background-color: #f8f9fa; color: #212529; }
+    .navbar { background-color: #343a40; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .navbar a { float: left; display: block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; font-size: 1.1em; }
+    .navbar a:hover { background-color: #007bff; color: white; }
+    .navbar a.active { background-color: #0056b3; color: white; }
+    .container { max-width: 950px; margin: 20px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    h1, h2, h3 { color: #0056b3; border-bottom: 2px solid #dee2e6; padding-bottom: 10px; }
+    .formula-box { background-color: #e9ecef; border-left: 5px solid #0056b3; padding: 15px; margin: 20px 0; overflow-x: auto; border-radius: 5px; font-size: 1.1em; }
+    .solution-box { border: 1px solid #007bff; border-radius: 5px; padding: 20px; margin: 20px 0; background-color: #f7faff; }
+    .solution-box h4 { margin-top: 0; color: #0056b3; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+    .step { margin-bottom: 15px; }
+    .question-box { background-color: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 5px; margin-bottom: 10px; }
+    .prep-box { background-color: #d1ecf1; border: 1px solid #bee5eb; padding: 20px; border-radius: 5px; margin-top: 25px; }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="part1_foundations.html">1. Foundations</a>
+  <a href="part2_wave_theory.html">2. EM Wave Theory</a>
+  <a href="part3_wave_applications.html">3. Wave Applications</a>
+  <a href="part4_ac_circuits_theory.html" class="active">4. AC Circuit Theory</a>
+  <a href="part5_ac_circuits_applications.html">5. AC Circuit Applications</a>
+</div>
+
+<div class="container">
+  <h1>Part 4: AC Circuit Theory & Resonance</h1>
+
+  <div class="section">
+    <h2>Reactance and Impedance</h2>
+    <h3>Short Notes: Reactance</h3>
+    <p>Reactance (X) is the opposition to AC current from inductors and capacitors. Inductive reactance \(X_L = \omega L\) increases with frequency. Capacitive reactance \(X_C = 1/(\omega C)\) decreases with frequency.</p>
+    <div class="question-box"><strong>Question (Jan/Feb 2023, Q2a.i):</strong> Define reactance in terms of rms and maximum values.</div>
+    <div class="solution-box">
+      <h4>Solution</h4>
+      <div class="step">Reactance is the ratio of voltage to current for a reactive component. Since \( V_{rms} = V_m/\sqrt{2} \) and \( I_{rms} = I_m/\sqrt{2} \), the ratio is the same for both.
+        <div class="formula-box">$$ X_L = \frac{V_{L,rms}}{I_{rms}} = \frac{V_{L,m}}{I_m} \quad \text{and} \quad X_C = \frac{V_{C,rms}}{I_{rms}} = \frac{V_{C,m}}{I_m} $$</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Kirchhoff's Voltage Law in RLC Circuits</h2>
+    <div class="question-box"><strong>Question (Jan/Feb 2023, Q2a.ii & Nov/Dec 2023, Q2b.iii):</strong> The sum of peak voltages across R, L, and C often exceeds the source peak voltage. Explain why this does not violate KVL.</div>
+    <div class="solution-box">
+      <h4>Explanation</h4>
+      <p>This does <strong>not</strong> violate KVL because KVL applies to <strong>instantaneous</strong> voltages. The peak voltages across R, L, and C occur at different times due to phase shifts (V_L leads current by 90°, V_C lags by 90°). The total voltage is their vector (phasor) sum, not their scalar sum.</p>
+      <div class="formula-box">$$ V_m = \sqrt{V_{R,m}^2 + (V_{L,m} - V_{C,m})^2} \le V_{R,m} + V_{L,m} + V_{C,m} $$</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Resonance in Series RLC Circuits</h2>
+    <div class="question-box"><strong>Question (Nov/Dec 2023, Q2a.i):</strong> Discuss the phenomenon of resonance in a series RLC circuit.</div>
+    <div class="solution-box">
+      <h4>Discussion of Resonance</h4>
+      <div class="step"><strong>Definition:</strong> Resonance is the condition where \(X_L = X_C\), occurring at the resonant frequency \( \omega_0 = 1/\sqrt{LC} \).</div>
+      <div class="step"><strong>Characteristics:</strong>
+        <ul>
+          <li><strong>Minimum Impedance:</strong> \( Z = R \). The circuit becomes purely resistive.</li>
+          <li><strong>Maximum Current:</strong> \( I_{max} = V/R \).</li>
+          <li><strong>Unity Power Factor:</strong> Phase angle \( \phi = 0 \), meaning current and voltage are in phase, leading to maximum power transfer.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Phasor Relationships</h2>
+    <div class="question-box"><strong>Question (Nov/Dec 2023, Q2b.i):</strong> "The voltage across the capacitor lags the current by \( \pi/2 \)". Explain.</div>
+    <div class="solution-box">
+      <h4>Explanation</h4>
+      <div class="step"><strong>Physical Reason:</strong> Current must flow to deposit charge on capacitor plates. Voltage only builds up after charge has accumulated. Thus, current flow precedes voltage change, so voltage lags current.</div>
+      <div class="step"><strong>Mathematical Proof:</strong> If \( i(t) = I_m \cos(\omega t) \), then \( v_C(t) = \frac{1}{C}\int i(t) dt = \frac{I_m}{\omega C} \sin(\omega t) \). Since \( \sin(\theta) = \cos(\theta - \pi/2) \), the voltage waveform is phase-shifted by \(-\pi/2\) relative to the current.</div>
+    </div>
+  </div>
+
+  <div class="prep-box">
+    <h3>Future Exam Preparation: Model Questions</h3>
+    <p><strong>Question 1:</strong> An inductor is connected to a variable frequency AC source with a constant peak voltage of 50 V. At 100 Hz, the peak current is 2.0 A. What will the peak current be if the frequency is increased to 400 Hz?</p>
+    <div class="solution-box">
+      <h4>Model Answer 1</h4>
+      <p>1. First, find the inductance L. The initial reactance is \( X_{L1} = V_m/I_{m1} = 50\text{V}/2.0\text{A} = 25 \, \Omega \).</p>
+      <p>2. Since \( X_{L1} = 2\pi f_1 L \), we have \( L = X_{L1}/(2\pi f_1) = 25 / (2\pi \times 100) \approx 0.0398 \text{ H} \).</p>
+      <p>3. Now, find the new reactance at 400 Hz. \( X_{L2} = 2\pi f_2 L = 2\pi(400)(0.0398) = 100 \, \Omega \). (Alternatively, since \(X_L \propto f\), doubling frequency twice means \(X_{L2}=4 \times X_{L1}=100\Omega\)).</p>
+      <p>4. The new peak current is \( I_{m2} = V_m/X_{L2} = 50\text{V} / 100\Omega = 0.5 \text{ A} \).</p>
+    </div>
+    <p><strong>Question 2:</strong> Draw a phasor diagram for a series RLC circuit where \( X_L > X_C \). From the diagram, derive the expressions for the total impedance Z and the phase angle \( \phi \).</p>
+    <div class="solution-box">
+      <h4>Model Answer 2</h4>
+      <p>1. <strong>Draw the diagram:</strong> Draw the current phasor \( I_m \) along the positive x-axis. Draw \( V_{R,m} \) along the same axis. Draw \( V_{L,m} \) along the positive y-axis (leading by 90°). Draw \( V_{C,m} \) along the negative y-axis (lagging by 90°).</p>
+      <p>2. <strong>Vector Sum:</strong> The net reactive voltage is \( V_{L,m} - V_{C,m} \) along the positive y-axis. The total source voltage \( V_{s,m} \) is the hypotenuse of a right triangle with sides \( V_{R,m} \) and \( (V_{L,m} - V_{C,m}) \).</p>
+      <p>3. <strong>Derive Impedance Z:</strong> By Pythagorean theorem: \( V_{s,m}^2 = V_{R,m}^2 + (V_{L,m} - V_{C,m})^2 \). Substitute \( V=IX \): \( (I_m Z)^2 = (I_m R)^2 + (I_m X_L - I_m X_C)^2 \). Divide by \(I_m^2\) to get \( Z = \sqrt{R^2 + (X_L - X_C)^2} \).</p>
+      <p>4. <strong>Derive Phase Angle \( \phi \):</strong> From the triangle, \( \tan\phi = (\text{opposite})/(\text{adjacent}) = (V_{L,m} - V_{C,m}) / V_{R,m} = (X_L - X_C) / R \).</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

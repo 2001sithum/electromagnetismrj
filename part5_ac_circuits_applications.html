@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHY 2102 Guide | 5. AC Circuit Applications</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; line-height: 1.7; margin: 0; padding: 0; background-color: #f8f9fa; color: #212529; }
+    .navbar { background-color: #343a40; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .navbar a { float: left; display: block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; font-size: 1.1em; }
+    .navbar a:hover { background-color: #007bff; color: white; }
+    .navbar a.active { background-color: #0056b3; color: white; }
+    .container { max-width: 950px; margin: 20px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    h1, h2, h3 { color: #0056b3; border-bottom: 2px solid #dee2e6; padding-bottom: 10px; }
+    .formula-box { background-color: #e9ecef; border-left: 5px solid #0056b3; padding: 15px; margin: 20px 0; overflow-x: auto; border-radius: 5px; font-size: 1.1em; }
+    .solution-box { border: 1px solid #007bff; border-radius: 5px; padding: 20px; margin: 20px 0; background-color: #f7faff; }
+    .solution-box h4 { margin-top: 0; color: #0056b3; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+    .step { margin-bottom: 15px; }
+    .question-box { background-color: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 5px; margin-bottom: 10px; }
+    .prep-box { background-color: #d1ecf1; border: 1px solid #bee5eb; padding: 20px; border-radius: 5px; margin-top: 25px; }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="part1_foundations.html">1. Foundations</a>
+  <a href="part2_wave_theory.html">2. EM Wave Theory</a>
+  <a href="part3_wave_applications.html">3. Wave Applications</a>
+  <a href="part4_ac_circuits_theory.html">4. AC Circuit Theory</a>
+  <a href="part5_ac_circuits_applications.html" class="active">5. AC Circuit Applications</a>
+</div>
+
+<div class="container">
+  <h1>Part 5: AC Circuit Applications, Power & Q-Factor</h1>
+
+  <div class="section">
+    <h2>Designing an LC Circuit</h2>
+    <div class="question-box"><strong>Question (Jan/Feb 2023, Q2a.iii):</strong> Design an LC circuit with \( V_m = 100 \) V, \( I_m = 10 \) A, and \( f = 1000 \) Hz. Find L and C.</div>
+    <div class="solution-box">
+      <h4>Solution</h4>
+      <div class="step"><strong>1. Energy Conservation:</strong> \( \frac{1}{2} C V_m^2 = \frac{1}{2} L I_m^2 \implies L/C = (V_m/I_m)^2 = 100 \implies L = 100C \).</div>
+      <div class="step"><strong>2. Resonance Formula:</strong> \( \omega_0 = 2\pi f = 1/\sqrt{LC} \).</div>
+      <div class="step"><strong>3. Solve for C:</strong> Substitute L=100C into the frequency equation: \( (2000\pi)^2 = 1/(100C^2) \).
+        \( C = 1/(10 \times 2000\pi) \approx 15.9 \text{ µF} \).</div>
+      <div class="step"><strong>4. Solve for L:</strong> \( L = 100C \approx 1.59 \text{ mH} \).</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Quality Factor (Q) and Voltage Magnification</h2>
+    <div class="question-box"><strong>Question (Jan/Feb 2023, Q2b):</strong> (i) What is meant by Q-factor? (ii) Prove voltage magnification = Q at resonance.</div>
+    <div class="solution-box">
+      <h4>Solution</h4>
+      <div class="step"><strong>(i) Q-Factor:</strong> It is a dimensionless parameter describing the sharpness of resonance. High Q means a narrow bandwidth and high selectivity. It is defined as \( Q = \omega_0 L / R \).</div>
+      <div class="step"><strong>(ii) Proof of Voltage Magnification:</strong> At resonance, \( I_m = V_{s,m} / R \). The peak voltage across the inductor is \( V_{L,m} = I_m X_L = (V_{s,m}/R)(\omega_0 L) \).
+        <div class="formula-box">$$ V_{L,m} = V_{s,m} \left( \frac{\omega_0 L}{R} \right) = Q \cdot V_{s,m} $$</div>
+        Thus, the voltage across the inductor is magnified by a factor of Q compared to the source voltage.
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Capacitor Behavior with Changing Frequency</h2>
+    <div class="question-box"><strong>Question (Nov/Dec 2023, Q2b.ii):</strong> A capacitor has \(I_m=3\)A with a \(V_m=110\)V source. Find the new \(I_m\) and \(X_C\) if frequency is doubled.</div>
+    <div class="solution-box">
+      <h4>Solution</h4>
+      <div class="step"><strong>Initial Reactance:</strong> \( X_{C1} = V_m/I_{m1} = 110/3 \approx 36.67 \, \Omega \).</div>
+      <div class="step"><strong>New Reactance:</strong> Since \( X_C \propto 1/f \), doubling f halves \(X_C\). \( X_{C2} = X_{C1} / 2 \approx 18.33 \, \Omega \).</div>
+      <div class="step"><strong>New Peak Current:</strong> \( I_{m2} = V_m/X_{C2} = 110 / 18.33 = 6 \text{ A} \).</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Average Power in an RLC Circuit</h2>
+    <div class="question-box"><strong>Question (Nov/Dec 2023, Q2a.ii):</strong> Show derivations for average power, peak current, and phase angle.</div>
+    <div class="solution-box">
+      <h4>Innovative Derivation Path</h4>
+      <div class="step"><strong>1. Impedance in terms of \( \omega_0 \):</strong> Start with \( Z^2 = R^2 + (\omega L - 1/(\omega C))^2 \). Substitute \( C = 1/(\omega_0^2 L) \) to get \( Z^2 = R^2 + \frac{L^2(\omega^2 - \omega_0^2)^2}{\omega^2} \).</div>
+      <div class="step"><strong>2. Average Power:</strong> Start with \( P_{av} = I_{rms}^2 R = V_{rms}^2 R / Z^2 \). Substitute \(Z^2\) from above and multiply the numerator and denominator by \( \omega^2 \) to get the desired form:
+        <div class="formula-box">$$ P_{av} = \frac{V_{rms}^2 R \omega^2}{R^2 \omega^2 + L^2(\omega^2 - \omega_0^2)^2} $$</div>
+      </div>
+      <div class="step"><strong>3. Peak Current:</strong> \( I_m = V_m/Z \). Using the expression for Z from Step 1 gives:
+        <div class="formula-box">$$ I_m = \frac{V_m \omega}{\sqrt{R^2\omega^2 + L^2(\omega^2 - \omega_0^2)^2}} $$</div>
+      </div>
+      <div class="step"><strong>4. Phase Angle:</strong> \( \tan\phi = (X_L - X_C)/R \). Factoring out L and substituting for C gives:
+        <div class="formula-box">$$ \tan\phi = \frac{L(\omega^2 - \omega_0^2)}{R\omega} $$</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prep-box">
+    <h3>Future Exam Preparation: Model Questions</h3>
+    <p><strong>Question 1:</strong> A series RLC circuit (R=25 \(\Omega\), L=60 mH, C=10 µF) is connected to a 120V (RMS), 60 Hz source. Calculate: (a) the impedance Z, (b) the RMS current \(I_{rms}\), (c) the power factor, and (d) the average power dissipated.</p>
+    <div class="solution-box">
+      <h4>Model Answer 1</h4>
+      <p>1. <strong>Calculate Reactances:</strong> \( \omega = 2\pi f = 2\pi(60) \approx 377 \) rad/s.
+        <br>\( X_L = \omega L = 377 \times 0.060 \approx 22.62 \, \Omega \).
+        <br>\( X_C = 1/(\omega C) = 1/(377 \times 10 \times 10^{-6}) \approx 265.25 \, \Omega \).</p>
+      <p>2. <strong>Calculate Impedance (Z):</strong> \( Z = \sqrt{R^2 + (X_L - X_C)^2} = \sqrt{25^2 + (22.62 - 265.25)^2} \approx 243.8 \, \Omega \).</p>
+      <p>3. <strong>Calculate RMS Current:</strong> \( I_{rms} = V_{rms}/Z = 120 / 243.8 \approx 0.492 \text{ A} \).</p>
+      <p>4. <strong>Calculate Power Factor:</strong> \( \cos\phi = R/Z = 25 / 243.8 \approx 0.103 \). Since \( X_C > X_L \), the circuit is capacitive and the power factor is leading.</p>
+      <p>5. <strong>Calculate Average Power:</strong> \( P_{av} = V_{rms} I_{rms} \cos\phi = (120)(0.492)(0.103) \approx 6.08 \text{ W} \). (Check: \( P_{av} = I_{rms}^2 R = (0.492)^2 \times 25 \approx 6.05 \text{ W} \). The small difference is due to rounding.)</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

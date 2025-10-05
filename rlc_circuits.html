@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 5: RLC Circuits & Resonance</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.7; margin: 0; padding: 0; background-color: #f8f9fa; color: #212529; }
+        .navbar { background-color: #343a40; overflow: hidden; }
+        .navbar a { float: left; display: block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; }
+        .navbar a:hover { background-color: #007bff; color: white; }
+        .navbar a.active { background-color: #0056b3; color: white; }
+        .container { max-width: 900px; margin: 20px auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #0056b3; border-bottom: 2px solid #0056b3; padding-bottom: 10px; }
+        .formula { background-color: #e9ecef; border-left: 5px solid #0056b3; padding: 15px; margin: 20px 0; overflow-x: auto; border-radius: 5px; font-size: 1.1em; }
+        .derivation-box { border: 1px solid #ced4da; border-radius: 5px; padding: 20px; margin: 20px 0; background-color: #fdfdff; }
+        .derivation-box h4 { margin-top: 0; color: #007bff; }
+        .step { margin-bottom: 15px; }
+        .note { font-style: italic; color: #555; background-color: #f9f9f9; border: 1px solid #ddd; padding: 10px; margin-top: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="electro2.html">1. Vector Operators</a>
+    <a href="maxwell.html">2. Maxwell's Equations</a>
+    <a href="em_waves.html">3. EM Waves</a>
+    <a href="ac_basics.html">4. AC Basics</a>
+    <a href="rlc_circuits.html" class="active">5. RLC Circuits</a>
+</div>
+
+<div class="container">
+    <h1>Part 5: RLC Circuits & Resonance</h1>
+
+    <div class="section">
+        <h2>The Series RLC Circuit</h2>
+        <p>When a resistor (R), inductor (L), and capacitor (C) are connected in series to an AC voltage source, their combined opposition to the current is called <strong>impedance (Z)</strong>. The voltage drops across L and C are 180° out of phase and thus subtract from each other.</p>
+
+        <div class="derivation-box">
+            <h4>Derivation of Impedance and Phase Angle</h4>
+            <p>We use a phasor diagram, where the current phasor \( I_0 \) is aligned with the x-axis.</p>
+            <div class="step">
+                <strong>Step 1:</strong> The voltage phasors are:
+                <ul>
+                    <li>\( V_R = I_0 R \) (in phase with current)</li>
+                    <li>\( V_L = I_0 X_L \) (leads current by 90°)</li>
+                    <li>\( V_C = I_0 X_C \) (lags current by 90°)</li>
+                </ul>
+            </div>
+            <div class="step">
+                <strong>Step 2:</strong> The total voltage \( V_0 \) is the vector sum of these individual voltages. The horizontal component is \( V_R \) and the vertical component is \( V_L - V_C \).
+            </div>
+            <div class="step">
+                <strong>Step 3:</strong> Use the Pythagorean theorem to find the magnitude of the total voltage.
+                $$ V_0^2 = V_R^2 + (V_L - V_C)^2 $$
+                $$ V_0^2 = (I_0 R)^2 + (I_0 X_L - I_0 X_C)^2 $$
+                $$ V_0^2 = I_0^2 [R^2 + (X_L - X_C)^2] $$
+            </div>
+            <div class="step">
+                <strong>Step 4:</strong> The magnitude of the total impedance \( Z \) is defined as \( V_0 / I_0 \).
+                <div class="formula">$$ Z = \frac{V_0}{I_0} = \sqrt{R^2 + (X_L - X_C)^2} $$</div>
+            </div>
+            <div class="step">
+                <strong>Step 5:</strong> The phase angle \( \phi \) is the angle between the total voltage phasor and the current phasor.
+                <div class="formula">$$ \tan(\phi) = \frac{V_L - V_C}{V_R} = \frac{I_0(X_L - X_C)}{I_0 R} = \frac{X_L - X_C}{R} $$</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Resonance</h2>
+        <p><strong>Resonance</strong> is a special condition in an RLC circuit that occurs when the inductive reactance equals the capacitive reactance (\( X_L = X_C \)). At this frequency, the impedance is at its minimum value, and the current is at its maximum.</p>
+
+        <div class="derivation-box">
+            <h4>Derivation of the Resonant Frequency</h4>
+            <div class="step">
+                <strong>Step 1:</strong> Set the condition for resonance.
+                $$ X_L = X_C $$
+            </div>
+            <div class="step">
+                <strong>Step 2:</strong> Substitute the expressions for the reactances.
+                $$ \omega_0 L = \frac{1}{\omega_0 C} $$
+                Where \( \omega_0 \) is the resonant angular frequency.
+            </div>
+            <div class="step">
+                <strong>Step 3:</strong> Solve for \( \omega_0 \).
+                $$ \omega_0^2 = \frac{1}{LC} $$
+                <div class="formula">$$ \omega_0 = \frac{1}{\sqrt{LC}} $$</div>
+            </div>
+        </div>
+        <p>At resonance:</p>
+        <ul>
+            <li>Impedance is minimum: \( Z = R \).</li>
+            <li>Current is maximum: \( I_{max} = V_0 / R \).</li>
+            <li>Phase angle is zero: \( \phi = 0 \). The circuit behaves purely resistively.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Quality Factor (Q)</h2>
+        <p>The <strong>Quality Factor (Q)</strong> of a resonant circuit is a dimensionless parameter that describes how underdamped an oscillator or resonator is. It is a measure of the "sharpness" of the resonance peak.</p>
+        <p>A higher Q factor means a narrower bandwidth, indicating the circuit is more selective to a specific frequency.</p>
+        <div class="formula">
+            $$ Q = \frac{\omega_0 L}{R} = \frac{1}{\omega_0 C R} = \frac{1}{R}\sqrt{\frac{L}{C}} $$
+        </div>
+        <p>At resonance, the voltages across the inductor and capacitor can be much larger than the source voltage. This is called voltage magnification.</p>
+        <div class="formula">
+            $$ V_L = I_{max} X_L = \left(\frac{V_0}{R}\right) (\omega_0 L) = Q V_0 $$
+            $$ V_C = I_{max} X_C = \left(\frac{V_0}{R}\right) \left(\frac{1}{\omega_0 C}\right) = Q V_0 $$
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Power in AC Circuits</h2>
+        <p>In an AC circuit, power is only dissipated by the resistor. The instantaneous power varies with time. The more useful quantity is the <strong>average power</strong>, \( P_{avg} \).</p>
+
+        <div class="derivation-box">
+            <h4>Derivation of Average Power</h4>
+            <div class="step">
+                <strong>Step 1:</strong> Write the expressions for instantaneous voltage and current.
+                $$ v(t) = V_0 \sin(\omega t) $$
+                $$ i(t) = I_0 \sin(\omega t - \phi) $$
+            </div>
+            <div class="step">
+                <strong>Step 2:</strong> The instantaneous power is \( p(t) = v(t)i(t) \).
+                $$ p(t) = V_0 I_0 \sin(\omega t) \sin(\omega t - \phi) $$
+            </div>
+            <div class="step">
+                <strong>Step 3:</strong> Use the trigonometric identity \( \sin(A)\sin(B) = \frac{1}{2}[\cos(A-B) - \cos(A+B)] \).
+                $$ p(t) = \frac{V_0 I_0}{2} [\cos(\phi) - \cos(2\omega t - \phi)] $$
+            </div>
+            <div class="step">
+                <strong>Step 4:</strong> To find the average power, we average \( p(t) \) over one period. The average of the \( \cos(2\omega t - \phi) \) term over a full cycle is zero.
+                $$ P_{avg} = \langle p(t) \rangle = \frac{V_0 I_0}{2} \cos(\phi) $$
+            </div>
+            <div class="step">
+                <strong>Step 5:</strong> Express this in terms of RMS values, since \( V_{rms} = V_0/\sqrt{2} \) and \( I_{rms} = I_0/\sqrt{2} \).
+                $$ P_{avg} = \left(\frac{V_0}{\sqrt{2}}\right) \left(\frac{I_0}{\sqrt{2}}\right) \cos(\phi) $$
+                <div class="formula">$$ P_{avg} = V_{rms} I_{rms} \cos(\phi) $$</div>
+            </div>
+        </div>
+        <p>The term \( \cos(\phi) \) is called the <strong>power factor</strong>. It ranges from 0 to 1 and represents the fraction of the total apparent power that is dissipated as real power.</p>
+    </div>
+</div>
+
+</body>
+</html>

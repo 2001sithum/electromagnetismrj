@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHY 2102 Study Guide | Part 5: AC Applications</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; line-height: 1.7; margin: 0; padding: 0; background-color: #f8f9fa; color: #212529; }
+    .navbar { background-color: #343a40; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .navbar a { float: left; display: block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; font-size: 1.1em; }
+    .navbar a:hover { background-color: #007bff; color: white; }
+    .navbar a.active { background-color: #0056b3; color: white; }
+    .container { max-width: 950px; margin: 20px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    h1, h2, h3 { color: #0056b3; border-bottom: 2px solid #dee2e6; padding-bottom: 10px; }
+    .formula-box { background-color: #e9ecef; border-left: 5px solid #0056b3; padding: 15px; margin: 20px 0; overflow-x: auto; border-radius: 5px; font-size: 1.1em; }
+    .solution-box { border: 1px solid #007bff; border-radius: 5px; padding: 20px; margin: 20px 0; background-color: #f7faff; }
+    .solution-box h4 { margin-top: 0; color: #0056b3; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+    .step { margin-bottom: 15px; }
+    .question-box { background-color: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 5px; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="1_foundations.html">1. Foundations</a>
+  <a href="2_em_waves.html">2. EM Waves</a>
+  <a href="3_wave_apps.html">3. Wave Applications</a>
+  <a href="4_ac_theory.html">4. AC Theory</a>
+  <a href="5_ac_apps.html" class="active">5. AC Applications</a>
+</div>
+
+<div class="container">
+  <h1>Part 5: AC Circuits - Applications, Power & Q-Factor</h1>
+
+  <div class="section">
+    <h2>Designing an LC Circuit</h2>
+    <div class="question-box"><strong>Question (Jan/Feb 2023, Q2a.iii):</strong> It is desired to set up an un-driven LC circuit in which the capacitor is originally charged to a potential difference of 100 V. The maximum current is to be 10 A, and the oscillation frequency is to be 1000 Hz. What are the required values of L and C?</div>
+    <div class="solution-box">
+      <h4>Solution</h4>
+      <div class="step"><strong>Step 1: Use Conservation of Energy.</strong> The maximum energy stored in the capacitor (\(E_C\)) must equal the maximum energy stored in the inductor (\(E_L\)).
+        $$ E_{C,max} = E_{L,max} \quad \implies \quad \frac{1}{2} C V_m^2 = \frac{1}{2} L I_m^2 $$
+        $$ C V_m^2 = L I_m^2 $$
+      </div>
+      <div class="step"><strong>Step 2: Use the oscillation frequency formula.</strong> The natural angular frequency is \( \omega_0 = 2\pi f = 1/\sqrt{LC} \).
+        $$ \omega_0^2 = \frac{1}{LC} \quad \implies \quad L = \frac{1}{\omega_0^2 C} $$
+      </div>
+      <div class="step"><strong>Step 3: Substitute L from Step 2 into Step 1 to solve for C.</strong>
+        $$ C V_m^2 = \left( \frac{1}{\omega_0^2 C} \right) I_m^2 \quad \implies \quad C^2 = \frac{I_m^2}{V_m^2 \omega_0^2} $$
+        $$ C = \frac{I_m}{V_m \omega_0} = \frac{I_m}{V_m (2\pi f)} $$
+        $$ C = \frac{10 \text{ A}}{(100 \text{ V})(2\pi \times 1000 \text{ Hz})} = \frac{1}{20000\pi} \approx 1.59 \times 10^{-5} \text{ F} $$
+      </div>
+      <div class="step"><strong>Step 4: Use the value of C to find L.</strong>
+        $$ L = \frac{1}{\omega_0^2 C} = \frac{1}{(2\pi f)^2 C} = \frac{1}{(2\pi \times 1000)^2 (1.59 \times 10^{-5})} \approx 1.59 \times 10^{-3} \text{ H} $$
+      </div>
+      <div class="formula-box">$$ C \approx 15.9 \text{ µF} \quad \text{and} \quad L \approx 1.59 \text{ mH} $$</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Quality Factor (Q) and Voltage Magnification</h2>
+    <div class="question-box"><strong>Question (Jan/Feb 2023, Q2b):</strong> (i) What is it meant by the Quality factor (Q) of a circuit? (ii) Prove that the voltage magnification of a RLC circuit is equal to its Q at resonance.</div>
+    <div class="solution-box">
+      <h4>Solution</h4>
+      <div class="step"><strong>(i) Meaning of Quality Factor (Q):</strong> The Quality factor (Q) is a dimensionless parameter that describes the sharpness of the resonance peak in a resonant circuit. A high Q-factor implies a narrow bandwidth and a highly selective circuit (responds strongly only to frequencies very near resonance). It can be defined as the ratio of the resonant frequency to the bandwidth, \( Q = \omega_0 / \Delta\omega \).</div>
+      <div class="step">
+        <strong>(ii) Proof of Voltage Magnification:</strong> Voltage magnification refers to the fact that at resonance, the peak voltage across the inductor (\(V_L\)) or capacitor (\(V_C\)) can be many times larger than the peak source voltage (\(V_s\)).
+        <p><strong>Step A:</strong> At resonance, the current is maximum: \( I_m = V_{s,m} / R \).</p>
+        <p><strong>Step B:</strong> The peak voltage across the inductor is \( V_{L,m} = I_m X_L = I_m (\omega_0 L) \).</p>
+        <p><strong>Step C:</strong> Substitute the expression for \(I_m\) from Step A into Step B.</p>
+        $$ V_{L,m} = \left( \frac{V_{s,m}}{R} \right) (\omega_0 L) = V_{s,m} \left( \frac{\omega_0 L}{R} \right) $$
+        <p><strong>Step D:</strong> The term \( (\omega_0 L / R) \) is the definition of the Quality Factor, Q.</p>
+        <div class="formula-box">$$ V_{L,m} = Q \cdot V_{s,m} \quad \text{or} \quad \frac{V_{L,m}}{V_{s,m}} = Q $$</div>
+        This proves that the ratio of the peak inductor voltage to the peak source voltage (the voltage magnification) is equal to Q. A similar proof holds for the capacitor.
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Capacitor Behavior with Changing Frequency</h2>
+    <div class="question-box"><strong>Question (Nov/Dec 2023, Q2b.ii):</strong> When a particular capacitor is connected to a sinusoidal voltage with 110 V amplitude, a peak current of 3 A appears. Calculate the peak current and the capacitive reactance if the frequency of the applied voltage is doubled.</div>
+    <div class="solution-box">
+      <h4>Solution</h4>
+      <div class="step"><strong>Step 1: Find the initial capacitive reactance (\(X_{C1}\)).</strong>
+        $$ X_{C1} = \frac{V_m}{I_{m1}} = \frac{110 \text{ V}}{3 \text{ A}} \approx 36.67 \, \Omega $$
+      </div>
+      <div class="step"><strong>Step 2: Find the new capacitive reactance (\(X_{C2}\)) when frequency is doubled.</strong>
+        <p>Capacitive reactance is inversely proportional to frequency: \( X_C = 1 / (2\pi f C) \).</p>
+        <p>If \( f_2 = 2f_1 \), then \( X_{C2} = \frac{1}{2\pi (2f_1) C} = \frac{1}{2} \left( \frac{1}{2\pi f_1 C} \right) = \frac{1}{2} X_{C1} \).</p>
+        $$ X_{C2} = \frac{36.67 \, \Omega}{2} \approx 18.33 \, \Omega $$
+      </div>
+      <div class="step"><strong>Step 3: Find the new peak current (\(I_{m2}\)).</strong>
+        <p>The voltage amplitude remains 110 V.</p>
+        $$ I_{m2} = \frac{V_m}{X_{C2}} = \frac{110 \text{ V}}{18.33 \, \Omega} = 6 \text{ A} $$
+      </div>
+      <div class="formula-box">New peak current = 6 A. New capacitive reactance = 18.33 \(\Omega\).</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Average Power in an RLC Circuit</h2>
+    <div class="question-box"><strong>Question (Nov/Dec 2023, Q2a.ii):</strong> Show that the average power delivered to a series RLC circuit is given by \( P_{av} = \frac{V_{rms}^2 R \omega^2}{R^2 \omega^2 + L^2(\omega_0^2 - \omega^2)^2} \). Also show the peak current and phase angle expressions.</div>
+    <div class="solution-box">
+      <h4>Solution</h4>
+      <div class="step"><strong>Part A: Deriving Average Power</strong>
+        <p><strong>Step 1:</strong> Start with the standard formula for average power: \( P_{av} = I_{rms}^2 R \).</p>
+        <p><strong>Step 2:</strong> Express \(I_{rms}\) in terms of \(V_{rms}\) and impedance Z: \( I_{rms} = V_{rms} / Z \).</p>
+        $$ P_{av} = \left(\frac{V_{rms}}{Z}\right)^2 R = \frac{V_{rms}^2 R}{Z^2} $$
+        <p><strong>Step 3:</strong> Write out the expression for \(Z^2\).</p>
+        $$ Z^2 = R^2 + (X_L - X_C)^2 = R^2 + \left(\omega L - \frac{1}{\omega C}\right)^2 $$
+        <p><strong>Step 4:</strong> Substitute \( C = 1/(\omega_0^2 L) \) from the resonance condition.</p>
+        $$ Z^2 = R^2 + \left(\omega L - \frac{\omega_0^2 L}{\omega}\right)^2 = R^2 + L^2 \left(\omega - \frac{\omega_0^2}{\omega}\right)^2 = R^2 + L^2 \left(\frac{\omega^2 - \omega_0^2}{\omega}\right)^2 $$
+        $$ Z^2 = R^2 + \frac{L^2(\omega^2 - \omega_0^2)^2}{\omega^2} $$
+        <p><strong>Step 5:</strong> Substitute this \(Z^2\) into the power equation and rearrange.</p>
+        $$ P_{av} = \frac{V_{rms}^2 R}{R^2 + \frac{L^2(\omega^2 - \omega_0^2)^2}{\omega^2}} = \frac{V_{rms}^2 R \omega^2}{R^2 \omega^2 + L^2(\omega^2 - \omega_0^2)^2} $$
+      </div>
+      <div class="step"><strong>Part B: Deriving Peak Current and Phase Angle</strong>
+        <p><strong>Peak Current (\(I_m\)):</strong> Using the expression for Z from Step 4:</p>
+        $$ I_m = \frac{V_m}{Z} = \frac{V_m}{\sqrt{R^2 + \frac{L^2(\omega_0^2 - \omega^2)^2}{\omega^2}}} = \frac{V_m \omega}{\sqrt{R^2\omega^2 + L^2(\omega_0^2 - \omega^2)^2}} $$
+        This matches the form given in the question: \( I_m = \omega V_m [(\omega R)^2 + L^2(\omega_0^2 - \omega^2)^2]^{-1/2} \).
+        <p><strong>Phase Angle (\(\phi\)):</strong></p>
+        $$ \tan\phi = \frac{X_L - X_C}{R} = \frac{\omega L - 1/(\omega C)}{R} = \frac{L}{R}\left(\omega - \frac{1}{\omega LC}\right) $$
+        Substitute \( 1/LC = \omega_0^2 \):
+        $$ \tan\phi = \frac{L}{R}\left(\omega - \frac{\omega_0^2}{\omega}\right) = \frac{L(\omega^2 - \omega_0^2)}{R\omega} $$
+        This matches the form required.
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

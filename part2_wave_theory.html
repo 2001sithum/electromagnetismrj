@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHY 2102 Guide | 2. EM Wave Theory</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; line-height: 1.7; margin: 0; padding: 0; background-color: #f8f9fa; color: #212529; }
+    .navbar { background-color: #343a40; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .navbar a { float: left; display: block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; font-size: 1.1em; }
+    .navbar a:hover { background-color: #007bff; color: white; }
+    .navbar a.active { background-color: #0056b3; color: white; }
+    .container { max-width: 950px; margin: 20px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    h1, h2, h3 { color: #0056b3; border-bottom: 2px solid #dee2e6; padding-bottom: 10px; }
+    .formula-box { background-color: #e9ecef; border-left: 5px solid #0056b3; padding: 15px; margin: 20px 0; overflow-x: auto; border-radius: 5px; font-size: 1.1em; }
+    .solution-box { border: 1px solid #007bff; border-radius: 5px; padding: 20px; margin: 20px 0; background-color: #f7faff; }
+    .solution-box h4 { margin-top: 0; color: #0056b3; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+    .step { margin-bottom: 15px; }
+    .question-box { background-color: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 5px; margin-bottom: 10px; }
+    .prep-box { background-color: #d1ecf1; border: 1px solid #bee5eb; padding: 20px; border-radius: 5px; margin-top: 25px; }
+  </style>
+</head>
+<body>
+<div class="navbar">
+  <a href="part1_foundations.html">1. Foundations</a>
+  <a href="part2_wave_theory.html" class="active">2. EM Wave Theory</a>
+  <a href="part3_wave_applications.html">3. Wave Applications</a>
+  <a href="part4_ac_circuits_theory.html">4. AC Circuit Theory</a>
+  <a href="part5_ac_circuits_applications.html">5. AC Circuit Applications</a>
+</div>
+<div class="container">
+  <h1>Part 2: EM Wave Theory & The Poynting Vector</h1>
+
+  <div class="section">
+    <h2>Deriving the Wave Equation</h2>
+    <h3>Short Notes: From Maxwell to Waves</h3>
+    <p>In free space (\(\rho=0, \vec{J}=0\)), Maxwell's equations can be combined to show that electric and magnetic fields can sustain each other and propagate as a wave. This derivation is a cornerstone of electromagnetism.</p>
+    <div class="question-box"><strong>Question (Jan/Feb 2023, Q3b.ii & Nov/Dec 2023, Q3b.ii):</strong> How do Maxwell's equations imply the existence of EM waves? Obtain the wave equation for \( \vec{E} \).</div>
+    <div class="solution-box">
+      <h4>Solution: Derivation of the Wave Equation</h4>
+      <div class="step"><strong>1. Start with Maxwell's curl equations in free space:</strong>
+        <p> \( \nabla \times \vec{E} = - \partial \vec{B}/\partial t \) (Faraday) and \( \nabla \times \vec{B} = \mu_0 \varepsilon_0 \partial \vec{E}/\partial t \) (Ampere-Maxwell).</p>
+      </div>
+      <div class="step"><strong>2. Take the curl of Faraday's Law:</strong> \( \nabla \times (\nabla \times \vec{E}) = \nabla \times (-\partial \vec{B}/\partial t) = - \partial/\partial t (\nabla \times \vec{B}) \).</div>
+      <div class="step"><strong>3. Use the vector identity</strong> \( \nabla \times (\nabla \times \vec{A}) = \nabla(\nabla \cdot \vec{A}) - \nabla^2\vec{A} \). In free space, \( \nabla \cdot \vec{E} = 0 \), so the left side becomes \( -\nabla^2\vec{E} \).</div>
+      <div class="step"><strong>4. Substitute the Ampere-Maxwell Law into the right side:</strong> \( -\nabla^2\vec{E} = - \partial/\partial t (\mu_0 \varepsilon_0 \partial \vec{E}/\partial t) = -\mu_0 \varepsilon_0 \partial^2 \vec{E}/\partial t^2 \).</div>
+      <div class="step"><strong>5. The Result is the Wave Equation:</strong>
+        <div class="formula-box">$$ \nabla^2\vec{E} = \mu_0 \varepsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2} $$</div>
+        This equation describes a wave propagating with speed \( v = 1/\sqrt{\mu_0 \varepsilon_0} = c \), proving that light is an EM wave.
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Relationship between E and B Fields</h2>
+    <div class="question-box"><strong>Question (Jan/Feb 2023, Q1a & Nov/Dec 2023, Q1a):</strong> Show that \(E/B = c\).</div>
+    <div class="solution-box">
+      <h4>Solution: Proof that E/B = c</h4>
+      <div class="step"><strong>1. Assume a plane wave solution:</strong> \( E(x,t) = E_m f(kx - \omega t) \) and \( B(x,t) = B_m f(kx - \omega t) \), where f is a sinusoidal function.</div>
+      <div class="step"><strong>2. Apply Faraday's Law in integral form to a small rectangular loop</strong> in the xy-plane of height h and width dx. \( \oint \vec{E} \cdot d\vec{l} = -d\Phi_B/dt \).</div>
+      <div class="step"><strong>3. Evaluate the line integral:</strong> \( \oint \vec{E} \cdot d\vec{l} = [E(x+dx) - E(x)]h \approx (\partial E/\partial x)dx \cdot h \).</div>
+      <div class="step"><strong>4. Evaluate the flux change:</strong> \( -d\Phi_B/dt = -(\partial B/\partial t) \cdot (h \cdot dx) \).</div>
+      <div class="step"><strong>5. Equate and simplify:</strong> \( (\partial E/\partial x) = -(\partial B/\partial t) \). For our wave function, this gives \( kE_m = \omega B_m \).</div>
+      <div class="step"><strong>6. Final Result:</strong> Since wave speed \( c = \omega/k \), we have \( E_m/B_m = \omega/k = c \).
+        <div class="formula-box">$$ \frac{E}{B} = c $$</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Intensity of an Electromagnetic Wave</h2>
+    <div class="question-box"><strong>Question (Jan/Feb 2023, Q1b & Nov/Dec 2023, Q1b):</strong> Prove that the intensity is \( I = \frac{E_m^2}{2\mu_0 c} \).</div>
+    <div class="solution-box">
+      <h4>Solution: Derivation of Wave Intensity</h4>
+      <div class="step"><strong>1. Poynting Vector:</strong> The instantaneous energy flux is \( S = EB/\mu_0 \).</div>
+      <div class="step"><strong>2. Substitute B = E/c:</strong> \( S = E^2/(\mu_0 c) \).</div>
+      <div class="step"><strong>3. Time-Average:</strong> Intensity \( I \) is the average of S. For a sinusoidal wave \( E = E_m \cos(kx - \omega t) \), we need the average of \( E^2 \).
+        $$ I = \langle S \rangle = \frac{1}{\mu_0 c} \langle E_m^2 \cos^2(kx - \omega t) \rangle $$
+      </div>
+      <div class="step"><strong>4. Average of \( \cos^2 \):</strong> The average value of \( \cos^2(\theta) \) over a full cycle is \( 1/2 \).
+        <div class="formula-box">$$ I = \frac{E_m^2}{2\mu_0 c} $$</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prep-box">
+    <h3>Future Exam Preparation: Model Questions</h3>
+    <p><strong>Question 1:</strong> Show that the energy density of the electric field (\(u_E\)) and the magnetic field (\(u_B\)) in a plane electromagnetic wave are equal.</p>
+    <div class="solution-box">
+      <h4>Model Answer 1</h4>
+      <p>1. The energy densities are \( u_E = \frac{1}{2}\varepsilon_0 E^2 \) and \( u_B = \frac{1}{2\mu_0} B^2 \).</p>
+      <p>2. We know that for an EM wave, \( B = E/c \).</p>
+      <p>3. Substitute this into the expression for \( u_B \): \( u_B = \frac{1}{2\mu_0} (E/c)^2 = \frac{E^2}{2\mu_0 c^2} \).</p>
+      <p>4. We also know that \( c^2 = 1/(\mu_0 \varepsilon_0) \). Substitute this for \( c^2 \):</p>
+      <p>\( u_B = \frac{E^2}{2\mu_0 (1/\mu_0 \varepsilon_0)} = \frac{E^2 \mu_0 \varepsilon_0}{2\mu_0} = \frac{1}{2}\varepsilon_0 E^2 \).</p>
+      <p>5. This is exactly the expression for \( u_E \). Thus, \( u_E = u_B \).</p>
+    </div>
+    <p><strong>Question 2:</strong> Prove the vector identity \( \nabla(\nabla \cdot \vec{A}) - \nabla^2\vec{A} = \nabla \times (\nabla \times \vec{A}) \) used in the wave equation derivation.</p>
+    <div class="solution-box">
+      <h4>Model Answer 2</h4>
+      <p>1. Start with the RHS: \( \nabla \times (\nabla \times \vec{A}) \). Let \( \vec{F} = \nabla \times \vec{A} \). We want to find \( \nabla \times \vec{F} \).</p>
+      <p>2. Write out the components of \( \vec{F} \): \( F_x = (\partial A_z/\partial y - \partial A_y/\partial z) \), etc.</p>
+      <p>3. Write out the x-component of \( \nabla \times \vec{F} \): \( (\nabla \times \vec{F})_x = (\partial F_z/\partial y - \partial F_y/\partial z) \).</p>
+      <p>4. Substitute the components of F: \( (\partial/\partial y)(\partial A_y/\partial x - \partial A_x/\partial y) - (\partial/\partial z)(\partial A_x/\partial z - \partial A_z/\partial x) \).</p>
+      <p>5. Rearrange by adding and subtracting \( \partial^2 A_x / \partial x^2 \). After grouping terms, this simplifies to \( \frac{\partial}{\partial x}(\frac{\partial A_x}{\partial x} + \frac{\partial A_y}{\partial y} + \frac{\partial A_z}{\partial z}) - (\frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2})A_x \).</p>
+      <p>6. Recognize this as the x-component of \( \nabla(\nabla \cdot \vec{A}) - \nabla^2 \vec{A} \). Since the x-component matches, and the y and z components follow by symmetry, the identity is proven.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

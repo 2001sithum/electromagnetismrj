@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Maxwell's Equations</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.7; margin: 0; padding: 0; background-color: #f8f9fa; color: #212529; }
+        .navbar { background-color: #343a40; overflow: hidden; }
+        .navbar a { float: left; display: block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; }
+        .navbar a:hover { background-color: #007bff; color: white; }
+        .navbar a.active { background-color: #0056b3; color: white; }
+        .container { max-width: 900px; margin: 20px auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #0056b3; border-bottom: 2px solid #0056b3; padding-bottom: 10px; }
+        .formula { background-color: #e9ecef; border-left: 5px solid #0056b3; padding: 15px; margin: 20px 0; overflow-x: auto; border-radius: 5px; font-size: 1.1em; }
+        .derivation-box { border: 1px solid #ced4da; border-radius: 5px; padding: 20px; margin: 20px 0; background-color: #fdfdff; }
+        .derivation-box h4 { margin-top: 0; color: #007bff; }
+        .step { margin-bottom: 15px; }
+        .note { font-style: italic; color: #555; background-color: #f9f9f9; border: 1px solid #ddd; padding: 10px; margin-top: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="electro2.html">1. Vector Operators</a>
+    <a href="maxwell.html" class="active">2. Maxwell's Equations</a>
+    <a href="em_waves.html">3. EM Waves</a>
+    <a href="ac_basics.html">4. AC Basics</a>
+    <a href="rlc_circuits.html">5. RLC Circuits</a>
+</div>
+
+<div class="container">
+    <h1>Part 2: Maxwell's Equations and the Equation of Continuity</h1>
+    <p class="note">Maxwell's equations are the four cornerstones of classical electromagnetism. They describe how electric and magnetic fields are generated and altered by each other and by charges and currents.</p>
+
+    <div class="section">
+        <h2>1. Gauss's Law for Electricity</h2>
+        <p>This law states that the net electric flux out of a closed surface is proportional to the total electric charge enclosed within that surface.</p>
+        <p><strong>Integral Form:</strong></p>
+        <div class="formula">
+            $$ \oint_S \vec{E} \cdot d\vec{s} = \frac{Q_{enc}}{\varepsilon_0} $$
+        </div>
+        <p>This form is useful for calculating the electric field in situations with high symmetry.</p>
+
+        <div class="derivation-box">
+            <h4>Derivation of the Differential Form</h4>
+            <div class="step">
+                <strong>Step 1:</strong> Express the enclosed charge \( Q_{enc} \) as a volume integral of the charge density \( \rho \).
+                $$ Q_{enc} = \int_V \rho \, dV $$
+                So, Gauss's Law becomes:
+                $$ \oint_S \vec{E} \cdot d\vec{s} = \frac{1}{\varepsilon_0} \int_V \rho \, dV $$
+            </div>
+            <div class="step">
+                <strong>Step 2:</strong> Apply the <strong>Divergence Theorem</strong> to the left side to convert the surface integral into a volume integral.
+                $$ \oint_S \vec{E} \cdot d\vec{s} = \int_V (\nabla \cdot \vec{E}) \, dV $$
+            </div>
+            <div class="step">
+                <strong>Step 3:</strong> Equate the two volume integrals.
+                $$ \int_V (\nabla \cdot \vec{E}) \, dV = \int_V \frac{\rho}{\varepsilon_0} \, dV $$
+            </div>
+            <div class="step">
+                <strong>Step 4:</strong> Since this equality must hold for any arbitrary volume \( V \), the integrands themselves must be equal.
+                <div class="formula">$$ \nabla \cdot \vec{E} = \frac{\rho}{\varepsilon_0} $$</div>
+                This is the <strong>differential form</strong>, which tells us that electric field lines diverge from positive charges and converge on negative charges.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. Gauss's Law for Magnetism</h2>
+        <p>This law states that there are no magnetic monopoles. Magnetic field lines always form closed loops; they never start or end at a point. Therefore, the net magnetic flux through any closed surface is always zero.</p>
+        <p><strong>Integral Form:</strong></p>
+        <div class="formula">
+            $$ \oint_S \vec{B} \cdot d\vec{s} = 0 $$
+        </div>
+
+        <div class="derivation-box">
+            <h4>Derivation of the Differential Form</h4>
+            <div class="step">
+                <strong>Step 1:</strong> Apply the <strong>Divergence Theorem</strong> to the integral form.
+                $$ \oint_S \vec{B} \cdot d\vec{s} = \int_V (\nabla \cdot \vec{B}) \, dV $$
+            </div>
+            <div class="step">
+                <strong>Step 2:</strong> Since the integral form is equal to zero, we have:
+                $$ \int_V (\nabla \cdot \vec{B}) \, dV = 0 $$
+            </div>
+            <div class="step">
+                <strong>Step 3:</strong> As this must hold for any volume \( V \), the integrand must be zero.
+                <div class="formula">$$ \nabla \cdot \vec{B} = 0 $$</div>
+                This is the <strong>differential form</strong>. It mathematically states that the magnetic field is "solenoidal," meaning it has no sources or sinks.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>3. Faraday's Law of Induction</h2>
+        <p>This law describes how a time-varying magnetic field creates (induces) an electric field. The line integral of the electric field around a closed loop (the electromotive force, or EMF) is equal to the negative rate of change of the magnetic flux through the surface enclosed by the loop.</p>
+        <p><strong>Integral Form:</strong></p>
+        <div class="formula">
+            $$ \oint_C \vec{E} \cdot d\vec{l} = - \frac{d\Phi_B}{dt} = - \frac{d}{dt} \int_S \vec{B} \cdot d\vec{s} $$
+        </div>
+
+        <div class="derivation-box">
+            <h4>Derivation of the Differential Form</h4>
+            <div class="step">
+                <strong>Step 1:</strong> Apply <strong>Stoke's Theorem</strong> to the left side to convert the line integral into a surface integral.
+                $$ \oint_C \vec{E} \cdot d\vec{l} = \int_S (\nabla \times \vec{E}) \cdot d\vec{s} $$
+            </div>
+            <div class="step">
+                <strong>Step 2:</strong> Bring the time derivative inside the integral on the right side (as a partial derivative, since \( \vec{B} \) can also vary with position).
+                $$ - \frac{d}{dt} \int_S \vec{B} \cdot d\vec{s} = - \int_S \frac{\partial \vec{B}}{\partial t} \cdot d\vec{s} $$
+            </div>
+            <div class="step">
+                <strong>Step 3:</strong> Equate the two surface integrals.
+                $$ \int_S (\nabla \times \vec{E}) \cdot d\vec{s} = - \int_S \frac{\partial \vec{B}}{\partial t} \cdot d\vec{s} $$
+            </div>
+            <div class="step">
+                <strong>Step 4:</strong> Since this must be true for any surface \( S \), the integrands must be equal.
+                <div class="formula">$$ \nabla \times \vec{E} = - \frac{\partial \vec{B}}{\partial t} $$</div>
+                This is the <strong>differential form</strong>, which shows that a changing magnetic field creates a "curling" electric field.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>4. Ampere-Maxwell Law</h2>
+        <p>This law describes how magnetic fields are generated. Originally, Ampere's Law stated that magnetic fields were only created by electric currents (\( \vec{J} \)). Maxwell added a crucial second term, the "displacement current," showing that a time-varying electric field also creates a magnetic field.</p>
+        <p><strong>Integral Form:</strong></p>
+        <div class="formula">
+            $$ \oint_C \vec{B} \cdot d\vec{l} = \mu_0 I_{enc} + \mu_0 \varepsilon_0 \frac{d\Phi_E}{dt} $$
+        </div>
+
+        <div class="derivation-box">
+            <h4>Derivation of the Differential Form</h4>
+            <div class="step">
+                <strong>Step 1:</strong> Apply <strong>Stoke's Theorem</strong> to the left side.
+                $$ \oint_C \vec{B} \cdot d\vec{l} = \int_S (\nabla \times \vec{B}) \cdot d\vec{s} $$
+            </div>
+            <div class="step">
+                <strong>Step 2:</strong> Express the enclosed current \( I_{enc} \) and electric flux \( \Phi_E \) as surface integrals.
+                $$ I_{enc} = \int_S \vec{J} \cdot d\vec{s} \quad \text{and} \quad \frac{d\Phi_E}{dt} = \int_S \frac{\partial \vec{E}}{\partial t} \cdot d\vec{s} $$
+            </div>
+            <div class="step">
+                <strong>Step 3:</strong> Substitute these into the integral form and combine terms.
+                $$ \int_S (\nabla \times \vec{B}) \cdot d\vec{s} = \mu_0 \int_S \vec{J} \cdot d\vec{s} + \mu_0 \varepsilon_0 \int_S \frac{\partial \vec{E}}{\partial t} \cdot d\vec{s} $$
+                $$ \int_S (\nabla \times \vec{B}) \cdot d\vec{s} = \int_S \left( \mu_0 \vec{J} + \mu_0 \varepsilon_0 \frac{\partial \vec{E}}{\partial t} \right) \cdot d\vec{s} $$
+            </div>
+            <div class="step">
+                <strong>Step 4:</strong> For any surface \( S \), the integrands must be equal.
+                <div class="formula">$$ \nabla \times \vec{B} = \mu_0 \vec{J} + \mu_0 \varepsilon_0 \frac{\partial \vec{E}}{\partial t} $$</div>
+                This is the <strong>differential form</strong>, showing that magnetic fields are created by both moving charges and changing electric fields.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>The Equation of Continuity (Charge Conservation)</h2>
+        <p>This is not one of Maxwell's four equations, but it is a fundamental principle that is consistent with them. It states that electric charge is conserved locally.</p>
+        <div class="derivation-box">
+            <h4>Derivation</h4>
+            <div class="step">
+                <strong>Step 1:</strong> Start with the Ampere-Maxwell Law.
+                $$ \nabla \times \vec{B} = \mu_0 \vec{J} + \mu_0 \varepsilon_0 \frac{\partial \vec{E}}{\partial t} $$
+            </div>
+            <div class="step">
+                <strong>Step 2:</strong> Take the divergence of both sides.
+                $$ \nabla \cdot (\nabla \times \vec{B}) = \nabla \cdot \left( \mu_0 \vec{J} + \mu_0 \varepsilon_0 \frac{\partial \vec{E}}{\partial t} \right) $$
+            </div>
+            <div class="step">
+                <strong>Step 3:</strong> The divergence of a curl is always zero (\( \nabla \cdot (\nabla \times \vec{B}) = 0 \)).
+                $$ 0 = \mu_0 (\nabla \cdot \vec{J}) + \mu_0 \varepsilon_0 \nabla \cdot \left( \frac{\partial \vec{E}}{\partial t} \right) $$
+                $$ 0 = \mu_0 (\nabla \cdot \vec{J}) + \mu_0 \varepsilon_0 \frac{\partial}{\partial t} (\nabla \cdot \vec{E}) $$
+            </div>
+            <div class="step">
+                <strong>Step 4:</strong> Substitute Gauss's Law (\( \nabla \cdot \vec{E} = \rho / \varepsilon_0 \)).
+                $$ 0 = \mu_0 (\nabla \cdot \vec{J}) + \mu_0 \varepsilon_0 \frac{\partial}{\partial t} \left( \frac{\rho}{\varepsilon_0} \right) $$
+                $$ 0 = \mu_0 (\nabla \cdot \vec{J}) + \mu_0 \frac{\partial \rho}{\partial t} $$
+            </div>
+            <div class="step">
+                <strong>Step 5:</strong> Divide by \( \mu_0 \) to get the final equation.
+                <div class="formula">$$ \nabla \cdot \vec{J} + \frac{\partial \rho}{\partial t} = 0 $$</div>
+                This means that the rate at which charge density \( \rho \) decreases in a volume is equal to the rate at which current density \( \vec{J} \) flows out of it.
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

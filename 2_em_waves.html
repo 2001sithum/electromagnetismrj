@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHY 2102 Study Guide | Part 2: EM Waves</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.7; margin: 0; padding: 0; background-color: #f8f9fa; color: #212529; }
+        .navbar { background-color: #343a40; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .navbar a { float: left; display: block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; font-size: 1.1em; }
+        .navbar a:hover { background-color: #007bff; color: white; }
+        .navbar a.active { background-color: #0056b3; color: white; }
+        .container { max-width: 950px; margin: 20px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #0056b3; border-bottom: 2px solid #dee2e6; padding-bottom: 10px; }
+        .formula-box { background-color: #e9ecef; border-left: 5px solid #0056b3; padding: 15px; margin: 20px 0; overflow-x: auto; border-radius: 5px; font-size: 1.1em; }
+        .solution-box { border: 1px solid #007bff; border-radius: 5px; padding: 20px; margin: 20px 0; background-color: #f7faff; }
+        .solution-box h4 { margin-top: 0; color: #0056b3; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+        .step { margin-bottom: 15px; }
+        .question-box { background-color: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 5px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <a href="1_foundations.html">1. Foundations</a>
+    <a href="2_em_waves.html" class="active">2. EM Waves</a>
+    <a href="3_wave_apps.html">3. Wave Applications</a>
+    <a href="4_ac_theory.html">4. AC Theory</a>
+    <a href="5_ac_apps.html">5. AC Applications</a>
+</div>
+<div class="container">
+    <h1>Part 2: Theory of EM Waves & The Poynting Vector</h1>
+
+    <div class="section">
+        <h2>Deriving the Wave Equation</h2>
+        <h3>Short Notes: From Maxwell to Waves</h3>
+        <p>A key prediction of Maxwell's equations is the existence of electromagnetic waves. In free space (no charges or currents), a changing E-field creates a B-field, which in turn creates an E-field. This self-sustaining propagation is an EM wave. The wave equation can be derived directly from Maxwell's curl equations.</p>
+        <div class="question-box"><strong>Question (Jan/Feb 2023, Q3b.ii & Nov/Dec 2023, Q3b.ii):</strong> How do Maxwell's equations imply that electromagnetic waves exist in free space and that light is such a wave? / Obtain the wave equation for \( \vec{E} \).</div>
+        <div class="solution-box">
+            <h4>Solution: Derivation of the Wave Equation for \( \vec{E} \)</h4>
+            <div class="step"><strong>Step 1:</strong> Start with Maxwell's two curl equations in free space (\( \vec{J}=0, \rho=0 \)).
+                <p>\( \nabla \times \vec{E} = - \frac{\partial \vec{B}}{\partial t} \) &nbsp; (Faraday's Law)</p>
+                <p>\( \nabla \times \vec{B} = \mu_0 \varepsilon_0 \frac{\partial \vec{E}}{\partial t} \) &nbsp; (Ampere-Maxwell Law)</p>
+            </div>
+            <div class="step"><strong>Step 2:</strong> Take the curl of Faraday's Law.
+                $$ \nabla \times (\nabla \times \vec{E}) = \nabla \times \left(- \frac{\partial \vec{B}}{\partial t}\right) = - \frac{\partial}{\partial t} (\nabla \times \vec{B}) $$
+            </div>
+            <div class="step"><strong>Step 3:</strong> Use the vector identity \( \nabla \times (\nabla \times \vec{A}) = \nabla(\nabla \cdot \vec{A}) - \nabla^2\vec{A} \) on the left side.
+                $$ \nabla(\nabla \cdot \vec{E}) - \nabla^2\vec{E} = - \frac{\partial}{\partial t} (\nabla \times \vec{B}) $$
+            </div>
+            <div class="step"><strong>Step 4:</strong> In free space, \( \nabla \cdot \vec{E} = 0 \). Substitute this and the Ampere-Maxwell Law into the equation.
+                $$ \nabla(0) - \nabla^2\vec{E} = - \frac{\partial}{\partial t} \left(\mu_0 \varepsilon_0 \frac{\partial \vec{E}}{\partial t}\right) $$
+                $$ - \nabla^2\vec{E} = - \mu_0 \varepsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2} $$
+            </div>
+            <div class="step"><strong>Step 5:</strong> The result is the wave equation for the electric field.
+                <div class="formula-box">$$ \nabla^2\vec{E} = \mu_0 \varepsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2} $$</div>
+            </div>
+            <div class="step"><strong>Implication:</strong> This equation is a standard wave equation of the form \( \nabla^2\psi = \frac{1}{v^2}\frac{\partial^2\psi}{\partial t^2} \). By comparison, the speed of these waves is \( v = 1/\sqrt{\mu_0 \varepsilon_0} \). Plugging in the values for \( \mu_0 \) and \( \varepsilon_0 \) gives \( v \approx 3.0 \times 10^8 \) m/s, which is the measured speed of light, c. This proved that light is an electromagnetic wave.</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Relationship between E and B Fields in an EM Wave</h2>
+        <div class="question-box"><strong>Question (Jan/Feb 2023, Q1a & Nov/Dec 2023, Q1a):</strong> Show that at a given instant the ratio of the electric field to the magnetic field of an electromagnetic wave equals the speed of light. i.e., E/B = c.</div>
+        <div class="solution-box">
+            <h4>Solution: Proof that E/B = c</h4>
+            <div class="step"><strong>Step 1:</strong> Assume a sinusoidal plane wave traveling in the x-direction. The fields are transverse and mutually perpendicular.
+                <p>\( \vec{E}(x,t) = E_m \cos(kx - \omega t) \hat{j} \)</p>
+                <p>\( \vec{B}(x,t) = B_m \cos(kx - \omega t) \hat{k} \)</p>
+            </div>
+            <div class="step"><strong>Step 2:</strong> Apply Faraday's Law in differential form: \( \nabla \times \vec{E} = - \frac{\partial \vec{B}}{\partial t} \).</div>
+            <div class="step"><strong>Step 3:</strong> Calculate the left-hand side (LHS):
+                $$ \nabla \times \vec{E} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ 0 & E_m \cos(kx-\omega t) & 0 \end{vmatrix} = \hat{k} \frac{\partial}{\partial x}(E_m \cos(kx-\omega t)) = -k E_m \sin(kx-\omega t) \hat{k} $$
+            </div>
+            <div class="step"><strong>Step 4:</strong> Calculate the right-hand side (RHS):
+                $$ - \frac{\partial \vec{B}}{\partial t} = - \frac{\partial}{\partial t}(B_m \cos(kx-\omega t) \hat{k}) = - B_m (-\omega \sin(kx-\omega t)) \hat{k} = \omega B_m \sin(kx-\omega t) \hat{k} $$
+            </div>
+            <div class="step"><strong>Step 5:</strong> Equate the magnitudes of the LHS and RHS.
+                $$ k E_m = \omega B_m $$
+            </div>
+            <div class="step"><strong>Step 6:</strong> Rearrange the equation. Since the wave speed \( c = \omega/k \), we get the result.
+                $$ \frac{E_m}{B_m} = \frac{\omega}{k} = c $$
+                Since this holds for the amplitudes (Em, Bm), it also holds for the instantaneous magnitudes (E, B) at any point.
+                <div class="formula-box">$$ \frac{E}{B} = c $$</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Intensity of an Electromagnetic Wave</h2>
+        <h3>Short Notes: The Poynting Vector</h3>
+        <p>The Poynting vector \( \vec{S} \) describes the direction and magnitude of energy flow in an EM field. Its magnitude is the power per unit area (intensity), and its direction is the direction of wave propagation.</p>
+        <div class="formula-box">$$ \vec{S} = \frac{1}{\mu_0} (\vec{E} \times \vec{B}) $$</div>
+        <p>For a sinusoidal wave, the intensity \( I \) is the time-average of the magnitude of the Poynting vector, \( I = \langle S \rangle \).</p>
+
+        <div class="question-box"><strong>Question (Jan/Feb 2023, Q1b & Nov/Dec 2023, Q1b):</strong> Prove that the intensity (or time-averaged Poynting vector) of an electromagnetic wave is given by \( I = \frac{E_m^2}{2\mu_0 c} \).</div>
+        <div class="solution-box">
+            <h4>Solution: Derivation of Wave Intensity</h4>
+            <div class="step"><strong>Step 1:</strong> For a plane wave with \( \vec{E} \) and \( \vec{B} \) perpendicular, the magnitude of the Poynting vector is:
+                $$ S = \frac{1}{\mu_0} EB \sin(90^\circ) = \frac{EB}{\mu_0} $$
+            </div>
+            <div class="step"><strong>Step 2:</strong> Substitute \( B = E/c \) into the equation.
+                $$ S = \frac{E(E/c)}{\mu_0} = \frac{E^2}{\mu_0 c} $$
+            </div>
+            <div class="step"><strong>Step 3:</strong> The intensity \( I \) is the average value of S over one cycle. We substitute \( E = E_m \cos(kx - \omega t) \).
+                $$ I = \langle S \rangle = \left\langle \frac{E_m^2 \cos^2(kx - \omega t)}{\mu_0 c} \right\rangle $$
+            </div>
+            <div class="step"><strong>Step 4:</strong> The average value of \( \cos^2(\theta) \) over a full cycle is \( 1/2 \).
+                $$ \langle \cos^2(kx - \omega t) \rangle = \frac{1}{2} $$
+            </div>
+            <div class="step"><strong>Step 5:</strong> Therefore, the intensity is:
+                <div class="formula-box">$$ I = \frac{E_m^2}{2\mu_0 c} $$</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

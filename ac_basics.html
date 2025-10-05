@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 4: AC Theory & Basic Components</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.7; margin: 0; padding: 0; background-color: #f8f9fa; color: #212529; }
+        .navbar { background-color: #343a40; overflow: hidden; }
+        .navbar a { float: left; display: block; color: #f2f2f2; text-align: center; padding: 14px 16px; text-decoration: none; }
+        .navbar a:hover { background-color: #007bff; color: white; }
+        .navbar a.active { background-color: #0056b3; color: white; }
+        .container { max-width: 900px; margin: 20px auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #0056b3; border-bottom: 2px solid #0056b3; padding-bottom: 10px; }
+        .formula { background-color: #e9ecef; border-left: 5px solid #0056b3; padding: 15px; margin: 20px 0; overflow-x: auto; border-radius: 5px; font-size: 1.1em; }
+        .derivation-box { border: 1px solid #ced4da; border-radius: 5px; padding: 20px; margin: 20px 0; background-color: #fdfdff; }
+        .derivation-box h4 { margin-top: 0; color: #007bff; }
+        .step { margin-bottom: 15px; }
+        .note { font-style: italic; color: #555; background-color: #f9f9f9; border: 1px solid #ddd; padding: 10px; margin-top: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="electro2.html">1. Vector Operators</a>
+    <a href="maxwell.html">2. Maxwell's Equations</a>
+    <a href="em_waves.html">3. EM Waves</a>
+    <a href="ac_basics.html" class="active">4. AC Basics</a>
+    <a href="rlc_circuits.html">5. RLC Circuits</a>
+</div>
+
+<div class="container">
+    <h1>Part 4: AC Theory & Basic Components</h1>
+
+    <div class="section">
+        <h2>AC Waveforms and Definitions</h2>
+        <p>In AC (Alternating Current) circuits, voltage and current vary sinusoidally with time.</p>
+        <ul>
+            <li><strong>Voltage:</strong> \( v(t) = V_0 \sin(\omega t) \)</li>
+            <li><strong>Current:</strong> \( i(t) = I_0 \sin(\omega t + \phi) \)</li>
+        </ul>
+        <p>Where \( V_0 \) and \( I_0 \) are the peak amplitudes, \( \omega = 2\pi f \) is the angular frequency, and \( \phi \) is the phase angle, representing the time shift between the voltage and current waveforms.</p>
+    </div>
+
+    <div class="section">
+        <h2>Average and RMS Values</h2>
+        <p>Since the average value of a sine wave over a full cycle is zero, we need a more useful measure for its effective value. This is the Root Mean Square (RMS) value.</p>
+
+        <div class="derivation-box">
+            <h4>Derivation of the RMS Value</h4>
+            <p>The RMS value is the DC equivalent current that would deliver the same average power to a resistor. It is found by taking the square <strong>R</strong>oot of the <strong>M</strong>ean of the <strong>S</strong>quare of the current.</p>
+            <div class="step">
+                <strong>Step 1 (Square):</strong> Square the current waveform.
+                $$ i(t)^2 = (I_0 \sin(\omega t))^2 = I_0^2 \sin^2(\omega t) $$
+            </div>
+            <div class="step">
+                <strong>Step 2 (Mean):</strong> Find the average (mean) value of \( i(t)^2 \) over one full period \( T \).
+                $$ \langle i^2 \rangle = \frac{1}{T} \int_0^T I_0^2 \sin^2(\omega t) \, dt $$
+                Use the trigonometric identity \( \sin^2(x) = \frac{1 - \cos(2x)}{2} \).
+                $$ \langle i^2 \rangle = \frac{I_0^2}{T} \int_0^T \frac{1 - \cos(2\omega t)}{2} \, dt $$
+                $$ = \frac{I_0^2}{2T} \left[ \int_0^T dt - \int_0^T \cos(2\omega t) \, dt \right] $$
+                The integral of \( \cos(2\omega t) \) over a full period is zero.
+                $$ = \frac{I_0^2}{2T} [t]_0^T = \frac{I_0^2}{2T} (T - 0) = \frac{I_0^2}{2} $$
+            </div>
+            <div class="step">
+                <strong>Step 3 (Root):</strong> Take the square root of the result.
+                <div class="formula">$$ I_{rms} = \sqrt{\langle i^2 \rangle} = \sqrt{\frac{I_0^2}{2}} = \frac{I_0}{\sqrt{2}} $$</div>
+                Similarly, for voltage: \( V_{rms} = \frac{V_0}{\sqrt{2}} \).
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>AC Behavior of Circuit Components</h2>
+        <p>We analyze how each basic component behaves in an AC circuit using the concept of <strong>impedance (Z)</strong>, which is the AC equivalent of resistance.</p>
+
+        <h3>1. The Resistor</h3>
+        <p>In a purely resistive circuit, the current is always in phase with the voltage (\( \phi = 0 \)).</p>
+        <p>According to Ohm's law: \( v(t) = i(t)R \). If \( v(t) = V_0 \sin(\omega t) \), then:</p>
+        <div class="formula">
+            $$ i(t) = \frac{V_0}{R} \sin(\omega t) = I_0 \sin(\omega t) $$
+        </div>
+        <p>The impedance of a resistor is simply its resistance, \( Z_R = R \).</p>
+
+        <h3>2. The Inductor</h3>
+        <p>In a purely inductive circuit, the voltage <strong>leads</strong> the current by 90° (\( \phi = +\pi/2 \)). An inductor opposes changes in current.</p>
+        <p>The voltage across an inductor is \( v(t) = L \frac{di}{dt} \). If \( i(t) = I_0 \sin(\omega t) \), then:</p>
+        <div class="formula">
+            $$ v(t) = L \frac{d}{dt} (I_0 \sin(\omega t)) = \omega L I_0 \cos(\omega t) = (\omega L I_0) \sin(\omega t + \pi/2) $$
+        </div>
+        <p>The peak voltage is \( V_0 = I_0 (\omega L) \). The quantity \( \omega L \) is the opposition to current flow and is called <strong>inductive reactance</strong>, \( X_L \).</p>
+        <div class="formula">
+            $$ X_L = \omega L $$
+        </div>
+        <p>The impedance of an inductor is \( Z_L = jX_L = j\omega L \), where \( j = \sqrt{-1} \).</p>
+
+        <h3>3. The Capacitor</h3>
+        <p>In a purely capacitive circuit, the current <strong>leads</strong> the voltage by 90° (\( \phi = -\pi/2 \)). A capacitor opposes changes in voltage.</p>
+        <p>The charge on a capacitor is \( q(t) = C v(t) \), and current is \( i(t) = \frac{dq}{dt} \). If \( v(t) = V_0 \sin(\omega t) \), then:</p>
+        <div class="formula">
+            $$ i(t) = \frac{d}{dt} (C V_0 \sin(\omega t)) = \omega C V_0 \cos(\omega t) = (\omega C V_0) \sin(\omega t + \pi/2) $$
+        </div>
+        <p>The peak current is \( I_0 = V_0 (\omega C) \), or \( V_0 = I_0 \left(\frac{1}{\omega C}\right) \). The quantity \( \frac{1}{\omega C} \) is the opposition to current flow and is called <strong>capacitive reactance</strong>, \( X_C \).</p>
+        <div class="formula">
+            $$ X_C = \frac{1}{\omega C} $$
+        </div>
+        <p>The impedance of a capacitor is \( Z_C = \frac{1}{j\omega C} = -j X_C \).</p>
+    </div>
+</div>
+
+</body>
+</html>
