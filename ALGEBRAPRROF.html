@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proofs in Linear Algebra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+        }
+        #sidebar {
+            width: 280px;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+        }
+        #sidebar h2 {
+            font-family: 'Roboto Slab', serif;
+            color: #1abc9c;
+            text-align: center;
+            border-bottom: 2px solid #1abc9c;
+            padding-bottom: 10px;
+        }
+        #sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        #sidebar ul li {
+            margin: 15px 0;
+        }
+        #sidebar ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 8px 12px;
+            display: block;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        #sidebar ul li a:hover {
+            background-color: #1abc9c;
+            color: #2c3e50;
+        }
+        .sidebar-section-title {
+            font-family: 'Roboto Slab', serif;
+            color: #95a5a6;
+            margin-top: 25px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            border-bottom: 1px solid #34495e;
+            padding-bottom: 5px;
+        }
+        #main-content {
+            margin-left: 280px;
+            padding: 40px;
+            width: calc(100% - 280px);
+        }
+        .proof-section {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .proof-section h1 {
+            font-family: 'Roboto Slab', serif;
+            color: #2c3e50;
+            border-bottom: 3px solid #1abc9c;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .definition, .theorem, .proof {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-left: 5px solid #1abc9c;
+            background-color: #f2f9f8;
+            border-radius: 0 5px 5px 0;
+        }
+        .proof-step {
+            margin: 15px 0;
+        }
+        .proof-step strong {
+            color: #2980b9;
+        }
+        .justification {
+            font-style: italic;
+            color: #7f8c8d;
+            margin-left: 20px;
+            display: block;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #ecf0f1;
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+<div id="sidebar">
+    <h2>Linear Algebra Proofs</h2>
+    <ul>
+        <li class="sidebar-section-title">Vector Spaces</li>
+        <li><a href="#def-vector-space">Definition</a></li>
+
+        <li class="sidebar-section-title">Subspaces</li>
+        <li><a href="#def-subspace">Definition</a></li>
+        <li><a href="#thm-subspace-test1">Theorem: Subspace Test 1</a></li>
+        <li><a href="#proof-subspace-test1">Proof: Subspace Test 1</a></li>
+        <li><a href="#thm-subspace-test2">Theorem: Subspace Test 2</a></li>
+        <li><a href="#proof-subspace-test2">Proof: Subspace Test 2</a></li>
+
+        <li class="sidebar-section-title">Linear Transformations</li>
+        <li><a href="#def-linear-transform">Definition</a></li>
+        <li><a href="#thm-lt-properties">Theorem: LT Properties</a></li>
+        <li><a href="#proof-lt-properties">Proof: LT Properties</a></li>
+        <li><a href="#thm-lt-basis">Theorem: Existence & Uniqueness</a></li>
+        <li><a href="#proof-lt-basis">Proof: Existence & Uniqueness</a></li>
+
+        <li class="sidebar-section-title">Image and Kernel</li>
+        <li><a href="#def-image">Definition: Image</a></li>
+        <li><a href="#thm-image-subspace">Theorem: Image is a Subspace</a></li>
+        <li><a href="#proof-image-subspace">Proof: Image is a Subspace</a></li>
+        <li><a href="#def-kernel">Definition: Kernel</a></li>
+        <li><a href="#thm-kernel-subspace">Theorem: Kernel is a Subspace</a></li>
+        <li><a href="#proof-kernel-subspace">Proof: Kernel is a Subspace</a></li>
+
+        <li class="sidebar-section-title">Rank-Nullity Theorem</li>
+        <li><a href="#def-rank-nullity">Definitions</a></li>
+        <li><a href="#thm-rank-nullity">Theorem Statement</a></li>
+        <li><a href="#proof-rank-nullity">Proof: Rank-Nullity</a></li>
+    </ul>
+</div>
+
+<div id="main-content">
+    <section id="def-vector-space" class="proof-section">
+        <h1>Vector Spaces</h1>
+        <div class="definition">
+            <h2>Definition of a Vector Space</h2>
+            <p>Let $V$ be a non-empty set of objects, called <strong>vectors</strong>. Let $\mathbb{F}$ (e.g., $\mathbb{R}$ or $\mathbb{C}$) be a field, whose elements are called <strong>scalars</strong>.</p>
+            <p>$V$ is a <strong>vector space</strong> over the field $\mathbb{F}$ if two operations, vector addition (+) and scalar multiplication (·), are defined such that the following ten axioms hold for all vectors $\mathbf{u}, \mathbf{v}, \mathbf{w} \in V$ and all scalars $\alpha, \beta \in \mathbb{F}$.</p>
+
+            <h3>Axioms for Vector Addition (+)</h3>
+            <ul>
+                <li><strong>(A1) Closure under Addition:</strong> If $\mathbf{v}_1, \mathbf{v}_2 \in V$, then $\mathbf{v}_1 + \mathbf{v}_2 \in V$.</li>
+                <li><strong>(A2) Commutativity of Addition:</strong> $\mathbf{v}_1 + \mathbf{v}_2 = \mathbf{v}_2 + \mathbf{v}_1$.</li>
+                <li><strong>(A3) Associativity of Addition:</strong> $(\mathbf{v}_1 + \mathbf{v}_2) + \mathbf{v}_3 = \mathbf{v}_1 + (\mathbf{v}_2 + \mathbf{v}_3)$.</li>
+                <li><strong>(A4) Existence of Additive Identity:</strong> There is a zero vector $\mathbf{0} \in V$ such that $\mathbf{v} + \mathbf{0} = \mathbf{v}$ for all $\mathbf{v} \in V$.</li>
+                <li><strong>(A5) Existence of Additive Inverse:</strong> For each $\mathbf{v} \in V$, there is an inverse vector $-\mathbf{v} \in V$ such that $\mathbf{v} + (-\mathbf{v}) = \mathbf{0}$.</li>
+            </ul>
+
+            <h3>Axioms for Scalar Multiplication (·)</h3>
+            <ul>
+                <li><strong>(M1) Closure under Scalar Multiplication:</strong> If $\alpha \in \mathbb{F}$ and $\mathbf{v} \in V$, then $\alpha\mathbf{v} \in V$.</li>
+                <li><strong>(M2) Distributivity of Scalar Sums:</strong> $(\alpha + \beta)\mathbf{v} = \alpha\mathbf{v} + \beta\mathbf{v}$.</li>
+                <li><strong>(M3) Distributivity of Vector Sums:</strong> $\alpha(\mathbf{v}_1 + \mathbf{v}_2) = \alpha\mathbf{v}_1 + \alpha\mathbf{v}_2$.</li>
+                <li><strong>(M4) Associativity of Scalar Multiplication:</strong> $(\alpha\beta)\mathbf{v} = \alpha(\beta\mathbf{v})$.</li>
+                <li><strong>(M5) Existence of Multiplicative Identity:</strong> $1\mathbf{v} = \mathbf{v}$, where $1$ is the multiplicative identity in $\mathbb{F}$.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="def-subspace" class="proof-section">
+        <h1>Vector Subspaces</h1>
+        <div class="definition">
+            <h2>Definition of a Subspace</h2>
+            <p>Let $V$ be a vector space over a field $\mathbb{F}$. A subset $W$ of $V$ is called a <strong>subspace</strong> of $V$ if $W$ is itself a vector space under the same operations of addition and scalar multiplication defined on $V$.</p>
+        </div>
+
+        <div id="thm-subspace-test1" class="theorem">
+            <h2>Theorem: The Subspace Test (Version 1)</h2>
+            <p>A non-empty subset $W$ of a vector space $V$ is a subspace of $V$ if and only if the following two conditions hold:</p>
+            <ol>
+                <li>$W$ is closed under vector addition: If $\mathbf{v}_1, \mathbf{v}_2 \in W$, then $\mathbf{v}_1 + \mathbf{v}_2 \in W$.</li>
+                <li>$W$ is closed under scalar multiplication: If $\alpha \in \mathbb{F}$ and $\mathbf{v} \in W$, then $\alpha\mathbf{v} \in W$.</li>
+            </ol>
+        </div>
+
+        <div id="proof-subspace-test1" class="proof">
+            <h2>Proof of Subspace Test 1 (from your notes)</h2>
+            <p><strong>(⇒) Forward Direction:</strong> Assume $W$ is a subspace of $V$.</p>
+            <div class="proof-step">
+                <strong>Step 1:</strong> By definition, if $W$ is a subspace, it is a vector space. By Axiom (A1), a subspace must be closed under addition. This directly satisfies condition (1).
+            </div>
+            <div class="proof-step">
+                <strong>Step 2:</strong> By Axiom (M1), a subspace must be closed under scalar multiplication. This directly satisfies condition (2).
+            </div>
+
+            <p><strong>(⇐) Converse Direction:</strong> Assume conditions (1) and (2) hold for a non-empty set $W$. We must show $W$ is a subspace.</p>
+            <div class="proof-step">
+                <strong>Axiom A4 (Zero Vector):</strong> Since $W$ is non-empty, there is some vector $\mathbf{w} \in W$. Since $W$ is closed under scalar multiplication (condition 2), we can take the scalar $0 \in \mathbb{F}$. Then $0 \cdot \mathbf{w} = \mathbf{0}$ must be in $W$. Thus, the additive identity exists in $W$.
+            </div>
+            <div class="proof-step">
+                <strong>Axiom A5 (Additive Inverse):</strong> For any $\mathbf{w} \in W$, we need to show its inverse $-\mathbf{w}$ is also in $W$. By condition 2, we can take the scalar $-1 \in \mathbb{F}$. Then $(-1)\mathbf{w} = -\mathbf{w}$ must be in $W$.
+            </div>
+            <div class="proof-step">
+                <strong>Conclusion:</strong> Conditions (1) and (2) are axioms A1 and M1. We have just shown that A4 and A5 also hold for $W$. The remaining vector space axioms (A2, A3, M2, M3, M4, M5) are properties of the operations themselves and are inherited from the parent space $V$. Therefore, $W$ is a vector space and thus a subspace of $V$.
+            </div>
+        </div>
+
+        <div id="thm-subspace-test2" class="theorem">
+            <h2>Theorem: The Subspace Test (Version 2 - Combined Test)</h2>
+            <p>A non-empty subset $W$ of a vector space $V$ is a subspace of $V$ if and only if for all vectors $\mathbf{u}, \mathbf{v} \in W$ and all scalars $\alpha, \beta \in \mathbb{F}$, the linear combination $\alpha\mathbf{u} + \beta\mathbf{v}$ is in $W$.</p>
+        </div>
+
+        <div id="proof-subspace-test2" class="proof">
+            <h2>Proof of Subspace Test 2</h2>
+            <p><strong>(⇒) Forward Direction:</strong> Assume $W$ is a subspace of $V$.</p>
+            <div class="proof-step">
+                <strong>Step 1:</strong> Let $\mathbf{u}, \mathbf{v} \in W$ and $\alpha, \beta \in \mathbb{F}$.
+            </div>
+            <div class="proof-step">
+                <strong>Step 2:</strong> Since $W$ is a subspace, it is closed under scalar multiplication (Axiom M1). Therefore, $\alpha\mathbf{u} \in W$ and $\beta\mathbf{v} \in W$.
+            </div>
+            <div class="proof-step">
+                <strong>Step 3:</strong> Since $W$ is a subspace, it is closed under vector addition (Axiom A1). Therefore, the sum of these two vectors, $\alpha\mathbf{u} + \beta\mathbf{v}$, must be in $W$.
+            </div>
+
+            <p><strong>(⇐) Converse Direction:</strong> Assume $\alpha\mathbf{u} + \beta\mathbf{v} \in W$ for all $\mathbf{u}, \mathbf{v} \in W$ and $\alpha, \beta \in \mathbb{F}$. We must show that $W$ is a subspace.</p>
+            <div class="proof-step">
+                <strong>Closure under Addition (Axiom A1):</strong> Let $\mathbf{u}, \mathbf{v} \in W$. We can choose scalars $\alpha=1$ and $\beta=1$. By the given condition:
+                $$1\mathbf{u} + 1\mathbf{v} = \mathbf{u} + \mathbf{v} \in W$$
+                So, $W$ is closed under addition.
+            </div>
+            <div class="proof-step">
+                <strong>Closure under Scalar Multiplication (Axiom M1):</strong> Let $\mathbf{u} \in W$ and $\alpha \in \mathbb{F}$. We can choose $\beta = 0$ and any $\mathbf{v} \in W$. By the given condition:
+                $$\alpha\mathbf{u} + 0\mathbf{v} = \alpha\mathbf{u} + \mathbf{0} = \alpha\mathbf{u} \in W$$
+                So, $W$ is closed under scalar multiplication.
+            </div>
+            <div class="proof-step">
+                <strong>Conclusion:</strong> Since $W$ is non-empty and closed under both operations, by the Subspace Test (Version 1), it is a subspace.
+            </div>
+        </div>
+    </section>
+
+    <section id="def-linear-transform" class="proof-section">
+        <h1>Linear Transformations</h1>
+        <div class="definition">
+            <h2>Definition of a Linear Transformation</h2>
+            <p>Let $V$ and $W$ be vector spaces over the same field $\mathbb{F}$. A function $T: V \to W$ is called a <strong>linear transformation</strong> if for all vectors $\mathbf{u}, \mathbf{v} \in V$ and all scalars $\alpha \in \mathbb{F}$, the following two properties hold:</p>
+            <ol>
+                <li>$T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v})$ (Additivity)</li>
+                <li>$T(\alpha\mathbf{u}) = \alpha T(\mathbf{u})$ (Homogeneity)</li>
+            </ol>
+        </div>
+
+        <div id="thm-lt-properties" class="theorem">
+            <h2>Theorem: Properties of Linear Transformations</h2>
+            <p>If $T: V \to W$ is a linear transformation, then:</p>
+            <ol type="i">
+                <li>$T(\mathbf{0}_V) = \mathbf{0}_W$</li>
+                <li>$T(-\mathbf{x}) = -T(\mathbf{x})$ for all $\mathbf{x} \in V$</li>
+            </ol>
+        </div>
+
+        <div id="proof-lt-properties" class="proof">
+            <h2>Proof of LT Properties</h2>
+            <p><strong>Proof of (i): $T(\mathbf{0}_V) = \mathbf{0}_W$</strong></p>
+            <div class="proof-step">
+                <strong>Step 1:</strong> We know $0 \cdot \mathbf{x} = \mathbf{0}_V$ for any vector $\mathbf{x} \in V$.
+            </div>
+            <div class="proof-step">
+                <strong>Step 2:</strong> Apply $T$ to both sides: $T(\mathbf{0}_V) = T(0 \cdot \mathbf{x})$.
+            </div>
+            <div class="proof-step">
+                <strong>Step 3:</strong> By the homogeneity property of linear transformations, we can pull the scalar out: $T(0 \cdot \mathbf{x}) = 0 \cdot T(\mathbf{x})$.
+            </div>
+            <div class="proof-step">
+                <strong>Step 4:</strong> Any vector in $W$ (including $T(\mathbf{x})$) multiplied by the scalar 0 results in the zero vector of $W$. So, $0 \cdot T(\mathbf{x}) = \mathbf{0}_W$.
+                <span class="justification">Thus, $T(\mathbf{0}_V) = \mathbf{0}_W$.</span>
+            </div>
+
+            <p><strong>Proof of (ii): $T(-\mathbf{x}) = -T(\mathbf{x})$</strong></p>
+            <div class="proof-step">
+                <strong>Step 1:</strong> The inverse vector $-\mathbf{x}$ is equal to $(-1)\mathbf{x}$.
+            </div>
+            <div class="proof-step">
+                <strong>Step 2:</strong> Apply $T$: $T(-\mathbf{x}) = T((-1)\mathbf{x})$.
+            </div>
+            <div class="proof-step">
+                <strong>Step 3:</strong> By the homogeneity property, $T((-1)\mathbf{x}) = (-1)T(\mathbf{x}) = -T(\mathbf{x})$.
+                <span class="justification">Thus, $T(-\mathbf{x}) = -T(\mathbf{x})$.</span>
+            </div>
+        </div>
+
+        <div id="thm-lt-basis" class="theorem">
+            <h2>Theorem: Existence and Uniqueness of Linear Transformations</h2>
+            <p>Let $V$ and $W$ be vector spaces. Let $B = \{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n\}$ be a basis for $V$. For any set of vectors $\{\mathbf{w}_1, \mathbf{w}_2, \dots, \mathbf{w}_n\}$ in $W$, there exists a <strong>unique</strong> linear transformation $T: V \to W$ such that $T(\mathbf{v}_i) = \mathbf{w}_i$ for $i=1, 2, \dots, n$.</p>
+        </div>
+
+        <div id="proof-lt-basis" class="proof">
+            <h2>Proof of Existence and Uniqueness</h2>
+            <p><strong>Part I: Existence</strong></p>
+            <div class="proof-step">
+                <strong>Step 1 (Define the map):</strong> Let $\mathbf{x}$ be any vector in $V$. Since $B$ is a basis, we can write $\mathbf{x}$ uniquely as a linear combination: $\mathbf{x} = \sum_{i=1}^{n} \alpha_i \mathbf{v}_i$. We define the map $T$ as follows:
+                $$T(\mathbf{x}) = T\left(\sum_{i=1}^{n} \alpha_i \mathbf{v}_i\right) \equiv \sum_{i=1}^{n} \alpha_i \mathbf{w}_i$$
+                This definition ensures that $T(\mathbf{v}_i) = \mathbf{w}_i$.
+            </div>
+            <div class="proof-step">
+                <strong>Step 2 (Prove linearity):</strong> We must show that $T$ is linear. Let $\mathbf{x} = \sum \alpha_i \mathbf{v}_i$ and $\mathbf{y} = \sum \beta_i \mathbf{v}_i$.
+                $$T(\mathbf{x}+\mathbf{y}) = T\left(\sum(\alpha_i+\beta_i)\mathbf{v}_i\right) = \sum(\alpha_i+\beta_i)\mathbf{w}_i = \sum\alpha_i\mathbf{w}_i + \sum\beta_i\mathbf{w}_i = T(\mathbf{x})+T(\mathbf{y})$$
+                $$T(c\mathbf{x}) = T\left(\sum(c\alpha_i)\mathbf{v}_i\right) = \sum(c\alpha_i)\mathbf{w}_i = c\sum\alpha_i\mathbf{w}_i = cT(\mathbf{x})$$
+                Since $T$ is linear and satisfies the condition, a linear transformation exists.
+            </div>
+
+            <p><strong>Part II: Uniqueness</strong></p>
+            <div class="proof-step">
+                <strong>Step 1 (Assume another LT):</strong> Suppose there is another linear transformation $S: V \to W$ such that $S(\mathbf{v}_i) = \mathbf{w}_i$ for all $i$.
+            </div>
+            <div class="proof-step">
+                <strong>Step 2 (Show S=T):</strong> Let $\mathbf{x} = \sum \alpha_i \mathbf{v}_i$ be any vector in $V$. Since $S$ is linear:
+                $$S(\mathbf{x}) = S\left(\sum_{i=1}^{n} \alpha_i \mathbf{v}_i\right) = \sum_{i=1}^{n} \alpha_i S(\mathbf{v}_i)$$
+            </div>
+            <div class="proof-step">
+                <strong>Step 3:</strong> By our assumption, $S(\mathbf{v}_i) = \mathbf{w}_i$. So,
+                $$S(\mathbf{x}) = \sum_{i=1}^{n} \alpha_i \mathbf{w}_i$$
+            </div>
+            <div class="proof-step">
+                <strong>Step 4:</strong> This is exactly how we defined $T(\mathbf{x})$. Therefore, $S(\mathbf{x}) = T(\mathbf{x})$ for all $\mathbf{x} \in V$, which means $S=T$. The transformation is unique.
+            </div>
+        </div>
+    </section>
+
+    <section id="def-image" class="proof-section">
+        <h1>Image and Kernel</h1>
+        <div class="definition">
+            <h2>Definition: Image (or Range)</h2>
+            <p>Let $T: V \to W$ be a linear transformation. The <strong>Image</strong> of $T$, denoted $\text{Im}(T)$ or $R(T)$, is the set of all vectors in the codomain $W$ that are the output of some vector in the domain $V$.
+                $$\text{Im}(T) = \{\mathbf{w} \in W \mid \mathbf{w} = T(\mathbf{v}) \text{ for some } \mathbf{v} \in V\}$$
+            </p>
+        </div>
+
+        <div id="thm-image-subspace" class="theorem">
+            <h2>Theorem: The Image is a Subspace</h2>
+            <p>If $T: V \to W$ is a linear transformation, then its image, $\text{Im}(T)$, is a subspace of the codomain $W$.</p>
+        </div>
+
+        <div id="proof-image-subspace" class="proof">
+            <h2>Proof: Image is a Subspace</h2>
+            <p>We will use the combined subspace test. Let $\alpha, \beta \in \mathbb{F}$ and let $\mathbf{w}_1, \mathbf{w}_2 \in \text{Im}(T)$. We need to show $\alpha\mathbf{w}_1 + \beta\mathbf{w}_2 \in \text{Im}(T)$.</p>
+            <div class="proof-step">
+                <strong>Step 1:</strong> Since $\mathbf{w}_1, \mathbf{w}_2 \in \text{Im}(T)$, by definition there exist vectors $\mathbf{v}_1, \mathbf{v}_2 \in V$ such that $T(\mathbf{v}_1) = \mathbf{w}_1$ and $T(\mathbf{v}_2) = \mathbf{w}_2$.
+            </div>
+            <div class="proof-step">
+                <strong>Step 2:</strong> Consider the linear combination $\alpha\mathbf{w}_1 + \beta\mathbf{w}_2$. Substitute the expressions from Step 1:
+                $$\alpha\mathbf{w}_1 + \beta\mathbf{w}_2 = \alpha T(\mathbf{v}_1) + \beta T(\mathbf{v}_2)$$
+            </div>
+            <div class="proof-step">
+                <strong>Step 3:</strong> Because $T$ is a linear transformation, we can use its properties:
+                $$\alpha T(\mathbf{v}_1) + \beta T(\mathbf{v}_2) = T(\alpha\mathbf{v}_1) + T(\beta\mathbf{v}_2) = T(\alpha\mathbf{v}_1 + \beta\mathbf{v}_2)$$
+            </div>
+            <div class="proof-step">
+                <strong>Step 4:</strong> Since $V$ is a vector space, the linear combination $\alpha\mathbf{v}_1 + \beta\mathbf{v}_2$ is a vector in $V$. Let's call it $\mathbf{v}_{new}$.
+            </div>
+            <div class="proof-step">
+                <strong>Step 5:</strong> Our expression has become $T(\mathbf{v}_{new})$. This is the image of a vector from $V$, so by definition, it must be in $\text{Im}(T)$. Thus, $\text{Im}(T)$ is a subspace of $W$.
+            </div>
+        </div>
+
+        <div id="def-kernel" class="definition">
+            <h2>Definition: Kernel (or Null Space)</h2>
+            <p>Let $T: V \to W$ be a linear transformation. The <strong>Kernel</strong> of $T$, denoted $\text{Ker}(T)$ or $N(T)$, is the set of all vectors in the domain $V$ that are mapped to the zero vector $\mathbf{0}_W$ in the codomain $W$.
+                $$\text{Ker}(T) = \{\mathbf{v} \in V \mid T(\mathbf{v}) = \mathbf{0}_W\}$$
+            </p>
+        </div>
+
+        <div id="thm-kernel-subspace" class="theorem">
+            <h2>Theorem: The Kernel is a Subspace</h2>
+            <p>If $T: V \to W$ is a linear transformation, then its kernel, $\text{Ker}(T)$, is a subspace of the domain $V$.</p>
+        </div>
+
+        <div id="proof-kernel-subspace" class="proof">
+            <h2>Proof: Kernel is a Subspace</h2>
+            <p>We use the combined subspace test. Let $\alpha, \beta \in \mathbb{F}$ and let $\mathbf{v}_1, \mathbf{v}_2 \in \text{Ker}(T)$. We need to show $\alpha\mathbf{v}_1 + \beta\mathbf{v}_2 \in \text{Ker}(T)$.</p>
+            <div class="proof-step">
+                <strong>Step 1:</strong> Since $\mathbf{v}_1, \mathbf{v}_2 \in \text{Ker}(T)$, by definition $T(\mathbf{v}_1) = \mathbf{0}_W$ and $T(\mathbf{v}_2) = \mathbf{0}_W$.
+            </div>
+            <div class="proof-step">
+                <strong>Step 2:</strong> To check if $\alpha\mathbf{v}_1 + \beta\mathbf{v}_2$ is in the kernel, we must apply $T$ to it and see if the result is $\mathbf{0}_W$.
+                $$T(\alpha\mathbf{v}_1 + \beta\mathbf{v}_2)$$
+            </div>
+            <div class="proof-step">
+                <strong>Step 3:</strong> By the linearity of $T$:
+                $$T(\alpha\mathbf{v}_1 + \beta\mathbf{v}_2) = T(\alpha\mathbf{v}_1) + T(\beta\mathbf{v}_2) = \alpha T(\mathbf{v}_1) + \beta T(\mathbf{v}_2)$$
+            </div>
+            <div class="proof-step">
+                <strong>Step 4:</strong> Substitute the facts from Step 1:
+                $$\alpha T(\mathbf{v}_1) + \beta T(\mathbf{v}_2) = \alpha(\mathbf{0}_W) + \beta(\mathbf{0}_W) = \mathbf{0}_W + \mathbf{0}_W = \mathbf{0}_W$$
+            </div>
+            <div class="proof-step">
+                <strong>Step 5:</strong> Since $T(\alpha\mathbf{v}_1 + \beta\mathbf{v}_2) = \mathbf{0}_W$, the vector $\alpha\mathbf{v}_1 + \beta\mathbf{v}_2$ is in the kernel by definition. Thus, $\text{Ker}(T)$ is a subspace of $V$.
+            </div>
+        </div>
+    </section>
+
+    <section id="thm-rank-nullity" class="proof-section">
+        <h1>Rank-Nullity Theorem</h1>
+        <div id="def-rank-nullity" class="definition">
+            <h2>Definitions: Rank and Nullity</h2>
+            <p>Let $T: V \to W$ be a linear transformation where $V$ is a finite-dimensional vector space.</p>
+            <ul>
+                <li>The <strong>Rank</strong> of $T$ is the dimension of its image: $\text{Rank}(T) = \dim(\text{Im}(T))$.</li>
+                <li>The <strong>Nullity</strong> of $T$ is the dimension of its kernel: $\text{Nullity}(T) = \dim(\text{Ker}(T))$.</li>
+            </ul>
+        </div>
+
+        <div class="theorem">
+            <h2>The Rank-Nullity Theorem</h2>
+            <p>If $T: V \to W$ is a linear transformation on a finite-dimensional vector space $V$, then:
+                $$\text{Rank}(T) + \text{Nullity}(T) = \dim(V)$$
+            </p>
+        </div>
+
+        <div id="proof-rank-nullity" class="proof">
+            <h2>Proof of the Rank-Nullity Theorem</h2>
+            <div class="proof-step">
+                <strong>Step 1 (Basis for the Kernel):</strong> Let $\dim(V) = n$ and let the nullity be $k$, so $\dim(\text{Ker}(T)) = k$. The kernel is a subspace of $V$. Let $B_{ker} = \{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k\}$ be a basis for $\text{Ker}(T)$.
+            </div>
+            <div class="proof-step">
+                <strong>Step 2 (Extend the Basis):</strong> Since $B_{ker}$ is a linearly independent set in $V$, we can extend it to form a basis for the entire space $V$. Let this basis for $V$ be:
+                $$B_V = \{\mathbf{v}_1, \dots, \mathbf{v}_k, \mathbf{u}_{k+1}, \dots, \mathbf{u}_n\}$$
+                This basis has $k + (n-k) = n$ vectors.
+            </div>
+            <div class="proof-step">
+                <strong>Step 3 (Claim):</strong> We claim that the set $B_{range} = \{T(\mathbf{u}_{k+1}), \dots, T(\mathbf{u}_n)\}$ is a basis for $\text{Im}(T)$. If this is true, then $\dim(\text{Im}(T)) = n-k$, and the theorem follows: $k + (n-k) = n$. We must prove that $B_{range}$ spans the image and is linearly independent.
+            </div>
+
+            <p><strong>Part A: Proving $B_{range}$ Spans the Image</strong></p>
+            <div class="proof-step">
+                Let $\mathbf{w}$ be any vector in $\text{Im}(T)$. Then $\mathbf{w} = T(\mathbf{x})$ for some $\mathbf{x} \in V$. We can write $\mathbf{x}$ using the basis $B_V$:
+                $$\mathbf{x} = (c_1\mathbf{v}_1 + \dots + c_k\mathbf{v}_k) + (d_{k+1}\mathbf{u}_{k+1} + \dots + d_n\mathbf{u}_n)$$
+                Applying $T$:
+                $$\mathbf{w} = T(\mathbf{x}) = T(c_1\mathbf{v}_1 + \dots) + T(d_{k+1}\mathbf{u}_{k+1} + \dots)$$
+                Since all $\mathbf{v}_i$ are in the kernel, $T(c_1\mathbf{v}_1 + \dots) = \mathbf{0}$. The equation simplifies:
+                $$\mathbf{w} = d_{k+1}T(\mathbf{u}_{k+1}) + \dots + d_n T(\mathbf{u}_n)$$
+                This shows that any vector $\mathbf{w}$ in the image is a linear combination of the vectors in $B_{range}$. Thus, $B_{range}$ spans $\text{Im}(T)$.
+            </div>
+
+            <p><strong>Part B: Proving $B_{range}$ is Linearly Independent</strong></p>
+            <div class="proof-step">
+                Consider the equation: $\alpha_{k+1}T(\mathbf{u}_{k+1}) + \dots + \alpha_n T(\mathbf{u}_n) = \mathbf{0}_W$.
+                <br>By linearity, this is $T(\alpha_{k+1}\mathbf{u}_{k+1} + \dots + \alpha_n \mathbf{u}_n) = \mathbf{0}_W$.
+                <br>This means the vector $\mathbf{z} = \alpha_{k+1}\mathbf{u}_{k+1} + \dots + \alpha_n \mathbf{u}_n$ is in $\text{Ker}(T)$.
+            </div>
+            <div class="proof-step">
+                Since $\mathbf{z}$ is in the kernel, it can be written as a linear combination of the kernel's basis vectors:
+                $$\mathbf{z} = \beta_1 \mathbf{v}_1 + \dots + \beta_k \mathbf{v}_k$$
+            </div>
+            <div class="proof-step">
+                Equating the two expressions for $\mathbf{z}$:
+                $$(\alpha_{k+1}\mathbf{u}_{k+1} + \dots + \alpha_n \mathbf{u}_n) - (\beta_1 \mathbf{v}_1 + \dots + \beta_k \mathbf{v}_k) = \mathbf{0}_V$$
+                Since the set $\{\mathbf{v}_1, \dots, \mathbf{v}_k, \mathbf{u}_{k+1}, \dots, \mathbf{u}_n\}$ is a basis for $V$, its vectors are linearly independent. The only way this linear combination can be zero is if all coefficients are zero.
+                Therefore, $\alpha_{k+1} = \dots = \alpha_n = 0$. This proves that the set $B_{range}$ is linearly independent.
+            </div>
+
+            <div class="proof-step">
+                <strong>Conclusion of Proof:</strong> Since $B_{range}$ is a basis for $\text{Im}(T)$ and has $n-k$ vectors, $\dim(\text{Im}(T)) = n-k$.
+                We have $\text{Nullity}(T) = k$ and $\text{Rank}(T) = n-k$.
+                Adding them gives $k + (n-k) = n = \dim(V)$. The theorem is proven.
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>
